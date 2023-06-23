@@ -24,4 +24,5 @@ hs_err_pid*
 replay_pid*
 
 web_project/.settings/
+web_project/.vscode/
 .dbeaver

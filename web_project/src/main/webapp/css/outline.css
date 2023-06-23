@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#outline{
+	border: 1px solid red;
+	width: 978px;
+	height: 600px;
+	margin : 0px auto;
+	position: relative;
+}
