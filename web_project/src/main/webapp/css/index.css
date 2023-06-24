@@ -71,12 +71,7 @@
 .login_input>input{
 	width : 250px;
 	height: 30px;
-	margin: 15px 5px;
-	border : none;
-}
-
-.login_input>input:focus{
-	outline: none;
+	margin: 18px 5px 0px;
 }
 
 #login_confirm{
@@ -116,14 +111,11 @@
 	background-image: url("../img/login.png");
 	background-size: auto 60px;
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position-x: center;
+	background-position-y: 3px;
 	background-color: rgb(46,204,113);
 	border-radius: 10px;
 	color : white;
 	font-weight: bolder;
 	border : 1px solid rgb(224,224,224);
-}
-
-#lgoin_button>input:hover{
-	cursor: pointer;
 }
