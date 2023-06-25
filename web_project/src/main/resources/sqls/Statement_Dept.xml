@@ -3,7 +3,7 @@
 <mapper namespace="com.hr.pro.model.DeptDaoImpl">
 	
 	<sql id="selectAll">
-		SELECT DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID
+		SELECT DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION
 		FROM DEPT
 	</sql>
 	<!-- WP026 -->
@@ -41,6 +41,11 @@
 		WHERE MANAGER_ID = #{old_id}
 	</update>
 	<!-- WP031 -->
+	<update id="dept_update_location" parameterType="java.util.Map">
+		UPDATET DEPT SET LOCATION = #{new_location}
+		WHERE LOCATION = #{old_location}
+	</update>
+	<!-- WP032 -->
 	<delete id="dept_delete" parameterType="DeptDTO">
 		DELETE FROM DEPT
 		WHERE DEPARTMENT_ID = #{department_id}
@@ -49,15 +54,15 @@
 		UPDATE EMP SET DEPARTMENT_ID = NULL
 		WHERE DEPARTMENT_ID = #{department_id}
 	</update>
-	<!-- WP032 -->
+	<!-- WP033 -->
 	<insert id="dept_insert_idName" parameterType="DeptDTO">
 		<selectKey keyProperty="department_id" resultType="java.lang.Integer" order="BEFORE">
 			SELECT MAX(DEPARTMENT_ID)+10 FROM DEPT
 		</selectKey>
-		INSERT INTO DEPT (DEPARTMENT_ID, DEPARTMENT_NAME)
-		VALUES (#{department_id}, #{department_name})
+		INSERT INTO DEPT (DEPARTMENT_ID, DEPARTMENT_NAME, LOCATION)
+		VALUES (#{department_id}, #{department_name}, #{location})
 	</insert>
-	<!-- WP033 -->
+	<!-- WP034 -->
 	<select id="dept_empManagerId_drop" resultType="DeptDTO">
 		SELECT MANAGER_ID
 		FROM EMP

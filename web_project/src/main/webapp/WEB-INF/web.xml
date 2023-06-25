@@ -9,4 +9,14 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	
+	<!-- HttpServlet을 extends하고 있는 객체 -->
+	<servlet>
+		<servlet-name>jobconn</servlet-name>
+		<servlet-class>com.hr.pro.ctrl.Controller_job</servlet-class>
+	</servlet>
+	<!-- servlet 클래스를 호출할 주소 -->
+	<servlet-mapping>
+		<servlet-name>jobconn</servlet-name>
+		<url-pattern>/jobCtrl.do</url-pattern>
+	</servlet-mapping>
 </web-app>
