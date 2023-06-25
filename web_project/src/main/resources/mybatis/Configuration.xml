@@ -8,6 +8,13 @@
 		<setting name="lazyLoadingEnabled" value="true"/>
 		<!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
 	</settings>
+	<typeAliases>
+		<typeAlias type="com.hr.pro.dto.Dept_DTO" alias="DeptDTO"/>
+		<typeAlias type="com.hr.pro.dto.Emp_DTO" alias="EmpDTO"/>
+		<typeAlias type="com.hr.pro.dto.Emp_DTO2" alias="EmpDTO2"/>
+		<typeAlias type="com.hr.pro.dto.Job2_DTO" alias="JobDTO"/>
+	</typeAliases>
+	
 
 	<environments default="development">
 		<environment id="development">
@@ -23,6 +30,7 @@
 	
 	<mappers>
 		<mapper resource="sqls/Statement_Emp.xml"/>
+		<mapper resource="sqls/Statement_Emp2.xml"/>
 		<mapper resource="sqls/Statement_Job2.xml"/>
 		<mapper resource="sqls/Statement_Dept.xml"/>
 	</mappers>

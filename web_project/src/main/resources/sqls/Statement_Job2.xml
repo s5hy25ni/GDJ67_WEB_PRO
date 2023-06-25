@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hr.pro.Job2">
-
+<mapper namespace="com.hr.pro.model.Job2DaoImpl">
+	
+	<sql id="selectAll">
+		SELECT JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY
+		FROM JOB2
+	</sql>
+	<!-- WP018 -->
+	<select id="job_selectAll" resultType="JobDTO">
+		<include refid="selectAll"/>
+	</select>
+	
+	<!-- WP019 -->
+	<select id="job_id_drop" resultType="JobDTO">
+		SELECT JOB_ID
+			FROM JOB2
+	</select>
+	
+	<!-- WP020 -->
+	<select id="job_search_name" parameterType="JobDTO" resultType="JobDTO">
+		<include refid="selectAll"/>
+			WHERE LOWER(JOB_TITLE) LIKE LOWER(CONCAT(#{job_title}, '%'))
+	</select>
+	
+	<!-- WP021 -->
+	<update id="job_update_id" parameterType="java.util.Map">
+		UPDATE JOB2 SET JOB_ID = #{newJob_id}
+		WHERE JOB_ID = #{oldJob_id}
+	</update>
+	<update id="job_update_empJobId" parameterType="java.util.Map">
+		UPDATE EMP SET JOB_ID = #{newJob_id}
+		WHERE JOB_ID = #{oldJob_id}
+	</update>
+	
+	<!-- WP022 -->
+	<select id="job_title_drop" resultType="JobDTO">
+		SELECT JOB_TITLE
+		FROM JOB2
+	</select>
+	<update id="job_update_title" parameterType="java.util.Map">
+		UPDATE JOB2 SET JOB_TITLE = #{newJob_title}
+		WHERE JOB_TITLE = #{oldJob_title}
+	</update>
+	<!-- WP023 -->
+	<update id="job_update_minSal" parameterType="JobDTO">
+		UPDATE JOB2 SET MIN_SALARY = #{min_salary}
+		WHERE JOB_ID = #{job_id}
+	</update>
+	<update id="job_update_maxSal" parameterType="JobDTO">
+		UPDATE JOB2 SET MAX_SALARY = #{max_salary}
+		WHERE JOB_ID = #{job_id}
+	</update>
+	<!-- WP024 -->
+	<delete id="job_delete" parameterType="JobDTO">
+		DELETE FROM JOB2 
+		WHERE JOB_ID = #{job_id}
+	</delete>
+	<update id="job_delete_empJobId" parameterType="JobDTO">
+		UPDATE EMP SET JOB_ID = 'NULL'
+		WHERE JOB_ID = #{job_id}
+	</update>
+	<!-- WP025 -->
+	<insert id="job_insert" parameterType="java.util.Map">
+		INSERT INTO JOB2 
+		VALUES (#{job_id}, #{job_title}, #{min_salary}, #{max_salary})
+	</insert>
 
 </mapper>

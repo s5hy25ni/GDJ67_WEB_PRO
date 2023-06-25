@@ -23,10 +23,9 @@ public class SqlSessionFactoryManager {
 			reader.close();
 			System.out.println("SqlSessionfactory 객체 생성");
 		} catch (IOException e) {
-			
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 	}
-	
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.pro.model.EmpDaoImpl2">
+	
+	<select id="emp_avgSal_all" resultType="EmpDTO2">
+		SELECT e.JOB_ID, ROUND(AVG(SALARY)) 평균급여
+ 		FROM EMP e INNER JOIN (SELECT JOB_ID, ROUND(AVG(SALARY)) 평균급여
+							 	FROM EMP e 
+							 	GROUP BY JOB_ID) e2
+				 ON e.JOB_ID = e2.JOB_ID
+				GROUP BY e.JOB_ID 
+				ORDER BY 2
+	</select>
+	
+	<select id="emp_avgSal_each" parameterType="EmpDTO2" resultType="EmpDTO2">
+		SELECT e.JOB_ID, ROUND(AVG(SALARY)) 평균급여
+ 		FROM EMP e INNER JOIN (SELECT JOB_ID, ROUND(AVG(SALARY)) 평균급여
+							 	FROM EMP e 
+							 	GROUP BY JOB_ID) e2
+				 ON e.JOB_ID = e2.JOB_ID
+				WHERE e.JOB_ID = #{job_id}
+				 GROUP BY e.JOB_ID
+	</select>
+	
+</mapper>
