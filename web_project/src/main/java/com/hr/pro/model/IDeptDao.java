@@ -20,11 +20,13 @@ public interface IDeptDao {
 	public boolean dept_update_managerId(Map<String, Object> map);
 	public int dept_update_empManagerId(Map<String, Object> map);
 	//WP031
+	public int dept_update_location(Map<String, Object> map);
+	//WP032
 	public boolean dept_delete(Dept_DTO dto);
 	public int dept_delete_empDeptId(Dept_DTO dto);
-	//WP032
-	public int dept_insert_idName(Map<String, Object> map);
 	//WP033
+	public int dept_insert_idName(Map<String, Object> map);
+	//WP034
 	public List<Dept_DTO> dept_empManagerId_drop();
 	public boolean dept_insert_managerId(Map<String, Object> map);
 	public int dept_insert_empManagerId(Map<String, Object> map);

@@ -64,6 +64,13 @@ public class DeptDaoImpl implements IDeptDao {
 		int n = session.update(NS+"dept_update_empManagerId", map);
 		return n;
 	}
+	
+	@Override
+	public int dept_update_location(Map<String, Object> map) {
+		SqlSession session = manager.openSession(true);
+		int n = session.update(NS+"dept_update_location", map);
+		return n;
+	}
 
 	@Override
 	public boolean dept_delete(Dept_DTO dto) {
