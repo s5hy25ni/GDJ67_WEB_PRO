@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+#detail_info{
+    width: 600px;
+    height: 310px;
+    margin: 0 auto;
+}
+
+#detail_info_top{
+    width: 600px;
+    height: 180px;
+    display: flex;
+}
+
+#detail_left{
+    width: 120px;
+    height: 160px;
+    margin-top: 17.5px;
+    background-image: url("https://data1.pokemonkorea.co.kr/newdata/pokedex/full/008001.png");
+    background-size: 240px 280px;
+    background-position-x: -27.5px;
+    background-position-y: 25px;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(190,190,190);
+}
+
+#detail_right{
+    width: 465px;
+    height: 170px;
+    margin: 15px 0px 0px 10px;
+}
+
+.detail_line{
+    height: 30px;
+    margin-top: 10px;
+    display: flex;
+}
+
+#detail_right>.detail_line{
+    width: 465px;
+}
+
+.column{
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    padding-top: 5px;
+    color: rgb(92,92,92);
+    background-color: rgb(224,224,224);
+    border: 1px solid rgb(190,190,190);
+    border-radius: 5px;
+}
+
+.long{
+    width: 354px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid rgb(190,190,190);
+    border-radius: 5px;
+}
+
+.short{
+    width: 120px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid rgb(190,190,190);
+    border-radius: 5px;
+}
+
+.non_change{
+    background-color: rgb(224,224,224);
+}
+
+#detail_info_bot{
+    width: 600px;
+    height: 125px;
+}
+
+.middle{
+    width: 190px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid rgb(190,190,190);
+    border-radius: 5px;
+}
+
+.longlong{
+    width: 490px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid rgb(190,190,190);
+    border-radius: 5px; 
+}
+
+#detail_btns{
+    width: 600px;
+    height: 30px;
+    margin: 15px auto;
+    display: flex;
+    justify-content: right;
+}
+
+#detail_btns>input[type="button"]{
+    width: 95px;
+    height: 30px;
+    margin-left: 10px;
+    color: rgb(92,92,92);
+    font-size: 0.9em;
+    font-weight: bold;
+    background-color: rgb(224,224,224);
+    border: 1px solid rgb(190,190,190);
+    border-radius: 5px; 
+}
+
+#detail_btns>input[type="button"]:hover{
+    color: white;
+    background-color: rgb(46,204,113);
+}
