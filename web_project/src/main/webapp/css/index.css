@@ -26,7 +26,7 @@
 #login_content{
 	min-height : 250px;
 	max-height: 300px;
-	border: 1px solid rgb(224,224,224);
+	border: 1px solid rgb(190,190,190);
 	border-radius: 20px;
 }
 
@@ -39,7 +39,7 @@
 	width: 80%;
 	height: 60px;
 	margin : 0 auto;
-	border : 1px solid rgb(224,224,224);
+	border: 1px solid rgb(190,190,190);
 }
 
 #login_id{
@@ -117,5 +117,5 @@
 	border-radius: 10px;
 	color : white;
 	font-weight: bolder;
-	border : 1px solid rgb(224,224,224);
+	border: 1px solid rgb(190,190,190);
 }
