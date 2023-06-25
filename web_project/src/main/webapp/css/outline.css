@@ -10,6 +10,15 @@
 	height: 600px;
 	margin : 0px auto;
 	position: relative;
+    border: 1px solid red;
+}
+
+#details_outline{
+    width: 620px;
+	height: 380px;
+	margin : 0px auto;
+	position: relative;
+    border: 1px solid red;
 }
 
 header{
