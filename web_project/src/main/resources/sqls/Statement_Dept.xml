@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hr.pro.Dept">
-
+<mapper namespace="com.hr.pro.model.DeptDaoImpl">
+	
+	<sql id="selectAll">
+		SELECT DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID
+		FROM DEPT
+	</sql>
+	<!-- WP026 -->
+	<select id="dept_selectAll" resultType="DeptDTO">
+		<include refid="selectAll"/>
+	</select>
+	<!-- WP027 -->
+	<select id="dept_id_drop" resultType="DeptDTO">
+		SELECT DEPARTMENT_ID
+		FROM DEPT
+	</select>
+	<!-- WP028 -->
+	<select id="dept_search_name" parameterType="DeptDTO" resultType="DeptDTO">
+		SELECT DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID
+		FROM DEPT
+		WHERE LOWER(DEPARTMENT_NAME) LIKE LOWER(CONCAT(#{department_name}, '%'))
+	</select>
+	<!-- WP029 -->
+	<update id="dept_update_name" parameterType="java.util.Map">
+		UPDATE DEPT SET DEPARTMENT_NAME = #{new_name}
+		WHERE DEPARTMENT_NAME = #{old_name}
+	</update>
+	<!-- WP030 -->
+	<select id="dept_managerId_drop" resultType="DeptDTO">
+		SELECT MANAGER_ID
+		FROM DEPT
+		WHERE MANAGER_ID IS NOT NULL
+	</select>
+	<update id="dept_update_managerId" parameterType="java.util.Map">
+		UPDATE DEPT SET MANAGER_ID = #{new_id}
+		WHERE MANAGER_ID = #{old_id}
+	</update>
+	<update id="dept_update_empManagerId" parameterType="java.util.Map">
+		UPDATE EMP SET MANAGER_ID = #{new_id}
+		WHERE MANAGER_ID = #{old_id}
+	</update>
+	<!-- WP031 -->
+	<delete id="dept_delete" parameterType="DeptDTO">
+		DELETE FROM DEPT
+		WHERE DEPARTMENT_ID = #{department_id}
+	</delete>
+	<update id="dept_delete_empDeptId" parameterType="DeptDTO">
+		UPDATE EMP SET DEPARTMENT_ID = NULL
+		WHERE DEPARTMENT_ID = #{department_id}
+	</update>
+	<!-- WP032 -->
+	<insert id="dept_insert_idName" parameterType="DeptDTO">
+		<selectKey keyProperty="department_id" resultType="java.lang.Integer" order="BEFORE">
+			SELECT MAX(DEPARTMENT_ID)+10 FROM DEPT
+		</selectKey>
+		INSERT INTO DEPT (DEPARTMENT_ID, DEPARTMENT_NAME)
+		VALUES (#{department_id}, #{department_name})
+	</insert>
+	<!-- WP033 -->
+	<select id="dept_empManagerId_drop" resultType="DeptDTO">
+		SELECT MANAGER_ID
+		FROM EMP
+		WHERE MANAGER_ID IS NOT NULL
+	</select>
+	<update id="dept_insert_managerId" parameterType="java.util.Map">
+		UPDATE DEPT SET MANAGER_ID = #{manager_id}
+		WHERE DEPARTMENT_ID = #{department_id}
+	</update>
+	<update id="dept_insert_empManagerId" parameterType="java.util.Map">
+		UPDATE EMP SET DEPARTMENT_ID = #{department_id}
+		WHERE MANAGER_ID = #{manager_id}
+	</update>
 
 </mapper>
