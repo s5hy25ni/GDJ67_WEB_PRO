@@ -156,10 +156,6 @@ table{
     text-align: center;
 }
 
-tr, td{
-    border: 1px solid rgb(190,190,190);
-}
-
 thead{
     font-weight: bold;
     background-color: rgb(224,224,224);
@@ -167,6 +163,20 @@ thead{
 
 tbody{
     font-size: 14px;
+}
+
+tr, td{
+    border: 1px solid rgb(190,190,190);
+}
+
+tbody>tr:hover{
+    color: white;
+    background-color: rgb(46,204,113);
+    cursor: pointer;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator{
+    cursor: pointer;
 }
 
 #page{
