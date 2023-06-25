@@ -9,44 +9,113 @@
 }
 
 #login_top{
-	height: 100px;
-	border: 1px solid blue;
+	height: 60px;
 	position: relative;
 }
 
-#login_content{
-	min-height : 150px;
-	max-height: 200px;
-	border: 1px solid blue;
-}
-
-#login_bot{
-	height : 100px;
-	border: 1px solid blue;
-}
-
 #logo{
-	width: 100%;
+	width: 60%;
 	height: 60px;
-	margin: 0px auto;
-	position: absolute;
-	bottom: 0px;
-	border: 1px solid green;
+	margin: 0 auto;
+	background-image: url("../img/logo.png");
+	background-size: auto 80px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#login_content{
+	min-height : 250px;
+	max-height: 300px;
+	border: 1px solid rgb(224,224,224);
+	border-radius: 20px;
 }
 
 #login_input{
 	height: 150px;
-	border: 1px solid green;
+	padding-top: 30px;
+}
+
+.login_input{
+	width: 80%;
+	height: 60px;
+	margin : 0 auto;
+	border : 1px solid rgb(224,224,224);
+}
+
+#login_id{
+	border-radius: 10px 10px 0 0;
+}
+
+#login_pw{
+	border-top: none;
+	border-radius: 0 0 10px 10px;
+}
+
+.login_input>div{
+	width : 30px;
+	height : 30px;
+	margin : 15px 0px 15px 15px;
+	float: left;
+}
+
+#login_id>div{
+	background-image: url("../img/id_green.svg");
+	background-size: 30px 30px;
+}
+
+#login_pw>div{
+	background-image: url("../img/pw_green.svg");
+	background-size: 30px 30px;
+}
+
+.login_input>input{
+	width : 250px;
+	height: 30px;
+	margin: 18px 5px 0px;
 }
 
 #login_confirm{
-	height: 50px;
-	border: 1px solid green;
+	width: 80%;
+	height: 20px;
+	margin: 0 auto;
+	font-size : 12px;
+	font-weight: bold;
+	color : red;
+	display: none;
+}
+
+#login_pw_confirm{
+	width: 80%;
+	height: 20px;
+	margin : 5px auto;
+	color : rgb(92,92,92);
+	font-size : 12px;
+}
+
+#login_pw_confirm>label{
+	margin: 5px;
+}
+
+#login_pw_confirm>label:hover{
+	cursor: pointer;
 }
 
 #lgoin_button{
+	height : 100px;
+}
+
+#lgoin_button>input{
+	width: 80%;
 	height: 60px;
-	border: 1px solid green;
-	position: relative;
-	top : 20px;
+	margin: 20px 40px;
+	background-image: url("../img/login.png");
+	background-size: auto 60px;
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: 3px;
+	background-color: rgb(46,204,113);
+	border-radius: 10px;
+	color : white;
+	font-weight: bolder;
+	border : 1px solid rgb(224,224,224);
 }
