@@ -25,7 +25,7 @@ public class Controller_job extends HttpServlet {
 		List<Job2_DTO> lists = dao.job_selectAll();
 		req.setAttribute("lists018", lists);
 		
-		req.getRequestDispatcher("/index2.jsp").forward(req, resp);
+		req.getRequestDispatcher("/job_summary.jsp").forward(req, resp);
 	}
 
 }
