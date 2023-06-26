@@ -110,30 +110,22 @@
 							<%
 							String selectedJobId = (String) request.getParameter("selectedJobId");
 							int count = 1;
-							boolean isFirstPage = true;
-							int pageNum = 1;
 
 							for (Job2_DTO job : lists) {
 								if (selectedJobId == null || selectedJobId.equals("all") || job.getJob_id().equals(selectedJobId)) {
-									if (isFirstPage && count > 10) {
-								count = 1;
-								isFirstPage = false;
-								pageNum++;
-									}
-
-									if (isFirstPage || count > 10) {
 							%>
-							<tr>
-								<td><%=String.format("%03d", count + (pageNum - 1) * 10)%></td>
+							<tr <%if (count <= 10) {%> id="firstPage"
+								<%} else if (count > 10 && count <= 20) {%> id="secondPage"
+								style="display: none;" <%}%>>
+								<td><%=String.format("%03d", count)%></td>
 								<td><%=job.getJob_id()%></td>
 								<td><%=job.getJob_title()%></td>
 								<td><%=job.getMin_salary()%></td>
 								<td><%=job.getMax_salary()%></td>
 							</tr>
 							<%
-							}
-
 							count++;
+
 							}
 							}
 							%>
@@ -147,12 +139,31 @@
 				<%
 				for (int i = 1; i <= Math.ceil((double) lists.size() / 10); i++) {
 				%>
-				<input class="page" type="button" value="<%=i%>">
+				<input class="page" type="button" value="<%=i%>"
+					onclick="viewPage('<%=i%>')">
 				<%
 				}
 				%>
 				<input class="page" type="button" value="&gt;">
 			</section>
+			<script type="text/javascript">
+				function viewPage(pageId) {
+					var rows = document.getElementsByTagName("tr");
+
+					for (var i = 0; i < rows.length; i++) {
+						var row = rows[i];
+						if (row.id === "firstPage" || row.id === "secondPage") {
+							if (row.id === "firstPage" && pageId == 1) {
+								row.style.display = "table-row";
+							} else if (row.id === "secondPage" && pageId == 2) {
+								row.style.display = "table-row";
+							} else {
+								row.style.display = "none";
+							}
+						}
+					}
+				}
+			</script>
 		</main>
 		<footer>
 			<div>&copy; Developer heeae&hyeon</div>
