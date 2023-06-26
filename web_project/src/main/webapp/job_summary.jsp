@@ -9,6 +9,7 @@
 <title>HRCompany</title>
 <link rel="stylesheet" href="./css/outline.css">
 <link rel="stylesheet" href="./css/job_summary.css">
+<script type="text/javascript" src="./js/js_job.js"></script>
 </head>
 <body>
 	<div id="outline">
@@ -25,22 +26,22 @@
                     <div class="search_center">
                         <div class="search_culomn"><h5>JOB ID</h5></div>
                         <div class="search_center_value" >
-                            <select name="JOB" onchange="selectAll()">
-                                <option value="all" onclick="javascript:location.href='./jobCtrl.do'">전체</option>
-                               <%
-                               List<Job2_DTO> lists = (List<Job2_DTO>)request.getAttribute("lists018");
-                       		
-                       			if(lists != null){
-                       				%>
-                       			<%	
+                            <%
+								List<Job2_DTO> lists = (List<Job2_DTO>)request.getAttribute("lists018");
+								
+								if(lists != null){
+							%>
+							<select>
+								<option value="all">전체</option>
+								<%
 								for(int i=0; i<lists.size(); i++){
 								%>
-									<option><%=lists.get(i).getJob_title() %></option>
-								<% } %> 
-								<% } %> 
-                            </select>
-                             <button>검색</button>
-                        </div>
+								<option><%=lists.get(i).getJob_id() %></option>
+								<% } %>
+							<% } %>
+							</select>
+                          </div>
+							<input type="button" onclick="javascript:location.href='./jobCtrl.do'">
                     </div>
            			<div class="search_right">
                         <div id="current_menu"><h5>직무관리</h5></div>
