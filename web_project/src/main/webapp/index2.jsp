@@ -11,28 +11,6 @@
 </head>
 <body>
 	<button onclick="javascript:location.href='./jobCtrl.do'">결과 확인</button>
-	<%
-		List<Job2_DTO> lists = (List<Job2_DTO>)request.getAttribute("lists018");
-		
-		if(lists != null){
-	%>
-	<fieldset>
-		<legend>전체 조회</legend>
-		<div>
-			<div>총개수 : <%=lists.size() %></div>
-			<div>
-			<select>
-			<%
-			for(int i=0; i<lists.size(); i++){
-			%>
-				<option><%=lists.get(i).getJob_title() %></option>
-			<% } %>
-			</select>
-			</div>
-		</div>
-	</fieldset>
-		<%
-						}
-					%>
+	
 </body>
 </html>
