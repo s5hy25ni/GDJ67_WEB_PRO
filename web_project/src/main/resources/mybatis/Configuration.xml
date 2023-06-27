@@ -13,6 +13,7 @@
 		<typeAlias type="com.hr.pro.dto.Emp_DTO" alias="EmpDTO"/>
 		<typeAlias type="com.hr.pro.dto.Emp_DTO2" alias="EmpDTO2"/>
 		<typeAlias type="com.hr.pro.dto.Job2_DTO" alias="JobDTO"/>
+		<typeAlias type="com.hr.pro.dto.Admin_DTO" alias="AdminDTO"/>
 	</typeAliases>
 	
 
@@ -33,5 +34,6 @@
 		<mapper resource="sqls/Statement_Emp2.xml"/>
 		<mapper resource="sqls/Statement_Job2.xml"/>
 		<mapper resource="sqls/Statement_Dept.xml"/>
+		<mapper resource="sqls/Statement_Admin.xml"/>
 	</mappers>
 </configuration>

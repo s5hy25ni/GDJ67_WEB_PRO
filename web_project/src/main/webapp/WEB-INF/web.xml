@@ -24,9 +24,17 @@
 		<servlet-name>empdept</servlet-name>
 		<servlet-class>com.hr.pro.ctrl.Controller_emp</servlet-class>
 	</servlet>
-	
 	<servlet-mapping>
 		<servlet-name>empdept</servlet-name>
 		<url-pattern>/empCtrl.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>admin</servlet-name>
+		<servlet-class>com.hr.pro.ctrl.Controller_admin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admin</servlet-name>
+		<url-pattern>/login.do</url-pattern>
 	</servlet-mapping>
 </web-app>
