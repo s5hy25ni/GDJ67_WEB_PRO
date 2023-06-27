@@ -45,12 +45,12 @@
 
 							if (lists != null) {
 							%>
-							<select>
+							<select id="jobIdSelect" name="jobIdSelect">
 								<option value="all">전체</option>
 								<%
 								for (int i = 0; i < lists.size(); i++) {
 								%>
-								<option><%=lists.get(i).getJob_id()%></option>
+								<option value="<%=lists.get(i).getJob_id()%>"><%=lists.get(i).getJob_id()%></option>
 								<%
 								}
 								%>
@@ -61,19 +61,28 @@
 						</div>
 						<input type="button" onclick="submitForm()">
 						<script type="text/javascript">
-							var selectElement = document
-									.getElementById("jobIdSelect");
-							var selectedJobId = selectElement.options[selectElement.selectedIndex].value;
-							var form = document.createElement("form");
-							form.method = "GET";
-							form.action = "/jobCtrl.do";
-							var hiddenField = document.createElement("input");
-							hiddenField.type = "hidden";
-							hiddenField.name = "selectedJobId";
-							hiddenField.value = selectedJobId;
-							form.appendChild(hiddenField);
-							document.body.appendChild(form);
-							form.submit();
+							function submitForm(){
+								var selectElement = document.getElementById("jobIdSelect");
+								var selectedJobId = selectElement.options[selectElement.selectedIndex].value;
+								
+								// Create a form element
+						        var form = document.createElement("form");
+						        form.method = "GET";
+						        form.action = "/jobCtrl.do?jobIdSelect=src";
+
+						        // Create a hidden input field
+						        var hiddenField = document.createElement("input");
+						        hiddenField.type = "hidden";
+						        hiddenField.name = "selectedJobId";
+						        hiddenField.value = selectedJobId;
+
+						        // Append the hidden field to the form
+						        form.appendChild(hiddenField);
+
+						        // Append the form to the document body and submit it
+						        document.body.appendChild(form);
+						        form.submit();
+							}
 						</script>
 					</div>
 					<div class="search_right">

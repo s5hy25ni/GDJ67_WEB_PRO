@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HRCompany</title>
+<link rel="stylesheet" href="./css/outline.css">
+<link rel="stylesheet" href="./css/emp_details.css">
+</head>
+<body>
+    <form id="details_outline">
+        <div id="detail_info">
+            <div id="detail_info_top">
+                <div id="detail_left"></div>
+                <div id="detail_right">
+                    <div class="detail_line">
+                        <div class="column"><h5>EMP_ID</h5></div>
+                        <div class="non_change long"></div>
+                    </div>
+                    <div class="detail_line">
+                        <div class="column"><h5>FIRST_NAME</h5></div>
+                        <input class="change short" type="text">
+                        <div class="column"><h5>LAST_NAME</h5></div>
+                        <input class="change short" type="text">
+                    </div>
+                    <div class="detail_line">
+                        <div class="column"><h5>EMAIL</h5></div>
+                        <div class="non_change long"></div>
+                    </div>
+                    <div class="detail_line">
+                        <div class="column"><h5>PHONE</h5></div>
+                        <input class="change long" type="text">
+                    </div>
+                </div>
+            </div>
+            <div id="detail_info_bot">
+                <div class="detail_line">
+                    <div class="column"><h5>DEPT</h5></div>
+                    <input class="change middle" type="text">
+                    <div class="column"><h5>MANAGER</h5></div>
+                    <div class="non_change middle"></div>
+                </div>
+                <div class="detail_line">
+                    <div class="column"><h5>JOB</h5></div>
+                    <input class="change longlong" type="text">
+                </div>
+                <div class="detail_line">
+                    <div class="column"><h5>SALARY</h5></div>
+                    <input class="change middle" type="text">
+                    <div class="column"><h5>COMM</h5></div>
+                    <input class="change middle" type="text">
+                </div>
+            </div>
+        </div>
+        <div id="detail_btns">
+            <input id="modify_btn" type="button" value="수정">
+            <input id="delete_btn" type="button" value="삭제">
+        </div>
+    </form>
+</body>
+</html>
