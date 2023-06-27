@@ -14,4 +14,5 @@ import lombok.ToString;
 public class Admin_DTO {
 	private String admin_id;
 	private String admin_pw;
+	private String last_login;
 }
