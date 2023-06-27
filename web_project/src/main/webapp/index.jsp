@@ -13,54 +13,33 @@
 <script type="text/javascript" src="./js/index.js"></script>
 </head>
 <body>
-	<% 
-		String id=""; 
-		String pw="";	
-	%>
 	<div id="outline">
 		<div id="login_wrap">
 			<div id="login_top">
 				<div id="logo"></div>
 			</div>
 			<div id="login_content">
-				<div id="login_input">
-					<div id="login_id" class="login_input">
-						<div></div>
-						<input id="user_id" type="text" placeholder="아이디">
+				<from action="/login.do" method="post">
+					<div id="login_input">
+						<div id="login_id" class="login_input">
+							<div></div>
+							<input id="user_id" name="user_id" type="text" placeholder="아이디">
+						</div>
+						<div id="login_pw" class="login_input">
+							<div></div>
+							<input id="user_pw" name="user_pw" type="password" placeholder="비밀번호">
+						</div>
+						<div id="login_pw_confirm">
+							<label id="checkbox_label"><input id="checkbox" type="checkbox"> 비밀번호 보기</label>
+						</div>
 					</div>
-					<div id="login_pw" class="login_input">
-						<div></div>
-						<input pw="user_pw" type="password" placeholder="비밀번호">
-					</div>
-					<div id="login_pw_confirm">
-						<label><input type="checkbox"> 비밀번호 보기</label>
-					</div>
-				</div>
-					<div id="login_confirm">※ 아이디 또는 비밀번호를 확인해주세요.</div>
+					<div id="login_confirm"></div>
 					<div id="lgoin_button">
-						<input type="button" onclick="login()"></input>
-						<%
-							List<Admin_DTO> lists = (List<Admin_DTO>)request.getAttribute("adminList");
-							if(lists != null){
-								List<String> idList = lists.stream().map(Admin_DTO::getAdmin_id).collect(Collectors.toList());
-								for(int i=0; i<idList.size(); i++){
-									if(idList.get(i)==id){
-										System.out.println(idList.get(i)+" == "+id);
-									} else {
-										System.out.println(idList.get(i)+" != "+id);
-									}
-								}
-							}
-						%>
+						<input id="login_submit" type="button"></input>
 					</div>
+				</from>
 			</div>
 		</div>
 	</div>
 </body>
-<script>
-	function login() {
-		location.href='/web_project/login.do';
-		
-	 }
-</script>
 </html>
