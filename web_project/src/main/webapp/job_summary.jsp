@@ -13,25 +13,17 @@
 </head>
 <body>
 	<div id="outline">
-		<header>
-			<div id="logo"></div>
-			<div class="menus">
-				<h3>
-					<a href="#">직원 관리</a>
-				</h3>
-			</div>
-			<div class="menus">
-				<h3>
-					<a href="#">부서 관리</a>
-				</h3>
-			</div>
-			<div class="menus">
-				<h3>
-					<a href="#">직무 관리</a>
-				</h3>
-			</div>
-			<input id="logout" type="button" onclick="">
-		</header>
+		 <header>
+            <div id="logo"></div>
+            <div class="menus"><h3><a href="#">직원 관리</a></h3></div>
+            <div class="menus"><h3><a href="#">부서 관리</a></h3></div>
+            <div class="menus"><h3><a href="#">직무 관리</a></h3></div>
+            <input id="logout" type="button" onclick="">
+            <div id="login_extension">
+                <div id="login_time"></div>
+                <input id="login_extension_btn" type="button" value="연장">
+            </div>
+        </header>
 		<main>
 			<section id="search">
 				<div>

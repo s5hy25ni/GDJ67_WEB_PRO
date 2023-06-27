@@ -30,10 +30,10 @@ public class Controller_job extends HttpServlet {
 		req.setAttribute("lists018", lists);
 		
 		//TODO WP019
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("job_id", selectedJobId);
-		List<Job2_DTO> lists1 = dao.job_id_select(map);
-		req.setAttribute("lists019", lists1);
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("job_id", selectedJobId);
+//		List<Job2_DTO> lists1 = dao.job_id_select(map);
+//		req.setAttribute("lists019", lists1);
 		
 		req.getRequestDispatcher("/job_summary.jsp").forward(req, resp);
 	}
