@@ -2,7 +2,9 @@ package com.hr.pro.ctrl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,23 +29,16 @@ public class Controller_job extends HttpServlet {
 		List<Job2_DTO> lists = dao.job_selectAll();
 		req.setAttribute("lists018", lists);
 		
-		if(selectedJobId != null && !selectedJobId.equals("all")) {
-			List<Job2_DTO> filteredLists = filterByJobId(lists, selectedJobId);
-	        req.setAttribute("filteredLists", filteredLists);
-		}
+		//TODO WP019
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("job_id", selectedJobId);
+		List<Job2_DTO> lists1 = dao.job_id_select(map);
+		req.setAttribute("lists019", lists1);
 		
 		req.getRequestDispatcher("/job_summary.jsp").forward(req, resp);
 	}
 	
-	private List<Job2_DTO> filterByJobId(List<Job2_DTO> lists, String selectedJobId) {
-	    List<Job2_DTO> filteredLists = new ArrayList<Job2_DTO>();
-	    for (Job2_DTO job : lists) {
-	        if (job.getJob_id().equals(selectedJobId)) {
-	            filteredLists.add(job);
-	        }
-	    }
-	    return filteredLists;
-	}
+	
 	
 
 }

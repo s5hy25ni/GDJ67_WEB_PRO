@@ -10,7 +10,7 @@ public interface IJob2Dao {
 	//WP018
 	public List<Job2_DTO> job_selectAll();
 	//WP019
-	public List<Job2_DTO> job_id_drop();
+	public List<Job2_DTO> job_id_select(Map<String, Object> map);
 	//WP020
 	public List<Job2_DTO> job_search_name(Job2_DTO dto);
 	//WP021
