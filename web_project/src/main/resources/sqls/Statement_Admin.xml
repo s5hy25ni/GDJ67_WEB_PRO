@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.pro.model.EmpDaoImpl">
+
+	<select id="dept_select" resultType="EmpDTO">
+		SELECT DEPARTMENT_ID , DEPARTMENT_NAME  
+			FROM EMP e JOIN DEPARTMENTS d 
+			USING(DEPARTMENT_ID)
+			GROUP BY DEPARTMENT_ID, DEPARTMENT_NAME  
+			ORDER BY DEPARTMENT_ID
+	</select>
+</mapper>
