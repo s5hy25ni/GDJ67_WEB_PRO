@@ -5,6 +5,7 @@
 <title>HRCompany</title>
 <link rel="stylesheet" href="./css/outline.css">
 <link rel="stylesheet" href="./css/index.css">
+<script type="text/javascript" src="./js/index.js"></script>
 </head>
 <body>
 	<div id="outline">
@@ -13,23 +14,25 @@
 				<div id="logo"></div>
 			</div>
 			<div id="login_content">
-				<div id="login_input">
-					<div id="login_id" class="login_input">
-						<div></div>
-						<input type="text" placeholder="아이디">
+				<from name="login_info">
+					<div id="login_input">
+						<div id="login_id" class="login_input">
+							<div></div>
+							<input id="user_id" type="text" placeholder="아이디">
+						</div>
+						<div id="login_pw" class="login_input">
+							<div></div>
+							<input id="user_pw" type="password" placeholder="비밀번호">
+						</div>
+						<div id="login_pw_confirm">
+							<label id="checkbox_label"><input id="checkbox" type="checkbox"> 비밀번호 보기</label>
+						</div>
 					</div>
-					<div id="login_pw" class="login_input">
-						<div></div>
-						<input type="password" placeholder="비밀번호">
-					</div>
-					<div id="login_pw_confirm">
-						<label><input type="checkbox"> 비밀번호 보기</label>
-					</div>
-				</div>
-					<div id="login_confirm">※ 아이디 또는 비밀번호를 확인해주세요.</div>
+					<div id="login_confirm"></div>
 					<div id="lgoin_button">
-						<input type="button" onclick=""></input>
+						<input id="login_submit" type="button"></input>
 					</div>
+				</from>
 			</div>
 		</div>
 	</div>
