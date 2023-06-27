@@ -25,4 +25,5 @@ replay_pid*
 
 web_project/.settings/
 web_project/.vscode/
+web_project/src/main/webapp/.vscode/
 .dbeaver
