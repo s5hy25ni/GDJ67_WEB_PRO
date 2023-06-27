@@ -13,17 +13,29 @@
 </head>
 <body>
 	<div id="outline">
-		 <header>
-            <div id="logo"></div>
-            <div class="menus"><h3><a href="#">직원 관리</a></h3></div>
-            <div class="menus"><h3><a href="#">부서 관리</a></h3></div>
-            <div class="menus"><h3><a href="#">직무 관리</a></h3></div>
-            <input id="logout" type="button" onclick="">
-            <div id="login_extension">
-                <div id="login_time"></div>
-                <input id="login_extension_btn" type="button" value="연장">
-            </div>
-        </header>
+		<header>
+			<div id="logo"></div>
+			<div class="menus">
+				<h3>
+					<a href="#">직원 관리</a>
+				</h3>
+			</div>
+			<div class="menus">
+				<h3>
+					<a href="#">부서 관리</a>
+				</h3>
+			</div>
+			<div class="menus">
+				<h3>
+					<a href="#">직무 관리</a>
+				</h3>
+			</div>
+			<input id="logout" type="button" onclick="">
+			<div id="login_extension">
+				<div id="login_time"></div>
+				<input id="login_extension_btn" type="button" value="연장">
+			</div>
+		</header>
 		<main>
 			<section id="search">
 				<div>
@@ -53,27 +65,29 @@
 						</div>
 						<input type="button" onclick="submitForm()">
 						<script type="text/javascript">
-							function submitForm(){
-								var selectElement = document.getElementById("jobIdSelect");
+							function submitForm() {
+								var selectElement = document
+										.getElementById("jobIdSelect");
 								var selectedJobId = selectElement.options[selectElement.selectedIndex].value;
-								
+
 								// Create a form element
-						        var form = document.createElement("form");
-						        form.method = "GET";
-						        form.action = "/jobCtrl.do?jobIdSelect=src";
+								var form = document.createElement("form");
+								form.method = "GET";
+								form.action = "/jobCtrl.do";
 
-						        // Create a hidden input field
-						        var hiddenField = document.createElement("input");
-						        hiddenField.type = "hidden";
-						        hiddenField.name = "selectedJobId";
-						        hiddenField.value = selectedJobId;
+								// Create a hidden input field
+								var hiddenField = document
+										.createElement("input");
+								hiddenField.type = "hidden";
+								hiddenField.name = "jobIdSelect"; // Changed the name to match the parameter name
+								hiddenField.value = selectedJobId;
 
-						        // Append the hidden field to the form
-						        form.appendChild(hiddenField);
+								// Append the hidden field to the form
+								form.appendChild(hiddenField);
 
-						        // Append the form to the document body and submit it
-						        document.body.appendChild(form);
-						        form.submit();
+								// Append the form to the document body and submit it
+								document.body.appendChild(form);
+								form.submit();
 							}
 						</script>
 					</div>
@@ -109,12 +123,13 @@
 						<tbody>
 							<!-- for문으로 행 갯수만큼만 출력(최대 10개) -->
 							<%
-							String selectedJobId = (String) request.getParameter("selectedJobId");
-							int count = 1;
-
-							for (Job2_DTO job : lists) {
-								if (selectedJobId == null || selectedJobId.equals("all") || job.getJob_id().equals(selectedJobId)) {
-							%>
+							    String jobIdSelect = (String) request.getParameter("jobIdSelect");
+							    int count = 1;
+							
+							    if (lists != null) {
+							        for (Job2_DTO job : lists) {
+							            if (jobIdSelect == null || jobIdSelect.equals("all")) {
+							    %>
 							<tr <%if (count <= 10) {%> id="firstPage"
 								<%} else if (count > 10 && count <= 20) {%> id="secondPage"
 								style="display: none;" <%}%>>
@@ -125,10 +140,25 @@
 								<td><%=job.getMax_salary()%></td>
 							</tr>
 							<%
-							count++;
-
-							}
-							}
+				            count++;
+							        }
+							    }
+		  					  %>
+							<%
+							    List<Job2_DTO> lists019 = (List<Job2_DTO>) request.getAttribute("lists019");
+							    if (lists019 != null && !lists019.isEmpty()) {
+							        for (Job2_DTO job : lists019) {
+							%>
+							        <tr>
+							            <td><%= String.format("%03d", 1) %></td>
+							            <td><%= job.getJob_id() %></td>
+							            <td><%= job.getJob_title() %></td>
+							            <td><%= job.getMin_salary() %></td>
+							            <td><%= job.getMax_salary() %></td>
+							        </tr>
+							<%
+							        }
+							    }
 							%>
 						</tbody>
 					</table>
@@ -142,6 +172,9 @@
 				%>
 				<input class="page" type="button" value="<%=i%>"
 					onclick="viewPage('<%=i%>')">
+				<%
+				}
+				%>
 				<%
 				}
 				%>
