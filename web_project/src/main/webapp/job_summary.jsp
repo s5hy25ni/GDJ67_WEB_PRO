@@ -9,7 +9,7 @@
 <title>HRCompany</title>
 <link rel="stylesheet" href="./css/outline.css">
 <link rel="stylesheet" href="./css/job_summary.css">
-<script type="text/javascript" src="./js/js_job.js"></script>
+<script type="text/javascript" src="./js/job_summary.js"></script>
 </head>
 <body>
 	<div id="outline">
@@ -64,32 +64,6 @@
 							</select>
 						</div>
 						<input type="button" onclick="submitForm()">
-						<script type="text/javascript">
-							function submitForm() {
-								var selectElement = document
-										.getElementById("jobIdSelect");
-								var selectedJobId = selectElement.options[selectElement.selectedIndex].value;
-
-								// Create a form element
-								var form = document.createElement("form");
-								form.method = "GET";
-								form.action = "/jobCtrl.do";
-
-								// Create a hidden input field
-								var hiddenField = document
-										.createElement("input");
-								hiddenField.type = "hidden";
-								hiddenField.name = "jobIdSelect"; // Changed the name to match the parameter name
-								hiddenField.value = selectedJobId;
-
-								// Append the hidden field to the form
-								form.appendChild(hiddenField);
-
-								// Append the form to the document body and submit it
-								document.body.appendChild(form);
-								form.submit();
-							}
-						</script>
 					</div>
 					<div class="search_right">
 						<div id="current_menu">
@@ -123,16 +97,29 @@
 						<tbody>
 							<!-- for문으로 행 갯수만큼만 출력(최대 10개) -->
 							<%
-							    String jobIdSelect = (String) request.getParameter("jobIdSelect");
-							    int count = 1;
-							
-							    if (lists != null) {
-							        for (Job2_DTO job : lists) {
-							            if (jobIdSelect == null || jobIdSelect.equals("all")) {
-							    %>
-							<tr <%if (count <= 10) {%> id="firstPage"
-								<%} else if (count > 10 && count <= 20) {%> id="secondPage"
-								style="display: none;" <%}%>>
+							String jobIdSelect = (String) request.getParameter("jobIdSelect");
+							int count = 1;
+							int currentPage = 1; // 현재 페이지 초기화
+
+							if (lists != null) {
+								for (Job2_DTO job : lists) {
+									if (jobIdSelect == null || jobIdSelect.equals("all")) {
+								if (count > 10 && count <= 20) { // 수정: count가 10 이상이고 20 이하인 경우에 두 번째 페이지에 행 추가
+									currentPage = 2; // 현재 페이지를 2로 설정
+									if (currentPage == 2) { // 두 번째 페이지에 10개의 행 출력
+										if (count > lists.size()) { // lists의 크기를 넘어가면 빈 행 추가
+							%>
+							<tr id="secondPage" style="display: none;">
+								<td><%=String.format("%03d", count)%></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<%
+							} else {
+							%>
+							<tr id="secondPage" style="display: none;">
 								<td><%=String.format("%03d", count)%></td>
 								<td><%=job.getJob_id()%></td>
 								<td><%=job.getJob_title()%></td>
@@ -140,45 +127,43 @@
 								<td><%=job.getMax_salary()%></td>
 							</tr>
 							<%
-				            count++;
-							        }
-							    }
-		  					  %>
-							<%
-							    List<Job2_DTO> lists019 = (List<Job2_DTO>) request.getAttribute("lists019");
-							    if (lists019 != null && !lists019.isEmpty()) {
-							        for (Job2_DTO job : lists019) {
+							}
+							}
+							} else { // 첫 번째 페이지에 10개의 행 출력
 							%>
-							        <tr>
-							            <td><%= String.format("%03d", 1) %></td>
-							            <td><%= job.getJob_id() %></td>
-							            <td><%= job.getJob_title() %></td>
-							            <td><%= job.getMin_salary() %></td>
-							            <td><%= job.getMax_salary() %></td>
-							        </tr>
+							<tr id="firstPage">
+								<td><%=String.format("%03d", count)%></td>
+								<td><%=job.getJob_id()%></td>
+								<td><%=job.getJob_title()%></td>
+								<td><%=job.getMin_salary()%></td>
+								<td><%=job.getMax_salary()%></td>
+							</tr>
 							<%
-							        }
-							    }
+							}
+							}
+							count++;
+							if (count > 20){
+							break; // count가 20이 되면 반복문 종료
+							}
+							}
+							}
 							%>
 						</tbody>
 					</table>
 				</div>
 			</section>
 			<section id="page">
-				<input class="page" type="button" value="&lt;">
+				<input class="page" type="button" value="&lt;" onclick="prevPage()">
 				<!-- 행에 따라 늘어남 -->
 				<%
 				for (int i = 1; i <= Math.ceil((double) lists.size() / 10); i++) {
 				%>
-				<input class="page" type="button" value="<%=i%>"
+				<input class="page" type="button" id="curPage" value="<%=i%>"
 					onclick="viewPage('<%=i%>')">
 				<%
 				}
 				%>
-				<%
-				}
-				%>
-				<input class="page" type="button" value="&gt;">
+				<input class="page" type="button" value="&gt;" onclick="nextPage()">
 			</section>
 			<script type="text/javascript">
 				function viewPage(pageId) {
@@ -190,13 +175,43 @@
 							if (row.id === "firstPage" && pageId == 1) {
 								row.style.display = "table-row";
 							} else if (row.id === "secondPage" && pageId == 2) {
-								row.style.display = "table-row";
+								if (i >= 10 && i < 20) {
+									row.style.display = "table-row";
+								} else {
+									row.style.display = "none";
+								}
 							} else {
 								row.style.display = "none";
 							}
 						}
 					}
+
+					// 페이지 버튼 스타일 변경
+					var pageButtons = document.getElementsByClassName("page");
+					for (var j = 0; j < pageButtons.length; j++) {
+						var button = pageButtons[j];
+						if (button.value == pageId) {
+							button.classList.add("active");
+						} else {
+							button.classList.remove("active");
+						}
+					}
 				}
+				
+				 function prevPage() {
+					 var currentPage = document.querySelector('.page.active').value;
+				        if (currentPage > 1) {
+				            viewPage(parseInt(currentPage) - 1);
+				        }
+				    }
+
+				    function nextPage() {
+				    	var currentPage2 = document.getElementById("curPage").value;
+				        var totalPages = <%=Math.ceil((double) lists.size() / 10)%>  
+				        if (currentPage2 < totalPages) {
+				            viewPage(parseInt(currentPage2) + 1);
+				        }
+				    }
 			</script>
 		</main>
 		<footer>
