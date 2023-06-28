@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>HRCompany</title>
 <link rel="stylesheet" href="./css/outline.css">
 <link rel="stylesheet" href="./css/index.css">
 <script type="text/javascript" src="./js/index.js"></script>
@@ -19,15 +20,15 @@
 				<div id="logo"></div>
 			</div>
 			<div id="login_content">
-				<from action="/login.do" method="post">
+				<form name="login_info" action="/login.do" method="post">
 					<div id="login_input">
 						<div id="login_id" class="login_input">
 							<div></div>
-							<input id="user_id" name="user_id" type="text" placeholder="아이디">
+							<input id="user_id" type="text" placeholder="아이디">
 						</div>
 						<div id="login_pw" class="login_input">
 							<div></div>
-							<input id="user_pw" name="user_pw" type="password" placeholder="비밀번호">
+							<input id="user_pw" type="password" placeholder="비밀번호">
 						</div>
 						<div id="login_pw_confirm">
 							<label id="checkbox_label"><input id="checkbox" type="checkbox"> 비밀번호 보기</label>
@@ -37,7 +38,7 @@
 					<div id="lgoin_button">
 						<input id="login_submit" type="button"></input>
 					</div>
-				</from>
+				</form>
 			</div>
 		</div>
 	</div>
