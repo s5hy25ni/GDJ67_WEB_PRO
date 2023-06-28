@@ -17,7 +17,7 @@ public class AdminDaoImpl implements IAdminDao {
 	
 	@Override
 	public List<Admin_DTO> getLoginUser(Map<String, Object> map) {
-		List<Admin_DTO> dto = session.selectList(NS+"getloginUser", map);
+		List<Admin_DTO> dto = session.selectList(NS+"getLoginUser", map);
 		return dto;
 	}
 	
