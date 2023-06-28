@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hr.pro.model.EmpDaoImpl">
+<mapper namespace="com.hr.pro.model.AdminDaoImpl">
 
-	<select id="admin_login" resultType="EmpDTO">
-		SELECT *
+	<select id="getLoginUser" resultType="AdminDTO">
+		SELECT ADMIN_ID, ADMIN_PW, LAST_LOGIN
 			FROM ADMINS
 			WHERE ADMIN_ID=#{admin_id}
 				AND ADMIN_PW=#{admin_pw}
 	</select>
+	
+	<update id="setLastLogin">
+		UPDATE ADMINS SET LAST_LOGIN=TO_DATE(#{last_login}, 'YYYY/MM/DD HH24:MI:SS')
+			WHERE ADMIN_ID=#{admin_id}
+	</update>
 </mapper>

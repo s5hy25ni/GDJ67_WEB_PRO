@@ -1,5 +1,6 @@
 package com.hr.pro.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class Admin_DTO {
 	private String admin_id;
 	private String admin_pw;

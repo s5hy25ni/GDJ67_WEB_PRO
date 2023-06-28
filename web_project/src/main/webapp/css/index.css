@@ -32,7 +32,7 @@
 
 #login_input{
 	height: 150px;
-	padding-top: 30px;
+	padding-top: 25px;
 }
 
 .login_input{
@@ -40,17 +40,11 @@
 	height: 60px;
 	margin : 0 auto;
 	border: 1px solid rgb(190,190,190);
-}
-
-
-
-#login_id{
-	border-radius: 10px 10px 0 0;
+	border-radius: 10px;
 }
 
 #login_pw{
-	border-top: none;
-	border-radius: 0 0 10px 10px;
+	margin-top: 5px;
 }
 
 .login_input>div{
@@ -58,6 +52,10 @@
 	height : 30px;
 	margin : 15px 0px 15px 15px;
 	float: left;
+}
+
+#login_input>.login_input_sel{
+	border-color: rgb(46,204,113);
 }
 
 #login_id>div{

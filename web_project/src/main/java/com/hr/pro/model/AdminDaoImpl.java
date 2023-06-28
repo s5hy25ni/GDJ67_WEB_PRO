@@ -1,6 +1,7 @@
 package com.hr.pro.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,8 +16,15 @@ public class AdminDaoImpl implements IAdminDao {
 	private SqlSession session = manager.openSession();
 	
 	@Override
-	public List<Admin_DTO> getAdminList() {
-		List<Admin_DTO> dto = session.selectList(NS+"admin_select");
+	public List<Admin_DTO> getLoginUser(Map<String, Object> map) {
+		List<Admin_DTO> dto = session.selectList(NS+"getloginUser", map);
 		return dto;
+	}
+	
+	@Override
+	public boolean setLastLogin(Map<String, Object> map) {
+		int result = session.update(NS+"setLastLogin", map);
+		session.commit();
+		return (result>0)?true:false;
 	}
 }
