@@ -91,6 +91,13 @@ header>div{
     background-color: transparent;
 }
 
+main{
+    width: 958px;
+    height: 500px;
+    margin-left:10px;
+    margin-top: 20px;
+}
+
 footer{
     width: 978px;
     height: 15px;

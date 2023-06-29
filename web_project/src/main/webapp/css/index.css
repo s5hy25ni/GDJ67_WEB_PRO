@@ -1,121 +1,81 @@
 @charset "UTF-8";
 
-#login_wrap{
-	width: 400px;
-	height: 400px;
-	margin : 0px auto;
-	position : relative;
-	top : 100px;
+main{
+	display: flex;
 }
 
-#login_top{
-	height: 60px;
-	position: relative;
+#index{
+	margin: 0px auto;
 }
 
-#logo{
-	width: 60%;
-	height: 60px;
-	margin: 0 auto;
-	background-image: url("../img/logo.png");
-	background-size: auto 80px;
+#index>div{
+	height: 500px;
+	text-align: center;
+}
+
+#isLoginFalse{
+	display: none;
+	width: 600px;
+	background-image: url("../img/campaign.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
-#login_content{
-	min-height : 250px;
-	max-height: 300px;
-	border: 1px solid rgb(190,190,190);
-	border-radius: 20px;
-}
-
-#login_input{
-	height: 150px;
-	padding-top: 25px;
-}
-
-.login_input{
-	width: 80%;
-	height: 60px;
-	margin : 0 auto;
-	border: 1px solid rgb(190,190,190);
-	border-radius: 10px;
-}
-
-#login_pw{
-	margin-top: 5px;
-}
-
-.login_input>div{
-	width : 30px;
-	height : 30px;
-	margin : 15px 0px 15px 15px;
-	float: left;
-}
-
-#login_input>.login_input_sel{
-	border-color: rgb(46,204,113);
-}
-
-#login_id>div{
-	background-image: url("../img/id_green.svg");
-	background-size: 30px 30px;
-}
-
-#login_pw>div{
-	background-image: url("../img/pw_green.svg");
-	background-size: 30px 30px;
-}
-
-.login_input>input{
-	width : 250px;
-	height: 30px;
-	margin: 18px 5px 0px;
-}
-
-#login_confirm{
-	width: 80%;
-	height: 20px;
-	margin: 0 auto;
-	font-size : 12px;
+#loginBtn{
+	width: 100px;
+	height: 100px;
+	margin-top: 200px;
+	border-radius: 100%;
+	border : 1px solid rgb(190,190,190);
+	background-color: rgb(224,224,224);
+	color: rgb(92,92,92);
+	font-size: 1.2em;
 	font-weight: bold;
-	color : red;
+}
+
+#loginBtn:hover{
+	color : white;
+	background-color: rgb(46,204,113);
+	box-shadow: 0px 0px 15px 1px rgb(190,190,190);
+}
+
+#isLoginTrue{
+	width: 450px;
+	height: 500px;
+	/* display: none; */
+}
+
+#loginUser{
+	width: 450px;
+	height: 200px;
+	margin-top: 100px;
+	display: flex;
+}
+
+#photo{
+	width: 150px;
+	height: 200px;
+	border: 1px solid blue;
+	background-image: url("https://data1.pokemonkorea.co.kr/newdata/pokedex/full/012401.png");
+	background-repeat: no-repeat;
+	background-size: 300px auto;
+	background-position-x: -75px;
+	background-position-y: -20px;
+}
+
+#info{
+	width: 300px;
+	height: 200px;
+	border: 1px solid red;
+}
+
+#comfirm{
+	width: 450px;
+	height: 50px;
+	border: 1px solid green;
+}
+
+#notify{
 	display: none;
 }
 
-#login_pw_confirm{
-	width: 80%;
-	height: 20px;
-	margin : 5px auto;
-	color : rgb(92,92,92);
-	font-size : 12px;
-}
-
-#login_pw_confirm>label{
-	margin: 5px;
-}
-
-#login_pw_confirm>label:hover{
-	cursor: pointer;
-}
-
-#lgoin_button{
-	height : 100px;
-}
-
-#lgoin_button>input{
-	width: 80%;
-	height: 60px;
-	margin: 20px 40px;
-	background-image: url("../img/login.png");
-	background-size: auto 60px;
-	background-repeat: no-repeat;
-	background-position-x: center;
-	background-position-y: 3px;
-	background-color: rgb(46,204,113);
-	border-radius: 10px;
-	color : white;
-	font-weight: bolder;
-	border: 1px solid rgb(190,190,190);
-}

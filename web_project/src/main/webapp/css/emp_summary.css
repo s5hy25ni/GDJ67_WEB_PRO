@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-main{
-    width: 958px;
-    height: 500px;
-    margin-left:10px;
-}
-
 #search{
     width: 958px;
     height: 80px;
