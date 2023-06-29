@@ -8,8 +8,8 @@ function submitForm() {
 
 	// form 생성
 	var form = document.createElement("form");
-	form.method = "GET";
-	form.action = "http://localhost:8080/web_project/job_details_html.html";
+	form.method = "POST";
+	form.action = "/web_project/jobCtrl.do";
 
 	//hiddenField input 생성
 	var hiddenField = document.createElement("input");
