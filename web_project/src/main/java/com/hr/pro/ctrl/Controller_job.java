@@ -40,6 +40,9 @@ public class Controller_job extends HttpServlet {
 		
 		IJob2Dao dao = new Job2DaoImpl();
 		
+		List<Job2_DTO> lists = dao.job_selectAll();
+		req.setAttribute("lists018", lists);
+		
 		//TODO WP019		
 				if (jobIdSelect != null && !jobIdSelect.isEmpty()) {
 			        map.put("job_id", jobIdSelect);

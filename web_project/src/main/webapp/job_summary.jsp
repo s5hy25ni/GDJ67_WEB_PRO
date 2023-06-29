@@ -50,8 +50,13 @@
 							if (lists != null) {
 							%>
 							<select id="jobIdSelect" name="jobIdSelect">
+								<%if(lists019 != null){%>
+								<option value="<%=lists019.get(0).getJob_id()%>"><%=lists019.get(0).getJob_id()%></option>
+								<%	
+								} else {%>
 								<option value="all">전체</option>
 								<%
+								}
 								for (int i = 0; i < lists.size(); i++) {
 								%>
 								<option value="<%=lists.get(i).getJob_id()%>"><%=lists.get(i).getJob_id()%></option>
