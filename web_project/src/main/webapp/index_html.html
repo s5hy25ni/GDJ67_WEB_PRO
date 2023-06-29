@@ -2,39 +2,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HRCompany</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="./css/outline.css">
 <link rel="stylesheet" href="./css/index.css">
-<script type="text/javascript" src="./js/index.js"></script>
 </head>
 <body>
 	<div id="outline">
-		<div id="login_wrap">
-			<div id="login_top">
-				<div id="logo"></div>
-			</div>
-			<div id="login_content">
-				<form name="login_info">
-					<div id="login_input">
-						<div id="login_id" class="login_input">
-							<div></div>
-							<input id="user_id" name="user_id" type="text" placeholder="아이디">
-						</div>
-						<div id="login_pw" class="login_input">
-							<div></div>
-							<input id="user_pw" name="user_pw" type="password" placeholder="비밀번호">
-						</div>
-						<div id="login_pw_confirm">
-							<label id="checkbox_label"><input id="checkbox" type="checkbox"> 비밀번호 보기</label>
-						</div>
-					</div>
-					<div id="login_confirm"></div>
-					<div id="lgoin_button">
-						<input id="login_submit" type="button"></input>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+        <header>
+            <div id="logo"></div>
+            <div class="menus"><h3><a href="#">직원 관리</a></h3></div>
+            <div class="menus"><h3><a href="#">부서 관리</a></h3></div>
+            <div class="menus"><h3><a href="#">직무 관리</a></h3></div>
+            <input id="logout" type="button" onclick="">
+            <div id="login_extension">
+                <div id="login_time"></div>
+                <input id="login_extension_btn" type="button" value="연장">
+            </div>
+        </header>
+        <main>
+            <section id="index">
+            	<div id="isLoginFalse">
+            		<input id="loginBtn" type="button" value="로그인">
+            	</div>
+            	<div id="isLoginTrue">
+                    <div id="loginUser">
+                        <div id="photo"></div>
+                        <div id="info">
+                            <table>
+                                <tr>
+                                    <td>로그인 계정</td>
+                                    <td>
+                                </tr>
+                                <tr>
+                                    <td>마지막 로그인</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="comfirm">
+                        <div></div>
+                        <input type="button">
+                    </div>
+				</div>
+ 			</section>
+ 			<section id="notifyForm">
+ 				<div>
+ 				</div>
+ 			</section>
+        </main>
+        <footer>
+            <div>&copy; Developer heeae&hyeon</div>
+            <div>(구디아카데미) 서울시 금천구 가산디지털2로 95, 3층 ORANGE</div>
+        </footer>
+    </div>
 </body>
 </html>

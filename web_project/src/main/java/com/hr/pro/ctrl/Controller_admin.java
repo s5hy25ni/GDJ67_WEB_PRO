@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,17 +49,17 @@ public class Controller_admin extends HttpServlet {
 		List<Admin_DTO> loginSuccess = dao.getLoginUser(loginUser);
 		
 		HttpSession session = req.getSession();
-
+		session.setMaxInactiveInterval(60*10);
+		
 		if(loginSuccess.size()!=0) {
-			req.setAttribute("loginSuccess", "true");
-			session.setAttribute("id", id);
-			session.setAttribute("lastLogin", now);
+			session.setAttribute("isLogin", "success");
+			session.setAttribute("loginUser", loginUser);
 			dao.setLastLogin(loginUser);
 		} else {
-			req.setAttribute("loginSuccess", "false");
+			session.setAttribute("isLogin", "failure");
 		}
 		
-		req.getRequestDispatcher("/index.jsp").forward(req, resp);
+		req.getRequestDispatcher("/login.jsp").forward(req, resp);
 	}
 
 }
