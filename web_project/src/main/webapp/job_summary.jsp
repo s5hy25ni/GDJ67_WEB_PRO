@@ -46,7 +46,7 @@
 						<div class="search_center_value">
 							<%
 							List<Job2_DTO> lists = (List<Job2_DTO>) request.getAttribute("lists018");
-
+							List<Job2_DTO> lists019 = (List<Job2_DTO>) request.getAttribute("lists019");
 							if (lists != null) {
 							%>
 							<select id="jobIdSelect" name="jobIdSelect">
@@ -85,6 +85,11 @@
 				</div>
 				<div id="summary">
 					<table>
+						<col width="10%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
+						<col width="20%">
 						<thead>
 							<tr>
 								<td id="no">NO</td>
@@ -100,52 +105,72 @@
 							String jobIdSelect = (String) request.getParameter("jobIdSelect");
 							int count = 1;
 							int currentPage = 1; // 현재 페이지 초기화
-
+							
+							if(lists019 != null){
+								for (int i =0; i<10; i++) {
+									if(i == 0){%>
+									<tr>
+										<td><%=String.format("%03d", count)%></td>
+										<td><%=lists019.get(0).getJob_id()%></td>
+										<td><%=lists019.get(0).getJob_title()%></td>
+										<td><%=lists019.get(0).getMin_salary()%></td>
+										<td><%=lists019.get(0).getMax_salary()%></td>
+									</tr>
+									<%} else { %>
+										<tr>
+										<td><%=String.format("%03d", count)%></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										</tr>
+									<% }
+									count++;
+								}
+							}
+							
 							if (lists != null) {
-								for (Job2_DTO job : lists) {
-									if (jobIdSelect == null || jobIdSelect.equals("all")) {
-								if (count > 10 && count <= 20) { // 수정: count가 10 이상이고 20 이하인 경우에 두 번째 페이지에 행 추가
-									currentPage = 2; // 현재 페이지를 2로 설정
-									if (currentPage == 2) { // 두 번째 페이지에 10개의 행 출력
-										if (count > lists.size()) { // lists의 크기를 넘어가면 빈 행 추가
-							%>
-							<tr id="secondPage" style="display: none;">
-								<td><%=String.format("%03d", count)%></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<%
-							} else {
-							%>
-							<tr id="secondPage" style="display: none;">
-								<td><%=String.format("%03d", count)%></td>
-								<td><%=job.getJob_id()%></td>
-								<td><%=job.getJob_title()%></td>
-								<td><%=job.getMin_salary()%></td>
-								<td><%=job.getMax_salary()%></td>
-							</tr>
-							<%
-							}
-							}
-							} else { // 첫 번째 페이지에 10개의 행 출력
-							%>
-							<tr id="firstPage">
-								<td><%=String.format("%03d", count)%></td>
-								<td><%=job.getJob_id()%></td>
-								<td><%=job.getJob_title()%></td>
-								<td><%=job.getMin_salary()%></td>
-								<td><%=job.getMax_salary()%></td>
-							</tr>
-							<%
-							}
-							}
-							count++;
-							if (count > 20){
-							break; // count가 20이 되면 반복문 종료
-							}
-							}
+							    int totalRows = (int) Math.ceil((double) lists.size() / 10) * 10; // 전체 행 수를 10의 배수로 계산
+							    
+							    for (int i = 0; i < totalRows; i++) {
+							        if (i < lists.size()) {
+							            Job2_DTO job = lists.get(i);
+							            
+							            if (jobIdSelect == null || jobIdSelect.equals("all")) {
+							                if (i >= 10 && i < 20) { // 두 번째 페이지에 행 추가
+							                    %>
+							                    <tr id="secondPage" style="display: none;">
+							                        <td><%=String.format("%03d", i + 1)%></td>
+							                        <td><%=job.getJob_id()%></td>
+							                        <td><%=job.getJob_title()%></td>
+							                        <td><%=job.getMin_salary()%></td>
+							                        <td><%=job.getMax_salary()%></td>
+							                    </tr>
+							                    <%
+							                } else { // 첫 번째 페이지에 행 출력
+							                    %>
+							                    <tr id="firstPage">
+							                        <td><%=String.format("%03d", i + 1)%></td>
+							                        <td><%=job.getJob_id()%></td>
+							                        <td><%=job.getJob_title()%></td>
+							                        <td><%=job.getMin_salary()%></td>
+							                        <td><%=job.getMax_salary()%></td>
+							                    </tr>
+							                    <%
+							                }
+							            }
+							        } else if (i >= 10 && i < 20) { // lists의 크기를 넘어가는 경우 빈 행 추가 (두 번째 페이지)// 작동 안됨..?
+							            %>
+							            <tr id="secondPage" style="display: none;">
+							                <td><%=String.format("%03d", i + 1)%></td>
+							                <td></td>
+							                <td></td>
+							                <td></td>
+							                <td></td>
+							            </tr>
+							            <%
+							        }
+							    }
 							}
 							%>
 						</tbody>
@@ -155,12 +180,16 @@
 			<section id="page">
 				<input class="page" type="button" value="&lt;" onclick="prevPage()">
 				<!-- 행에 따라 늘어남 -->
-				<%
+				<% if (lists019 == null) {
 				for (int i = 1; i <= Math.ceil((double) lists.size() / 10); i++) {
 				%>
 				<input class="page" type="button" id="curPage" value="<%=i%>"
 					onclick="viewPage('<%=i%>')">
 				<%
+				}} else {
+					%>
+					<input class="page" type="button" value="1">
+					<%
 				}
 				%>
 				<input class="page" type="button" value="&gt;" onclick="nextPage()">
@@ -205,13 +234,13 @@
 				        }
 				    }
 
-				    function nextPage() {
+				   function nextPage() {
 				    	var currentPage2 = document.getElementById("curPage").value;
-				        var totalPages = <%=Math.ceil((double) lists.size() / 10)%>  
+				        var totalPages = 2<%-- <%=Math.ceil((double) lists.size() / 10)%> --%>;  
 				        if (currentPage2 < totalPages) {
 				            viewPage(parseInt(currentPage2) + 1);
 				        }
-				    }
+				    } 
 			</script>
 		</main>
 		<footer>

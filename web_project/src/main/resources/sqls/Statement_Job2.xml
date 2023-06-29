@@ -14,7 +14,7 @@
 	<!-- WP019 -->
 	<select id="job_id_select" parameterType="java.util.Map" resultType="JobDTO">
 		<include refid="selectAll"/>
-		WHERE JOB_ID = #{job_id};
+		WHERE JOB_ID = #{job_id}
 	</select>
 	
 	<!-- WP020 -->

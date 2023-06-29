@@ -26,7 +26,7 @@ public class Job2DaoImpl implements IJob2Dao {
 	@Override //WP019
 	public List<Job2_DTO> job_id_select(Map<String, Object> map) {
 		SqlSession session = manager.openSession();
-		List<Job2_DTO> resultDto = session.selectList(NS+"job_id_select");
+		List<Job2_DTO> resultDto = session.selectList(NS+"job_id_select",map);
 		return resultDto;
 	}
 
