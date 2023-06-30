@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>HRCompany</title>
 <link rel="stylesheet" href="./css/outline.css">
-<link rel="stylesheet" href="./css/job_summary.css">
+<link rel="stylesheet" href="./css/jobDept_summary.css">
 <script type="text/javascript" src="./js/job_summary.js"></script>
 </head>
 <body>
@@ -22,12 +22,12 @@
 			</div>
 			<div class="menus">
 				<h3>
-					<a href="#">부서 관리</a>
+					<a href="./deptCtrl.do">부서 관리</a>
 				</h3>
 			</div>
 			<div class="menus">
 				<h3>
-					<a href="#">직무 관리</a>
+					<a href="./jobCtrl.do">직무 관리</a>
 				</h3>
 			</div>
 			<input id="logout" type="button" onclick="">
@@ -52,6 +52,7 @@
 							<select id="jobIdSelect" name="jobIdSelect">
 								<%if(lists019 != null){%>
 								<option value="<%=lists019.get(0).getJob_id()%>"><%=lists019.get(0).getJob_id()%></option>
+								<option value="all">전체</option>
 								<%	
 								} else {%>
 								<option value="all">전체</option>
@@ -85,17 +86,17 @@
 			</section>
 			<section id="content">
 				<div id="top">
-					<div>구분: 전체, 행: 19</div>
-					<input id="view_sal" type="button" value="직무별 연봉정보 보기	">
+					<div>구분: 전체, 행: <%=lists.size()%></div>
+					<input id="view_sal" type="button" value="직무별 연봉통계 보기	" onclick="openRunningMan()">
 					<input id="download" type="button" value="엑셀 다운로드">
 				</div>
 				<div id="summary">
 					<table>
 						<col width="10%">
+						<col width="15%">
 						<col width="20%">
-						<col width="20%">
-						<col width="20%">
-						<col width="20%">
+						<col width="15%">
+						<col width="15%">
 						<thead>
 							<tr>
 								<td id="no">NO</td>
@@ -136,7 +137,7 @@
 							}
 							
 							if (lists != null) {
-							    int totalRows = (int) Math.ceil((double) lists.size() / 10) * 10; // 전체 행 수를 10의 배수로 계산
+							    int totalRows = (int) Math.ceil((double) lists.size() / 10) * 10; // 전체 행 수를 10행씩 계산
 							    
 							    for (int i = 0; i < totalRows; i++) {
 							        if (i < lists.size()) {
@@ -167,7 +168,7 @@
 							            }
 							        } else if (i >= 10 && i < 20) { // lists의 크기를 넘어가는 경우 빈 행 추가 (두 번째 페이지)// 작동 안됨..?
 							            %>
-							            <tr id="secondPage" style="display: none;">
+							            <tr id="secondPage" style="display: none; color: white;">
 							                <td><%=String.format("%03d", i + 1)%></td>
 							                <td></td>
 							                <td></td>
@@ -242,7 +243,7 @@
 
 				   function nextPage() {
 				    	var currentPage2 = document.getElementById("curPage").value;
-				        var totalPages = 2<%-- <%=Math.ceil((double) lists.size() / 10)%> --%>;  
+				        var totalPages = <%=Math.ceil((double) lists.size() / 10)%>;  
 				        if (currentPage2 < totalPages) {
 				            viewPage(parseInt(currentPage2) + 1);
 				        }

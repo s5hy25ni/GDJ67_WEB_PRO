@@ -19,7 +19,14 @@
 		<servlet-name>jobconn</servlet-name>
 		<url-pattern>/jobCtrl.do</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<servlet-name>deptconn</servlet-name>
+		<servlet-class>com.hr.pro.ctrl.Controller_dept</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deptconn</servlet-name>
+		<url-pattern>/deptCtrl.do</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>empdept</servlet-name>
 		<servlet-class>com.hr.pro.ctrl.Controller_emp</servlet-class>

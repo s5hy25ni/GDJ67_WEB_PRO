@@ -2,10 +2,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>직무별 연봉통계</title>
 <link rel="stylesheet" href="./css/sal_run_layout.css">
 <link rel="stylesheet" href="./css/sal_run.css">
+<style type="text/css">
+.paused-animation{
+	animation-play-state: paused;
+}
+.runningman.run{
+}
+</style>
 </head>
+<script type="text/javascript">
+window.addEventListener('load', function() {
+	  var runningmanList = document.querySelectorAll('.runningman.ready.run');
+	  runningmanList.forEach(function(runningman, index) {
+	    runningman.style.backgroundImage = 'url(./img/stand.png)';
+	    runningman.classList.add('paused-animation');
+	    
+	    setTimeout(function() {
+	      runningman.style.backgroundImage = 'url(./img/running.png)';
+	      runningman.classList.remove('paused-animation');
+	      
+	      runningman.addEventListener('mouseenter', function() {
+	        runningman.style.backgroundImage = 'url(./img/new_ani_run_22.png)';
+	      });
+	      
+	      runningman.addEventListener('mouseleave', function() {
+	        runningman.style.backgroundImage = 'url(./img/stand.png)';
+	      });
+	      
+	      var parentRow = runningman.closest('.row.finish');
+	      parentRow.addEventListener('animationend', function() {
+	        runningman.style.backgroundImage = 'url(./img/stand.png)';
+	      });
+	    }, 500 * (index + 1));
+	  });
+	});
+</script>
 <body>
 	<div class="box_company_view salary_rank">
 		<h2 id="tab_rank_salary" class="title check_tab_contents">

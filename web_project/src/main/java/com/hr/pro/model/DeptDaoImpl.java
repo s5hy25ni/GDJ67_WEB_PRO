@@ -24,16 +24,16 @@ public class DeptDaoImpl implements IDeptDao {
 	}
 
 	@Override
-	public List<Dept_DTO> dept_id_drop() {
+	public List<Dept_DTO> dept_id_select(Map<String, Object> map) {
 		SqlSession session = manager.openSession();
-		List<Dept_DTO> resultDto = session.selectList(NS+"dept_id_drop");
+		List<Dept_DTO> resultDto = session.selectList(NS+"dept_id_select", map);
 		return resultDto;
 	}
 
 	@Override
-	public List<Dept_DTO> dept_search_name(Dept_DTO dto) {
+	public List<Dept_DTO> dept_search_name(String name) {
 		SqlSession session = manager.openSession();
-		List<Dept_DTO> resultDto = session.selectList(NS+"dept_search_name", dto);
+		List<Dept_DTO> resultDto = session.selectList(NS+"dept_search_name", name);
 		return resultDto;
 	}
 
