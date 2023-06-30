@@ -24,4 +24,12 @@ function submitForm() {
 	document.body.appendChild(form);
 	form.submit();
 }
-														
+
+onload = function(){
+	var clicked = document.getElementsByName("clikedRow");
+	for(let i=0; i<clicked.length; i++){
+		clicked[i].addEventListener("click", function(){
+			window.open("job_details_html.html");
+		})
+	}
+}													

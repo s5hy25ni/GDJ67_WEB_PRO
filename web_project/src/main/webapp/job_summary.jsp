@@ -86,6 +86,7 @@
 			<section id="content">
 				<div id="top">
 					<div>구분: 전체, 행: 19</div>
+					<input id="view_sal" type="button" value="직무별 연봉정보 보기	">
 					<input id="download" type="button" value="엑셀 다운로드">
 				</div>
 				<div id="summary">
@@ -114,7 +115,7 @@
 							if(lists019 != null){
 								for (int i =0; i<10; i++) {
 									if(i == 0){%>
-									<tr>
+									<tr name="clikedRow">
 										<td><%=String.format("%03d", count)%></td>
 										<td><%=lists019.get(0).getJob_id()%></td>
 										<td><%=lists019.get(0).getJob_title()%></td>
@@ -123,7 +124,7 @@
 									</tr>
 									<%} else { %>
 										<tr>
-										<td><%=String.format("%03d", count)%></td>
+										<td style="color: white"><%=String.format("%03d", count)%></td>
 										<td></td>
 										<td></td>
 										<td></td>
@@ -144,7 +145,7 @@
 							            if (jobIdSelect == null || jobIdSelect.equals("all")) {
 							                if (i >= 10 && i < 20) { // 두 번째 페이지에 행 추가
 							                    %>
-							                    <tr id="secondPage" style="display: none;">
+							                    <tr id="secondPage" style="display: none;" name="clikedRow">
 							                        <td><%=String.format("%03d", i + 1)%></td>
 							                        <td><%=job.getJob_id()%></td>
 							                        <td><%=job.getJob_title()%></td>
@@ -154,7 +155,7 @@
 							                    <%
 							                } else { // 첫 번째 페이지에 행 출력
 							                    %>
-							                    <tr id="firstPage">
+							                    <tr id="firstPage" name="clikedRow">
 							                        <td><%=String.format("%03d", i + 1)%></td>
 							                        <td><%=job.getJob_id()%></td>
 							                        <td><%=job.getJob_title()%></td>
