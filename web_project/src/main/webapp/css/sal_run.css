@@ -473,13 +473,60 @@ body {
     left: 0;
     width: 28px;
     height: 37px;
-    background: url(//www.saraminimage.co.kr/sri/person/jobs_salary/bg_run_start.png) no-repeat;
-    background-position: 0 0
+    background: url(../img/running.png);
+}
+
+.row.finish:nth-child(1) .runningman.ready.run {
+    animation-name: runningman-animation-1;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+
+.row.finish:nth-child(2) .runningman {
+    animation-name: runningman-animation-2;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.row.finish:nth-child(3) .runningman.ready.run {
+    animation-name: runningman-animation-3;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.row.finish:nth-child(4) .runningman.ready.run {
+    animation-name: runningman-animation-4;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.row.finish:nth-child(5) .runningman.ready.run {
+    animation-name: runningman-animation-5;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.row.finish:nth-child(6) .runningman.ready.run {
+    animation-name: runningman-animation-6;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.row.finish:nth-child(7) .runningman.ready.run {
+    animation-name: runningman-animation-7;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.row.finish:nth-child(8) .runningman.ready.run {
+    animation-name: runningman-animation-8;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
 }
 
 .runningman.run {
-    background: url(//www.saraminimage.co.kr/sri/person/jobs_salary/new_ani_run.png) no-repeat;
-    background-position: 0 0
+    background: url(../img/running.png);
 }
 
 .runningman.run:hover{
@@ -555,13 +602,9 @@ body {
 @keyframes runningman-animation-2 {
     from {
         left: 0;
-        background: url(//www.saraminimage.co.kr/sri/person/jobs_salary/new_ani_run.png) no-repeat;
-        background-position: -28px 0px;
     }
     to {
         left: 41.58%;
-        background: url(//www.saraminimage.co.kr/sri/person/jobs_salary/new_ani_run.png) no-repeat;
-        background-position: -84px -37px;
     }
 }
 
@@ -620,51 +663,5 @@ body {
 }
 
 
-.row.finish:nth-child(1) .runningman.ready.run {
-    animation-name: runningman-animation-1;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
 
-.row.finish:nth-child(2) .runningman.ready.run {
-    animation-name: runningman-animation-2;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
-
-.row.finish:nth-child(3) .runningman.ready.run {
-    animation-name: runningman-animation-3;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
-
-.row.finish:nth-child(4) .runningman.ready.run {
-    animation-name: runningman-animation-4;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
-
-.row.finish:nth-child(5) .runningman.ready.run {
-    animation-name: runningman-animation-5;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
-
-.row.finish:nth-child(6) .runningman.ready.run {
-    animation-name: runningman-animation-6;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
-
-.row.finish:nth-child(7) .runningman.ready.run {
-    animation-name: runningman-animation-7;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
-
-.row.finish:nth-child(8) .runningman.ready.run {
-    animation-name: runningman-animation-8;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
 
