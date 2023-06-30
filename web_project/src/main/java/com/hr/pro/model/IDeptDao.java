@@ -10,7 +10,7 @@ public interface IDeptDao {
 	//WP026
 	public List<Dept_DTO> dept_selectAll();
 	//WP027
-	public List<Dept_DTO> dept_id_drop();
+	public List<Dept_DTO> dept_id_select(Map<String, Object> map);
 	//WP028
 	public List<Dept_DTO> dept_search_name(Dept_DTO dto);
 	//WP029

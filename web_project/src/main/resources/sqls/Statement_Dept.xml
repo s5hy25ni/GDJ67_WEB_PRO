@@ -11,9 +11,9 @@
 		<include refid="selectAll"/>
 	</select>
 	<!-- WP027 -->
-	<select id="dept_id_drop" resultType="DeptDTO">
-		SELECT DEPARTMENT_ID
-		FROM DEPT
+	<select id="dept_id_select" resultType="DeptDTO">
+		<include refid="selectAll"/>
+		WHERE DEPARTMENT_ID = #{department_id}
 	</select>
 	<!-- WP028 -->
 	<select id="dept_search_name" parameterType="DeptDTO" resultType="DeptDTO">

@@ -1,7 +1,9 @@
 package com.hr.pro.ctrl;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +26,27 @@ public class Controller_dept extends HttpServlet {
 				List<Dept_DTO> lists = dao.dept_selectAll();
 				req.setAttribute("list026", lists);
 				
-				req.getRequestDispatcher("/index2.jsp").forward(req, resp);
+				req.getRequestDispatcher("/dept_summary.jsp").forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String deptIdSelect = req.getParameter("deptIdSelect");
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		IDeptDao dao = new DeptDaoImpl();
+		
+		List<Dept_DTO> lists = dao.dept_selectAll();
+		req.setAttribute("lists026", lists);
+		
+		//TODO WP027
+			if(deptIdSelect != null && !deptIdSelect.isEmpty()) {
+				map.put("department_id", deptIdSelect);
+				List<Dept_DTO> lists1 = dao.dept_id_select(map);
+				req.setAttribute("lists026", lists1);
+			}
+			
+			req.getRequestDispatcher("/dept_summary.jsp").forward(req, resp);
 	}
 
 }

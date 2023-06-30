@@ -476,6 +476,7 @@ body {
     background: url(../img/running.png);
 }
 
+
 .row.finish:nth-child(1) .runningman.ready.run {
     animation-name: runningman-animation-1;
     animation-duration: 2s;
@@ -483,7 +484,7 @@ body {
 }
 
 
-.row.finish:nth-child(2) .runningman {
+.row.finish:nth-child(2) .runningman.ready.run {
     animation-name: runningman-animation-2;
     animation-duration: 2s;
     animation-fill-mode: forwards;
@@ -526,7 +527,7 @@ body {
 }
 
 .runningman.run {
-    background: url(../img/running.png);
+    background: url(../img/stand.png);
 }
 
 .runningman.run:hover{

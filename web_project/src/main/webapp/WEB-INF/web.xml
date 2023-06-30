@@ -14,12 +14,19 @@
 		<servlet-name>jobconn</servlet-name>
 		<servlet-class>com.hr.pro.ctrl.Controller_job</servlet-class>
 	</servlet>
+	<servlet-mapping>
+		<servlet-name>deptconn</servlet-name>
+		<servlet-class>com.hr.pro.ctrl.Controller_dept</servlet-class>
+	</servlet-mapping>
 	<!-- servlet 클래스를 호출할 주소 -->
 	<servlet-mapping>
 		<servlet-name>jobconn</servlet-name>
 		<url-pattern>/jobCtrl.do</url-pattern>
 	</servlet-mapping>
-	
+	<servlet-mapping>
+		<servlet-name>deptconn</servlet-name>
+		<url-pattern>/deptCtrl.do</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>empdept</servlet-name>
 		<servlet-class>com.hr.pro.ctrl.Controller_emp</servlet-class>
