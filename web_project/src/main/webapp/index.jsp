@@ -24,7 +24,7 @@
          <%
          	if(loginSession.getAttribute("isLogin") == "success"){
          	%>
-         		<input id="logout" type="button" onclick="">
+         		<input id="logout" type="button" onclick="logout()">
                 <div id="login_extension">
                     <div id="login_time"></div>
                     <input id="login_extension_btn" type="button" value="연장">
@@ -39,7 +39,7 @@
             	if(loginSession.isNew() == true || loginSession.getAttribute("isLogin") == null || loginSession.getAttribute("isLogin") == "failure"){
            	%>
             		<div id="isLoginFalse">
-            			<input id="gologinBtn" type="button" value="로그인">
+            			<input id="gologinBtn" type="button" value="로그인" onclick="goLogin()">
             		</div>
            	<%
             	}
@@ -65,7 +65,7 @@
 	                                    <td colspan="2" class="notifyTxt">마지막 로그인이 본인이 아닐 경우,<br> 정보보안팀에 알려주세요!</td>
 	                                </tr>
 	                                <tr>
-	                                    <td colspan="2"><input id="notifyBtn" type="button" value="신고하기"></td>
+	                                    <td colspan="2"><input id="notifyBtn" type="button" value="신고하기" onclick="notify()"></td>
 	                                </tr>
 	                            </table>
 	                        </div>
@@ -82,14 +82,22 @@
         </footer>
     </div>   	
 	<div id="test">
+		<p><%=loginSession %></p>
 		<p><%=loginSession.getAttribute("isLogin") %></p>
 	</div>
+	<form method="POST" data-email="s5hy25ni@gmail.com" 
+		action="https://script.google.com/macros/s/AKfycbzC0qfRmnKei7-xoi1RAqRzt59NwArRo8irCvvxEMpWm_fQ_OTRiRL8eJC0TO7KJIr2Nw/exec"
+		target="frAttachFiles">
+		<%
+			if(admins != null){
+				%>
+				<input type="text" name="name" value="<%=admins.get(0).getAdmin_id()%>">
+				<%
+			}
+		%>
+		<input type="email" name="email" value="s5hy25ni@gmail.com">
+		<input type="text" name="subject" value="[ADMIN] 타인 로그인 의심 신고">
+	</form>
+	<iframe name="frAttachFiles" style="display:none"></iframe>
 </body>
-<script type="text/javascript">
-// document.getElementById("gologinBtn").onclick=goLogin();
-
-// function goLogin(){
-// 	location.href="./login.jsp"
-// }
-</script>
 </html>
