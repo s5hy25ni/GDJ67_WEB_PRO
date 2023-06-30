@@ -5,7 +5,7 @@ function submitForm() {
 	var selectElement = document
 	.getElementById("jobIdSelect");
 	var selectedJobId = selectElement.options[selectElement.selectedIndex].value;
-
+	if(selectedJobId != "all"){
 	// form 생성
 	var form = document.createElement("form");
 	form.method = "POST";
@@ -23,6 +23,9 @@ function submitForm() {
 	// form append시키고 submit
 	document.body.appendChild(form);
 	form.submit();
+	} else {
+		location.href='./jobCtrl.do';
+	}
 }
 
 onload = function(){

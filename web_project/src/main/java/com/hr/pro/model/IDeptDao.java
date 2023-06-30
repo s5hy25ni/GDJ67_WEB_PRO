@@ -12,7 +12,7 @@ public interface IDeptDao {
 	//WP027
 	public List<Dept_DTO> dept_id_select(Map<String, Object> map);
 	//WP028
-	public List<Dept_DTO> dept_search_name(Dept_DTO dto);
+	public List<Dept_DTO> dept_search_name(String name);
 	//WP029
 	public boolean dept_update_name(Map<String, Object> map);
 	//WP030
