@@ -46,14 +46,14 @@ public class Controller_admin extends HttpServlet {
 		loginUser.put("last_login", now);
 		
 		IAdminDao dao = new AdminDaoImpl();
-		List<Admin_DTO> loginSuccess = dao.getLoginUser(loginUser);
+		List<Admin_DTO> SuccessUser = dao.getLoginUser(loginUser);
 		
 		HttpSession session = req.getSession();
 		session.setMaxInactiveInterval(60*10);
 		
-		if(loginSuccess.size()!=0) {
+		if(SuccessUser.size()!=0) {
 			session.setAttribute("isLogin", "success");
-			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("SuccessUser", SuccessUser);
 			dao.setLastLogin(loginUser);
 		} else {
 			session.setAttribute("isLogin", "failure");

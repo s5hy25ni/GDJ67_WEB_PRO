@@ -10,11 +10,11 @@ onload = function(){
     this.document.getElementById("checkbox_label").onclick = view_pw;
     this.document.getElementById("login_submit").onclick = check_login_info;
     
-    var cookie = this.document.querySelectorAll("#test>p")[0].textContent;
+    var session = this.document.querySelectorAll("#test>p")[0].textContent;
     
-    if(cookie == "success"){
+    if(session == "success"){
 		location.href="/web_project/index.jsp"
-	} else if(cookie == "failure"){
+	} else if(session == "failure"){
 		document.getElementById("login_confirm").style.display="block";
         document.getElementById("login_confirm").textContent = "※ 아이디와 비빌번호를 확인해주세요."
        	document.getElementById("user_pw").focus();
