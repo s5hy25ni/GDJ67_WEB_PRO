@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hr.pro.dto.Dept_DTO;
 import com.hr.pro.dto.Job2_DTO;
 import com.hr.pro.model.IJob2Dao;
 import com.hr.pro.model.Job2DaoImpl;
@@ -23,11 +24,20 @@ public class Controller_job extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		IJob2Dao dao = new Job2DaoImpl();
+		String jobIdClicked = req.getParameter("jobIdClicked");
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		//TODO WP018
 		List<Job2_DTO> lists = dao.job_selectAll();
 		req.setAttribute("lists018", lists);
 		
+		if(jobIdClicked != null && !jobIdClicked.isEmpty()) {
+			map.put("job_id", jobIdClicked);
+			List<Job2_DTO> lists3 = dao.job_id_select(map);
+			req.setAttribute("lists019", lists3);
+			req.getRequestDispatcher("/job_details.jsp").forward(req, resp);
+			return;
+		}
 		
 		req.getRequestDispatcher("/job_summary.jsp").forward(req, resp);
 	
@@ -36,6 +46,7 @@ public class Controller_job extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String jobIdSelect = req.getParameter("jobIdSelect");
+		String jobTitleSelect = req.getParameter("jobTitleSelect");
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		IJob2Dao dao = new Job2DaoImpl();
@@ -49,28 +60,17 @@ public class Controller_job extends HttpServlet {
 			        List<Job2_DTO> lists1 = dao.job_id_select(map);
 			        req.setAttribute("lists019", lists1);
 			    }
+		//TODO WP028
+			if(jobTitleSelect != null && !jobTitleSelect.isEmpty()) {
+					List<Job2_DTO> lists2 = dao.job_search_name(jobTitleSelect);
+					req.setAttribute("lists020", lists2);
+				}
 				
 				
 		req.getRequestDispatcher("/job_summary.jsp").forward(req, resp);
 		
 	}
 	
-	
-//	private void doProcess(HttpServletRequest req, HttpServletResponse resp) {
-//		IJob2Dao dao = new Job2DaoImpl();
-//		
-//		//TODO WP018
-//		List<Job2_DTO> lists = dao.job_selectAll();
-//		req.setAttribute("lists018", lists);
-//		
-//		
-//		//req.getRequestDispatcher("/job_summary.jsp").forward(req, resp);
-//	}
-	
-//	private void forward(HttpServletRequest req, HttpServletResponse resp, String url) throws ServletException, IOException {
-//		RequestDispatcher dispatcher = req.getRequestDispatcher(url);
-//		dispatcher.forward(req, resp);
-//	}	
 
 }
 

@@ -22,7 +22,7 @@
 			</div>
 			<div class="menus">
 				<h3>
-					<a href="./deptCtrl.do">부서 관리</a>
+					<a href="#">부서 관리</a>
 				</h3>
 			</div>
 			<div class="menus">

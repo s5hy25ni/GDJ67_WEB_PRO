@@ -1,0 +1,38 @@
+@charset "UTF-8";
+#confirmationModal {
+	background-color: rgb(224, 224, 224);
+	padding: 3px;
+	border-radius: 5px;
+	position: absolute;
+	width: 300px;
+	height: 142px;
+	top: 84px;
+	left: 172px;
+	display: none;
+	text-align: center;
+	justify-content: center;
+}
+
+#confirmationModal input[type="button"] {
+	width: 120px;
+	height: 40px;
+	color: rgb(92, 92, 92);
+	font-size: 0.9em;
+	font-weight: bold;
+	background-color: rgb(224, 224, 224);
+	border: 1px solid rgb(190, 190, 190);
+	border-radius: 5px;
+	margin-top: 17px;
+}
+
+#confirmationModal input[type="button"]:hover {
+	color: white;
+	background-color: rgb(46, 204, 113);
+}
+
+#confirmationAlert, #confirmationMessage {
+	color: rgb(92, 92, 92);
+	margin: 0px;
+	padding-top: 9px;
+	margin-top: 7px;
+}

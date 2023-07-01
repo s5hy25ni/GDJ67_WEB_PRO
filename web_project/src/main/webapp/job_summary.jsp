@@ -27,7 +27,7 @@
 			</div>
 			<div class="menus">
 				<h3>
-					<a href="./jobCtrl.do">직무 관리</a>
+					<a href="#">직무 관리</a>
 				</h3>
 			</div>
 			<input id="logout" type="button" onclick="">
@@ -79,7 +79,7 @@
 				</div>
 				<div class="search_right">
 					<div id="search_input">
-						<input type="button"> <input type="text"
+						<input type="button" onclick="searchName()"> <input type="text"
 							placeholder="직무명으로 검색">
 					</div>
 				</div>

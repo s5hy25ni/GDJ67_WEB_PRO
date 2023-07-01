@@ -21,18 +21,30 @@ public class Controller_dept extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		IDeptDao dao = new DeptDaoImpl();
+		String deptIdClicked = req.getParameter("deptIdClicked");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		//TODO WP026
 				List<Dept_DTO> lists = dao.dept_selectAll();
 				req.setAttribute("lists026", lists);
 				
-				req.getRequestDispatcher("/dept_summary.jsp").forward(req, resp);
+		if(deptIdClicked != null && !deptIdClicked.isEmpty()) {
+				map.put("department_id", deptIdClicked);
+				List<Dept_DTO> lists3 = dao.dept_id_select(map);
+				req.setAttribute("lists027", lists3);
+				req.getRequestDispatcher("/dept_details.jsp").forward(req, resp);
+				return;
+			}
+		req.getRequestDispatcher("/dept_summary.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String deptIdSelect = req.getParameter("deptIdSelect");
 		String deptNameSelect = req.getParameter("deptNameSelect");
+		String deptIdClicked = req.getParameter("deptIdClicked");
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		IDeptDao dao = new DeptDaoImpl();
@@ -52,7 +64,7 @@ public class Controller_dept extends HttpServlet {
 			List<Dept_DTO> lists2 = dao.dept_search_name(deptNameSelect);
 			req.setAttribute("lists028", lists2);
 		}
-			
+		
 		req.getRequestDispatcher("/dept_summary.jsp").forward(req, resp);
 	}
 
