@@ -60,7 +60,7 @@ public class Controller_job extends HttpServlet {
 			        List<Job2_DTO> lists1 = dao.job_id_select(map);
 			        req.setAttribute("lists019", lists1);
 			    }
-		//TODO WP028
+		//TODO WP020
 			if(jobTitleSelect != null && !jobTitleSelect.isEmpty()) {
 					List<Job2_DTO> lists2 = dao.job_search_name(jobTitleSelect);
 					req.setAttribute("lists020", lists2);

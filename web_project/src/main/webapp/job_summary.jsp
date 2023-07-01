@@ -45,9 +45,10 @@
 						</div>
 						<div class="search_center_value">
 							<%
-							List<Job2_DTO> lists = (List<Job2_DTO>) request.getAttribute("lists018");
+							List<Job2_DTO> lists018 = (List<Job2_DTO>) request.getAttribute("lists018");
 							List<Job2_DTO> lists019 = (List<Job2_DTO>) request.getAttribute("lists019");
-							if (lists != null) {
+							List<Job2_DTO> lists020 = (List<Job2_DTO>) request.getAttribute("lists020");
+							if (lists018 != null) {
 							%>
 							<select id="jobIdSelect" name="jobIdSelect">
 								<%if(lists019 != null){%>
@@ -58,9 +59,9 @@
 								<option value="all">전체</option>
 								<%
 								}
-								for (int i = 0; i < lists.size(); i++) {
+								for (int i = 0; i < lists018.size(); i++) {
 								%>
-								<option value="<%=lists.get(i).getJob_id()%>"><%=lists.get(i).getJob_id()%></option>
+								<option value="<%=lists018.get(i).getJob_id()%>"><%=lists018.get(i).getJob_id()%></option>
 								<%
 								}
 								%>
@@ -79,14 +80,15 @@
 				</div>
 				<div class="search_right">
 					<div id="search_input">
-						<input type="button" onclick="searchName()"> <input type="text"
+						<input type="button" onclick="searchName()">
+						<input id="searchName" type="text"
 							placeholder="직무명으로 검색">
 					</div>
 				</div>
 			</section>
 			<section id="content">
 				<div id="top">
-					<div>구분: 전체, 행: <%=lists.size()%></div>
+					<div>구분: 전체, 행: <%=lists018.size()%></div>
 					<input id="view_sal" type="button" value="직무별 연봉통계 보기	" onclick="openRunningMan()">
 					<input id="download" type="button" value="엑셀 다운로드">
 				</div>
@@ -110,6 +112,7 @@
 							<!-- for문으로 행 갯수만큼만 출력(최대 10개) -->
 							<%
 							String jobIdSelect = (String) request.getParameter("jobIdSelect");
+							String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 							int count = 1;
 							int currentPage = 1; // 현재 페이지 초기화
 							
@@ -136,14 +139,42 @@
 								}
 							}
 							
-							if (lists != null) {
-							    int totalRows = (int) Math.ceil((double) lists.size() / 10) * 10; // 전체 행 수를 10행씩 계산
+							if(lists020 != null){
+								int size = Math.min(lists020.size(), 10);
+								for(int i=0; i<10; i++){
+									if(i<size && lists020.get(i).getJob_title() != null){
+										%>
+										<tr name="clikedRow">
+							                <td><%=String.format("%03d", count)%></td>
+							                <td><%=lists020.get(i).getJob_id()%></td>
+											<td><%=lists020.get(i).getJob_title()%></td>
+											<td><%=lists020.get(i).getMin_salary()%></td>
+											<td><%=lists020.get(i).getMax_salary()%></td>
+							            </tr>
+										<%
+									} else{
+										%>
+										<tr>
+							                <td style="color: white"><%=String.format("%03d", count)%></td>
+							                <td></td>
+							                <td></td>
+							                <td></td>
+							                <td></td>
+							            </tr>
+										<%
+									}
+									count++;
+								}
+							}
+							
+							if (lists018 != null) {
+							    int totalRows = (int) Math.ceil((double) lists018.size() / 10) * 10; // 전체 행 수를 10행씩 계산
 							    
 							    for (int i = 0; i < totalRows; i++) {
-							        if (i < lists.size()) {
-							            Job2_DTO job = lists.get(i);
+							        if (i < lists018.size()) {
+							            Job2_DTO job = lists018.get(i);
 							            
-							            if (jobIdSelect == null || jobIdSelect.equals("all")) {
+							            if ((jobIdSelect == null || jobIdSelect.equals("all")) && jobTitleSelect == null) {
 							                if (i >= 10 && i < 20) { // 두 번째 페이지에 행 추가
 							                    %>
 							                    <tr id="secondPage" style="display: none;" name="clikedRow">
@@ -166,7 +197,7 @@
 							                    <%
 							                }
 							            }
-							        } else if (i >= 10 && i < 20) { // lists의 크기를 넘어가는 경우 빈 행 추가 (두 번째 페이지)// 작동 안됨..?
+							        } else if (i >= lists018.size() && i < totalRows) { // lists의 크기를 넘어가는 경우 빈 행 추가 (두 번째 페이지)// 작동 안됨..?
 							            %>
 							            <tr id="secondPage" style="display: none; color: white;">
 							                <td><%=String.format("%03d", i + 1)%></td>
@@ -185,23 +216,30 @@
 				</div>
 			</section>
 			<section id="page">
-				<input class="page" type="button" value="&lt;" onclick="prevPage()">
-				<!-- 행에 따라 늘어남 -->
-				<% if (lists019 == null) {
-				for (int i = 1; i <= Math.ceil((double) lists.size() / 10); i++) {
-				%>
-				<input class="page" type="button" id="curPage" value="<%=i%>"
-					onclick="viewPage('<%=i%>')">
 				<%
-				}} else {
+				if(lists019 == null && lists020 == null){
+				int totalPages = (int) Math.ceil((double) lists018.size() / 10);
+				%>
+				<input class="page" type="button" value="&lt;" onclick="prevPage()">
+				<%
+				for (int i = 1; i <= totalPages; i++) {
+				%>
+				<input class="page" type="button" value="<%=i%>"
+					onclick="viewPage(<%=i%>)">
+				<%
+				}%>
+				<input class="page" type="button" value="&gt;" onclick="nextPage()">
+				<%
+				} else {
 					%>
 					<input class="page" type="button" value="1">
 					<%
 				}
 				%>
-				<input class="page" type="button" value="&gt;" onclick="nextPage()">
 			</section>
 			<script type="text/javascript">
+				var currentPage = 1;
+				
 				function viewPage(pageId) {
 					var rows = document.getElementsByTagName("tr");
 
@@ -242,10 +280,9 @@
 				    }
 
 				   function nextPage() {
-				    	var currentPage2 = document.getElementById("curPage").value;
-				        var totalPages = <%=Math.ceil((double) lists.size() / 10)%>;  
-				        if (currentPage2 < totalPages) {
-				            viewPage(parseInt(currentPage2) + 1);
+				        var totalPages = <%=Math.ceil((double) lists018.size() / 10)%>;  
+				        if (currentPage < totalPages) {
+				            viewPage(currentPage + 1);
 				        }
 				    } 
 			</script>
