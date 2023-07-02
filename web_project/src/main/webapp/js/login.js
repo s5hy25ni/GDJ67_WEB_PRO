@@ -9,6 +9,7 @@ onload = function(){
     this.document.getElementById("user_pw").onblur = inputBlur;
     this.document.getElementById("checkbox_label").onclick = view_pw;
     this.document.getElementById("login_submit").onclick = check_login_info;
+    this.document.addEventListener("keyup", check_key);
     
     var session = this.document.querySelectorAll("#test>p")[0].textContent;
     
@@ -45,7 +46,7 @@ function view_pw(){
     }
 }
 
-function check_login_info(){
+function check_login_info(){		
     if(document.getElementById("user_id").value==""){
         document.getElementById("login_confirm").style.display="block";
         document.getElementById("login_confirm").textContent = "※ 아이디를 입력해주세요."
@@ -58,4 +59,10 @@ function check_login_info(){
         document.getElementById("login_confirm").style.display="none";
         document.login_info.submit();
     }
+}
+
+function check_key(e){
+	if (e.keyCode === 13){
+		check_login_info();
+	}
 }
