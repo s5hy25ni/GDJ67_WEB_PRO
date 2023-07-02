@@ -12,7 +12,7 @@ public interface IJob2Dao {
 	//WP019
 	public List<Job2_DTO> job_id_select(Map<String, Object> map);
 	//WP020
-	public List<Job2_DTO> job_search_name(Job2_DTO dto);
+	public List<Job2_DTO> job_search_name(String title);
 	//WP021
 	public int job_update_id(Map<String, Object> map);
 	public int job_update_empJobId(Map<String, Object> map);

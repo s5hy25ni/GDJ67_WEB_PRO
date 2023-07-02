@@ -31,9 +31,9 @@ public class Job2DaoImpl implements IJob2Dao {
 	}
 
 	@Override //WP020
-	public List<Job2_DTO> job_search_name(Job2_DTO dto) {
+	public List<Job2_DTO> job_search_name(String title) {
 		SqlSession session = manager.openSession();
-		List<Job2_DTO> resultDto = session.selectList(NS+"job_search_name", dto);
+		List<Job2_DTO> resultDto = session.selectList(NS+"job_search_name", title);
 		return resultDto;
 	}
 

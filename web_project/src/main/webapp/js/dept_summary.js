@@ -57,15 +57,19 @@ function searchName(){
 	form.submit();
 }
 
-onload = function(){
-	var clicked = document.getElementsByName("clikedRow");
-	for(let i=0; i<clicked.length; i++){
-		clicked[i].addEventListener("click", function(){
-			var url = "job_details_html.html";
-			var title = "부서 상세 조회";
-			var prop = "top=120px, left=300px, width=650px, height=360px";
-			window.open(url, title, prop);
-		})
-	}
-}
-							
+onload = function() {
+  var clicked = document.getElementsByName("clikedRow");
+  for (let i = 0; i < clicked.length; i++) {
+    clicked[i].addEventListener("click", function() {
+      var deptId = this.getElementsByTagName("td")[1].textContent;
+
+      // 팝업창에 열기
+      var url = "/web_project/deptCtrl.do?deptIdClicked=" + deptId;
+      var title = "부서 정보 수정 및 삭제";
+      var prop = "top=120px, left=300px, width=650px, height=360px";
+      var popup = window.open(url, title, prop);
+      popup.focus();
+    });
+  }
+};
+						

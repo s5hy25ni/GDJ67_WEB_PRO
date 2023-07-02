@@ -18,7 +18,7 @@
 	</select>
 	
 	<!-- WP020 -->
-	<select id="job_search_name" parameterType="JobDTO" resultType="JobDTO">
+	<select id="job_search_name" parameterType="String" resultType="JobDTO">
 		<include refid="selectAll"/>
 			WHERE LOWER(JOB_TITLE) LIKE LOWER(CONCAT(#{job_title}, '%'))
 	</select>
