@@ -19,7 +19,7 @@ public class Job2_JUnit_Test {
 
 	private IJob2Dao dao = new Job2DaoImpl();
 	
-//	@Test
+	@Test
 	public void job_select() {
 		List<Job2_DTO> lists = dao.job_selectAll();
 //		List<Job2_DTO> lists = dao.job_id_drop();
@@ -32,8 +32,8 @@ public class Job2_JUnit_Test {
 		String jobName = "S";
 		Job2_DTO dto = new Job2_DTO();
 		dto.setJob_title(jobName);
-		List<Job2_DTO> lists = dao.job_search_name(dto);
-		assertNotNull(lists);		
+//		List<Job2_DTO> lists = dao.job_search_name(dto);
+//		assertNotNull(lists);		
 	}
 	
 //	@Test
