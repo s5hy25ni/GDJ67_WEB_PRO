@@ -1,3 +1,5 @@
+<%@page import="com.hr.pro.dto.Dept_DTO"%>
+<%@page import="com.hr.pro.dto.Job2_DTO"%>
 <%@page import="com.hr.pro.dto.Admin_DTO"%>
 <%@page import="com.hr.pro.dto.Emp_DTO"%>
 <%@page import="java.util.List"%>
@@ -59,6 +61,8 @@
 						<div class="search_center_value">
 							<%
 							List<Emp_DTO> lists001 = (List<Emp_DTO>) request.getAttribute("lists001");
+							List<Dept_DTO> deptAll = (List<Dept_DTO>) request.getAttribute("deptAll");
+							List<Job2_DTO> jobAll = (List<Job2_DTO>)request.getAttribute("jobAll");
 							List<Emp_DTO> lists002 = (List<Emp_DTO>) request.getAttribute("lists002");
 							List<Emp_DTO> lists003 = (List<Emp_DTO>) request.getAttribute("lists003");
 							List<Emp_DTO> lists004 = (List<Emp_DTO>) request.getAttribute("lists004");
@@ -66,9 +70,10 @@
 							<select id="deptIdSelect" name="deptIdSelect">
 								<option value="all">전체</option>
 								<%
-								for (int i = 0; i < lists001.size(); i++) {
+								for (int i = 0; i < deptAll.size(); i++) {
+										String value = deptAll.get(i).getDepartment_name()+"("+deptAll.get(i).getDepartment_id()+")";
 								%>
-								<option value="<%=lists001.get(i).getDepartment_id()%>"><%=lists001.get(i).getDepartment_id()%></option>
+								<option value="<%=value %>" ><%=value %></option>
 								<%
 								}
 								%>
@@ -102,9 +107,10 @@
 							<select id="jobIdSelect" name="jobIdSelect">
 								<option value="all">전체</option>
 								<%
-								for (int i = 0; i < lists001.size(); i++) {
+								for (int i = 0; i < jobAll.size(); i++) {
+									String value = jobAll.get(i).getJob_title()+"("+jobAll.get(i).getJob_id()+")";
 								%>
-								<option value="<%=lists001.get(i).getJob_id()%>"><%=lists001.get(i).getJob_id()%></option>
+								<option value="<%=value%>"><%=value%></option>
 								<%
 								}
 								%>

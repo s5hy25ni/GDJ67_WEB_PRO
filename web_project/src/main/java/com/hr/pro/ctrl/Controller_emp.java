@@ -10,9 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hr.pro.dto.Dept_DTO;
 import com.hr.pro.dto.Emp_DTO;
+import com.hr.pro.dto.Job2_DTO;
+import com.hr.pro.model.DeptDaoImpl;
 import com.hr.pro.model.EmpDaoImpl;
+import com.hr.pro.model.IDeptDao;
 import com.hr.pro.model.IEmpDao;
+import com.hr.pro.model.IJob2Dao;
+import com.hr.pro.model.Job2DaoImpl;
 
 public class Controller_emp extends HttpServlet {
 
@@ -25,10 +31,20 @@ public class Controller_emp extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		IEmpDao dao = new EmpDaoImpl();
+		IDeptDao deptDao = new DeptDaoImpl();
+		IJob2Dao jobDao = new Job2DaoImpl();
+		
 		String empIdClicked = req.getParameter("empIdClicked");
 		
 		List<Emp_DTO> lists001 = dao.emp_selectAll();
 		req.setAttribute("lists001", lists001);
+		
+		List<Dept_DTO> dept = deptDao.dept_selectAll();
+		req.setAttribute("deptAll", dept);
+		
+		List<Job2_DTO> job = jobDao.job_selectAll();
+		req.setAttribute("jobAll", job);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if(empIdClicked != null && !empIdClicked.isEmpty()) {

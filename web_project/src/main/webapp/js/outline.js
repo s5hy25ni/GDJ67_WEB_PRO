@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function(){
 			alert("연장되었습니다.")		
 		});
 	} else {
+		if(window.location.href != "http://localhost:8080/web_project/"){
+			location.href="http://localhost:8080/web_project";
+		}
 		alertLogin();
 		document.getElementById("loginBtn").addEventListener("click", login);
 	}
