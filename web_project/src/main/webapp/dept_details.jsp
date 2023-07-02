@@ -1,3 +1,4 @@
+<%@page import="com.hr.pro.dto.Emp_DTO2"%>
 <%@page import="com.hr.pro.dto.Dept_DTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -19,6 +20,7 @@
 					<div class="detail_line">
 						<%
 						List<Dept_DTO> lists027 = (List<Dept_DTO>) request.getAttribute("lists027");
+						List<Emp_DTO2> lists036 = (List<Emp_DTO2>) request.getAttribute("lists036");
 						%>
 						<div class="column">
 							<h5>DEPT_ID</h5>
@@ -54,49 +56,37 @@
 				<table>
 					<thead>
 						<tr>
-							<td>EMP</td>
-							<td>START_DATE</td>
-							<td>END_DATE</td>
-							<td>JOB</td>
-							<td>DEPT</td>
+							<td>EMP_ID</td>
+							<td>EMP_NAME</td>
+							<td>HIREDATE</td>
+							<td>MANAGER_ID</td>
+							<td>JOB_ID</td>
 						</tr>
 					</thead>
 					<tbody>
+						<%
+						if (lists036 != null && !lists036.isEmpty()) {
+							int size = Math.min(lists036.size(), 5);
+							for (int i = 0; i < size; i++) {
+						%>
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><%=lists036.get(i).getEmployee_id()%></td>
+							<td><%=lists036.get(i).getFirst_name() + " " + lists036.get(i).getLast_name()%></td>
+							<td><%=lists036.get(i).getHire_date()%></td>
+							<td><%=lists036.get(i).getManager_id()%></td>
+							<td><%=lists036.get(i).getJob_id()%></td>
 						</tr>
+						<%
+						}
+						} else {
+						// 리스트가 null인 경우에 대한 처리
+						%>
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td colspan="5">데이터 없음</td>
 						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+						<%
+						}
+						%>
 					</tbody>
 				</table>
 			</div>
@@ -115,7 +105,7 @@
 					</div>
 				</div>
 			</div>
-<script type="text/javascript" src="./js/modal.js"></script>
+			<script type="text/javascript" src="./js/modal.js"></script>
 	</form>
 </body>
 </html>

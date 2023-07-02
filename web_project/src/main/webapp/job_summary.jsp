@@ -17,7 +17,7 @@
 			<div id="logo"></div>
 			<div class="menus">
 				<h3>
-					<a href="#">직원 관리</a>
+					<a href="./empCtrl.do">직원 관리</a>
 				</h3>
 			</div>
 			<div class="menus">
@@ -27,7 +27,7 @@
 			</div>
 			<div class="menus">
 				<h3>
-					<a href="#">직무 관리</a>
+					<a href="./jobCtrl.do">직무 관리</a>
 				</h3>
 			</div>
 			<input id="logout" type="button" onclick="">

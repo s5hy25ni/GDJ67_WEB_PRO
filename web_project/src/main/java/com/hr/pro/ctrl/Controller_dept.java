@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hr.pro.dto.Dept_DTO;
+import com.hr.pro.dto.Emp_DTO2;
 import com.hr.pro.model.DeptDaoImpl;
+import com.hr.pro.model.EmpDaoImpl2;
 import com.hr.pro.model.IDeptDao;
+import com.hr.pro.model.IEmpDao2;
 
 public class Controller_dept extends HttpServlet {
 
@@ -21,6 +24,7 @@ public class Controller_dept extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		IDeptDao dao = new DeptDaoImpl();
+		IEmpDao2 dao2 = new EmpDaoImpl2();
 		String deptIdClicked = req.getParameter("deptIdClicked");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -32,7 +36,9 @@ public class Controller_dept extends HttpServlet {
 		if(deptIdClicked != null && !deptIdClicked.isEmpty()) {
 				map.put("department_id", deptIdClicked);
 				List<Dept_DTO> lists3 = dao.dept_id_select(map);
+				List<Emp_DTO2> lists4 = dao2.emp_dept_details(map);
 				req.setAttribute("lists027", lists3);
+				req.setAttribute("lists036", lists4);
 				req.getRequestDispatcher("/dept_details.jsp").forward(req, resp);
 				return;
 			}

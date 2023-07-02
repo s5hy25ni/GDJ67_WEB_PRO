@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hr.pro.model.EmpDaoImpl2">
 	
+	<!-- 전체, 직업별 평균연봉 조회  WP035-->
 	<select id="emp_avgSal_all" resultType="EmpDTO2">
 		SELECT e.JOB_ID, ROUND(AVG(SALARY)) 평균급여
  		FROM EMP e INNER JOIN (SELECT JOB_ID, ROUND(AVG(SALARY)) 평균급여
@@ -21,5 +22,18 @@
 				WHERE e.JOB_ID = #{job_id}
 				 GROUP BY e.JOB_ID
 	</select>
-	
+	<!-- dept_details에 해당 부서 사원 정보 추가 WP036-->
+	<select id="emp_dept_details" resultType="EmpDTO2">
+		SELECT EMPLOYEE_ID , FIRST_NAME, LAST_NAME, TO_CHAR(HIRE_DATE, 'YYYY-MM-DD') AS HIRE_DATE, e.MANAGER_ID, JOB_ID
+			FROM EMP e JOIN DEPT d
+			USING(DEPARTMENT_ID)
+			WHERE DEPARTMENT_ID = #{department_id}
+	</select>
+	<!-- job_details에 해당 직무 사원 정보 추가  WP037-->
+	<select id="emp_job_details" resultType="EmpDTO2">
+		SELECT EMPLOYEE_ID , FIRST_NAME, LAST_NAME, TO_CHAR(HIRE_DATE, 'YYYY-MM-DD') AS HIRE_DATE, SALARY, DEPARTMENT_ID
+			FROM EMP e JOIN JOB2 j 
+			USING(JOB_ID)
+			WHERE JOB_ID = #{job_id}
+	</select>
 </mapper>
