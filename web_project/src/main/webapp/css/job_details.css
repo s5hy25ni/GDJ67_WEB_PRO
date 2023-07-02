@@ -111,3 +111,7 @@ tbody{
     color: white;
     background-color: rgb(46,204,113);
 }
+
+tbody td{
+	font-size: 10pt;
+}
