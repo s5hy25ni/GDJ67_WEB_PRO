@@ -33,6 +33,7 @@ function goMenus(){
 	
 	for(let i=0; i<menus.length; i++){
 		menus[i].addEventListener("click", function(){
+			clearTime(10);
 			location.href="./"+menus[i].id+".jsp";
 		})
 	}
@@ -72,6 +73,7 @@ function lpad(str, len){
 }
 
 function home(){
+	clearTime(10);
 	location.href="http://localhost:8080/web_project";
 }
 
@@ -84,6 +86,7 @@ function login(){
 }
 
 function notify(){
+	clearTime(10);
 	document.getElementsByTagName("form")[0].submit();
 	alert("신고가 완료되었습니다.");
 }
