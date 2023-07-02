@@ -10,6 +10,8 @@
 <title>Test</title>
 </head>
 <body>
+
+	<button onclick="javascript:location.href='./empCtrl.do'">사원 관리</button>
 	<button onclick="javascript:location.href='./jobCtrl.do'">직무 관리</button>
 	<button onclick="javascript:location.href='./deptCtrl.do'">부서 관리</button>
 </body>

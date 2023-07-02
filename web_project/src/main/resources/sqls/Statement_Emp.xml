@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hr.pro.model.AdminDaoImpl">
-	
-	<select id="admin_select" resultType="AdminDTO">
-		SELECT ADMIN_ID, ADMIN_PW
-			FROM ADMINS
-	</select>
+<mapper namespace="com.hr.pro.model.EmpDaoImpl">
+
 	<sql id="selectAll">
 		SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, TO_CHAR(HIRE_DATE, 'YYYY-MM-DD') AS HIRE_DATE, e.JOB_ID, SALARY, e.MANAGER_ID, e.DEPARTMENT_ID, DEPARTMENT_NAME, JOB_TITLE
 			FROM (EMP e JOIN DEPT d
@@ -22,6 +18,7 @@
 	<select id="emp_search" parameterType="String" resultType="EmpDTO">
 		<include refid="selectAll"/>
 		WHERE LOWER(FIRST_NAME ||' '|| LAST_NAME) LIKE LOWER('%'||#{name}||'%')
+				OR EMPLOYEE_ID LIKE (#{id} || '%')
 	</select>
 	
 	<!-- department_id로 검색 -->
@@ -34,5 +31,11 @@
 	<select id="emp_jobId_select" resultType="EmpDTO">
 		<include refid="selectAll"/>
 		WHERE job_id = #{job_id}
+	</select>
+	
+	<!-- emp_id로 검색(행 클릭시)-->
+	<select id="emp_empId_select" resultType="EmpDTO">
+		<include refid="selectAll"/>
+		WHERE employee_id = #{employee_id}
 	</select>
 </mapper>

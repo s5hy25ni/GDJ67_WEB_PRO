@@ -49,7 +49,6 @@ public class Controller_dept extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String deptIdSelect = req.getParameter("deptIdSelect");
 		String deptNameSelect = req.getParameter("deptNameSelect");
-		String deptIdClicked = req.getParameter("deptIdClicked");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
