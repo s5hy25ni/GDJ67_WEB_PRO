@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HRCompany</title>
+<title>수정 및 삭제</title>
 <link rel="stylesheet" href="./css/outline.css">
 <link rel="stylesheet" href="./css/job_details.css">
 <link rel="stylesheet" href="./css/modal.css">

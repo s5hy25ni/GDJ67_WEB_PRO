@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HRCompany</title>
+<title>수정 및 삭제</title>
 <link rel="stylesheet" href="./css/outline.css">
 <link rel="stylesheet" href="./css/emp_details.css">
 <link rel="stylesheet" href="./css/modal.css">
@@ -31,7 +31,7 @@
                         	value="<%=lists005.get(0).getFirst_name()%>">
                         <div class="column"><h5>LAST_NAME</h5></div>
                         <input class="change short" type="text"
-                        	value="<%=lists005.get(0).getLast_name()%>">>
+                        	value="<%=lists005.get(0).getLast_name()%>">
                     </div>
                     <div class="detail_line">
                         <div class="column"><h5>EMAIL</h5></div>
