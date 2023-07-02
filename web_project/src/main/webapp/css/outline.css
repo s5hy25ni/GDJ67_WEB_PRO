@@ -33,21 +33,6 @@ header>div{
     text-align: center;
 }
 
-.menus{
-    height: 30px;
-    margin: 20px 10px 10px;
-}
-
-.menus a{
-    text-decoration: none;
-    color: rgb(92,92,92);
-}
-
-.menus a:hover{
-    color: rgb(46,204,113);
-    text-decoration-line: underline;
-}
-
 #logo{
     width: 200px;
     height: 60px;
@@ -58,37 +43,87 @@ header>div{
     background-position-y: 3.5px;
 }
 
-#login_extension{
-    width: 100px;
-    height: 20px;
-    margin: 25px 10px;
-    float: right;
+#logo:hover{
+	cursor: pointer;
+}
+
+.menus{
+    height: 30px;
+    margin: 20px 10px 10px;
+}
+
+.menuMove{
+    text-decoration: none;
+    color: rgb(92,92,92);
+}
+
+.menuMove:hover{
+    color: rgb(46,204,113);
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+#isLoginFalse, #isLoginTrue{
+	width: 315px;
+	height: 40px;
+	margin: 10px 10px 5px;
+	float: right;
+	display: flex;
+}
+
+#login_notify, #login_extension{
+	height: 30px;
+    margin: 10px 0px;
     display: flex;
 }
 
-#login_time{
-    width: 70px;
-    border: 1px solid green;
+#login_notify{
+	width: 195px;
 }
 
-#login_extension_btn{
+#login_extension{
+    width: 80px;
+}
+
+#login_timer{
+    width: 40px;
+}
+
+#notifyBtn, #login_extension_btn{
     width: 30px;
+    height: 20px;
+    margin-left: 5px;
     font-size: 12px;
     border : 1px solid rgb(190,190,190);
     border-radius: 2px;
     background-color: rgb(224,224,224);
 }
 
-#logout{
-    width: 50px;
-    height: 50px;
+#logoutBtn, #loginBtn{
+    width: 40px;
+    height: 40px;
     float: right;
-    margin-top : 10px;
-    background-image: url("../img/logout_green.svg");
+    margin-left: 10px;
     background-repeat: no-repeat;
     background-size: 40px;
     background-position: center;
     background-color: transparent;
+}
+
+#logoutBtn{
+	background-image: url("../img/logout.svg");
+	
+	transform: rotate(90deg);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+#loginBtn{
+	background-image: url("../img/login.svg");
 }
 
 main{
