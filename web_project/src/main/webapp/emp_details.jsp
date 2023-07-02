@@ -21,9 +21,9 @@
     <div id="outline">
         <header>
             <div id="logo"></div>
-            <div class="menus"><h3><a href="#">직원 관리</a></h3></div>
-            <div class="menus"><h3><a href="#">부서 관리</a></h3></div>
-            <div class="menus"><h3><a href="#">직무 관리</a></h3></div>
+            <div class="menus"><h3><a href="./empCtrl.do">직원 관리</a></h3></div>
+            <div class="menus"><h3><a href="./deptCtrl.do">부서 관리</a></h3></div>
+            <div class="menus"><h3><a href="./jobCtrl.do">직무 관리</a></h3></div>
             <input id="logout" type="button" onclick="">
             <div id="login_extension">
                 <div id="login_time"></div>
@@ -47,16 +47,9 @@
                         <div class="search_center_value">
                             <select name="DEPT">
                                 <option value="all">전체</option>
-                        <%
-                    		List<Emp_DTO> lists = (List<Emp_DTO>)request.getAttribute("deptSel");
-                    		if(lists != null){
-                    			for(int i=0; i<lists.size(); i++){
-                    				%>
-                    				<option value="dept<%=i %>"><%=lists.get(i).getDepartment_name()+"("+lists.get(i).getDepartment_id()+")" %></option>
-                    				<%
-                    			}
-                    		}
-                    	%>
+                        
+                    				<option value="dept"></option>
+                    	
                             </select>
                         </div>
                     </div>
