@@ -7,7 +7,7 @@
  
 document.addEventListener("DOMContentLoaded", function(){
 
-	var isLogin = document.querySelector("#test>#isLogin").textContent;
+	var isLogin = document.querySelector("#hidden>#isLogin").textContent;
 	
 	if(isLogin == "success"){
 		clearTime(10);
@@ -33,8 +33,7 @@ function goMenus(){
 	
 	for(let i=0; i<menus.length; i++){
 		menus[i].addEventListener("click", function(){
-			clearTime(10);
-			location.href="./"+menus[i].id+".jsp";
+			location.href="./"+menus[i].id+"Ctrl.do";
 		})
 	}
 }
@@ -73,7 +72,6 @@ function lpad(str, len){
 }
 
 function home(){
-	clearTime(10);
 	location.href="http://localhost:8080/web_project";
 }
 
@@ -82,7 +80,7 @@ function logout(){
 }
 
 function login(){
-	location.href="./login.jsp"
+	location.href="./login.do"
 }
 
 function notify(){

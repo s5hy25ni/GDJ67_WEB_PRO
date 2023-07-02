@@ -11,10 +11,10 @@ onload = function(){
     this.document.getElementById("login_submit").onclick = check_login_info;
     this.document.addEventListener("keyup", check_key);
     
-    var session = this.document.querySelectorAll("#test>p")[0].textContent;
+    var session = this.document.querySelectorAll("#hidden>p")[0].textContent;
     
     if(session == "success"){
-		location.href="/web_project/index.jsp"
+		location.href="/web_project"
 	} else if(session == "failure"){
 		document.getElementById("login_confirm").style.display="block";
         document.getElementById("login_confirm").textContent = "※ 아이디와 비빌번호를 확인해주세요."

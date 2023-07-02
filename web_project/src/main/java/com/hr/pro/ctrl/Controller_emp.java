@@ -35,11 +35,11 @@ public class Controller_emp extends HttpServlet {
 			map.put("employee_id", empIdClicked);
 			List<Emp_DTO> lists005 = dao.emp_empId_select(map);
 			req.setAttribute("lists005", lists005);
-			req.getRequestDispatcher("/emp_details.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/emp_details.jsp").forward(req, resp);
 			return;
 		}
 		
-		req.getRequestDispatcher("/emp_summary.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/emp_summary.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -72,6 +72,6 @@ public class Controller_emp extends HttpServlet {
 			List<Emp_DTO> lists002 = dao.emp_search(empNameSelect);
 			req.setAttribute("lists002", lists002);
 		}
-		req.getRequestDispatcher("/emp_summary.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/emp_summary.jsp").forward(req, resp);
 	}
 }

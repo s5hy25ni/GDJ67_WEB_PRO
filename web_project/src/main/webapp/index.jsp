@@ -19,9 +19,9 @@
 	<div id="outline">
         <header>
             <div id="logo"></div>
-            <div class="menus"><h3 class="menuMove" id="emp_summary">직원 관리</h3></div>
-            <div class="menus"><h3 class="menuMove" id="dept_summary">부서 관리</h3></div>
-            <div class="menus"><h3 class="menuMove" id="job_summary">직무 관리</h3></div>
+            <div class="menus"><h3 class="menuMove" id="emp">직원 관리</h3></div>
+            <div class="menus"><h3 class="menuMove" id="dept">부서 관리</h3></div>
+            <div class="menus"><h3 class="menuMove" id="job">직무 관리</h3></div>
             
          <%
          List<Admin_DTO> admins = (List<Admin_DTO>)loginSession.getAttribute("SuccessUser");
@@ -65,7 +65,7 @@
             <div>(구디아카데미) 서울시 금천구 가산디지털2로 95, 3층 ORANGE</div>
         </footer>
     </div>   	
-	<div id="test">
+	<div id="hidden">
 		<p id="isLogin"><%=loginSession.getAttribute("isLogin") %></p>
 		<form method="POST" data-email="s5hy25ni@gmail.com" 
 		action="https://script.google.com/macros/s/AKfycbzC0qfRmnKei7-xoi1RAqRzt59NwArRo8irCvvxEMpWm_fQ_OTRiRL8eJC0TO7KJIr2Nw/exec"
