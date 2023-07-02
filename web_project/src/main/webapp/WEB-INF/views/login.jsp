@@ -45,7 +45,7 @@
 	<%
 		HttpSession loginSession = request.getSession(false);
 	%>
-	<div id="test">
+	<div id="hidden">
 		<p id="isLogin"><%=loginSession.getAttribute("isLogin") %></p>
 	</div>
 </body>

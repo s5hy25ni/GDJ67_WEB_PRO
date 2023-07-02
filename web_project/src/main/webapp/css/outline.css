@@ -10,7 +10,6 @@
 	height: 600px;
 	margin : 0px auto;
 	position: relative;
-    border: 1px solid red;
 }
 
 #details_outline{
@@ -18,7 +17,6 @@
 	height: 380px;
 	margin : 0px auto;
 	position: relative;
-    border: 1px solid red;
 }
 
 header{
@@ -152,4 +150,8 @@ input[type="button"]:hover, input[type="date"]:hover, select:hover{
 
 input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, select:focus{
     outline: none;
+}
+
+#hidden{
+	display : none;
 }

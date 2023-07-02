@@ -41,11 +41,11 @@ public class Controller_job extends HttpServlet {
 			List<Emp_DTO2> lists4 = dao2.emp_job_details(map);
 			req.setAttribute("lists019", lists3);
 			req.setAttribute("lists037", lists4);
-			req.getRequestDispatcher("/job_details.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/job_details.jsp").forward(req, resp);
 			return;
 		}
 		
-		req.getRequestDispatcher("/job_summary.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/job_summary.jsp").forward(req, resp);
 	
 	}
 	
@@ -73,7 +73,7 @@ public class Controller_job extends HttpServlet {
 				}
 				
 				
-		req.getRequestDispatcher("/job_summary.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/job_summary.jsp").forward(req, resp);
 		
 	}
 	

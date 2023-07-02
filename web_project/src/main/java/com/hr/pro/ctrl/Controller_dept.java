@@ -39,10 +39,10 @@ public class Controller_dept extends HttpServlet {
 				List<Emp_DTO2> lists4 = dao2.emp_dept_details(map);
 				req.setAttribute("lists027", lists3);
 				req.setAttribute("lists036", lists4);
-				req.getRequestDispatcher("/dept_details.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/views/dept_details.jsp").forward(req, resp);
 				return;
 			}
-		req.getRequestDispatcher("/dept_summary.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/dept_summary.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -70,7 +70,7 @@ public class Controller_dept extends HttpServlet {
 			req.setAttribute("lists028", lists2);
 		}
 		
-		req.getRequestDispatcher("/dept_summary.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/dept_summary.jsp").forward(req, resp);
 	}
 
 }
