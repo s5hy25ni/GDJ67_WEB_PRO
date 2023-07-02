@@ -115,3 +115,23 @@ tbody{
 tbody td{
 	font-size: 10pt;
 }
+
+#summary {
+        width: 609px;
+        height: 136px;
+        overflow: auto;
+    }
+
+    #summary table {
+        table-layout: fixed;
+    }
+
+    #summary thead {
+        position: sticky;
+        top: 0;
+    }
+
+    #summary tbody {
+        overflow-y: scroll;
+        height: 100px;
+    }

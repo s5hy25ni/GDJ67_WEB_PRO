@@ -65,8 +65,7 @@
 					<tbody>
 						<%
 						if (lists037 != null && !lists037.isEmpty()) {
-							int size = Math.min(lists037.size(), 5);
-							for (int i = 0; i < size; i++) {
+							for (int i = 0; i < lists037.size(); i++) {
 						%>
 						<tr>
 							<td><%=lists037.get(i).getEmployee_id()%></td>
