@@ -35,7 +35,7 @@
 		<servlet-name>empdept</servlet-name>
 		<url-pattern>/empCtrl.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>admin</servlet-name>
 		<servlet-class>com.hr.pro.ctrl.Controller_admin</servlet-class>

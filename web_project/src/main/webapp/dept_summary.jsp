@@ -17,12 +17,12 @@
 			<div id="logo"></div>
 			<div class="menus">
 				<h3>
-					<a href="#">직원 관리</a>
+					<a href="./empCtrl.do">직원 관리</a>
 				</h3>
 			</div>
 			<div class="menus">
 				<h3>
-					<a href="#">부서 관리</a>
+					<a href="./deptCtrl.do">부서 관리</a>
 				</h3>
 			</div>
 			<div class="menus">

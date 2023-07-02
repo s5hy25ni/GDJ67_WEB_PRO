@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hr.pro.dto.Dept_DTO;
+import com.hr.pro.dto.Emp_DTO2;
 import com.hr.pro.dto.Job2_DTO;
+import com.hr.pro.model.EmpDaoImpl2;
+import com.hr.pro.model.IEmpDao2;
 import com.hr.pro.model.IJob2Dao;
 import com.hr.pro.model.Job2DaoImpl;
 
@@ -24,6 +27,7 @@ public class Controller_job extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		IJob2Dao dao = new Job2DaoImpl();
+		IEmpDao2 dao2 = new EmpDaoImpl2();
 		String jobIdClicked = req.getParameter("jobIdClicked");
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -34,7 +38,9 @@ public class Controller_job extends HttpServlet {
 		if(jobIdClicked != null && !jobIdClicked.isEmpty()) {
 			map.put("job_id", jobIdClicked);
 			List<Job2_DTO> lists3 = dao.job_id_select(map);
+			List<Emp_DTO2> lists4 = dao2.emp_job_details(map);
 			req.setAttribute("lists019", lists3);
+			req.setAttribute("lists037", lists4);
 			req.getRequestDispatcher("/job_details.jsp").forward(req, resp);
 			return;
 		}
