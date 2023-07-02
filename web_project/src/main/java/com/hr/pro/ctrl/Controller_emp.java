@@ -21,7 +21,7 @@ public class Controller_emp extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		IEmpDao dao = new EmpDaoImpl();
 		
 		List<Emp_DTO> lists = dao.getDeptList();
