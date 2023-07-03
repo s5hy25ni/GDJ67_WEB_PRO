@@ -220,14 +220,11 @@
 							count++;
 							}
 							}
-							if (lists001 != null) {
+							if (deptIdSelect==null && jobIdSelect==null && empNameSelect==null) {
 								int totalRows = lists001.size();
-								int totalPage = (totalRows/10)+1; // 전체 행 수를 10행씩 계산
-								int countNum = 0;
-								int pagaNum = 0;
+								int totalPage = (int) Math.ceil((double) totalRows / 10);  // 전체 행 수를 10행씩 계산
 							    
 							    for (int i = 1; i <= totalPage; i++) {
-							    	pagaNum = i;
 							    	for(int j =(i-1)*10; j<i*10; j++){
 							    		if(j<totalRows){
 								            Emp_DTO empDto = lists001.get(j);
@@ -292,62 +289,71 @@
 				<input class="page" type="button" value="&gt;" onclick="nextPage()">
 				<%
 				} else {
+							if (lists004 != null) {
+								int totalPages = (int) Math.ceil((double) lists004.size() / 10);
+							%>
+							<input class="page" type="button" value="&lt;" onclick="prevPage()">
+							<%
+							for (int i = 1; i <= totalPages; i++) {
+							%>
+							<input class="page" type="button" value="<%=i%>"
+								onclick="viewPage(<%=i%>)">
+							<%
+							}
+							%>
+							<input class="page" type="button" value="&gt;" onclick="nextPage()">
+							<%
+							} else {
+								%>
+								<input class="page" type="button" value="1">
+								<%
+							}
+					}
 					%>
-					<input class="page" type="button" value="1">
-					<%
-				}
-				%>
 			</section>
 			<script type="text/javascript">
-				var currentPage = 1;
-				
-				function viewPage(pageId) {
-					var rows = document.getElementsByTagName("tr");
-
-					for (var i = 0; i < rows.length; i++) {
-						var row = rows[i];
-						if (row.id === "firstPage" || row.id === "secondPage") {
-							if (row.id === "firstPage" && pageId == 1) {
-								row.style.display = "table-row";
-							} else if (row.id === "secondPage" && pageId == 2) {
-								if (i >= 10 && i < 20) {
-									row.style.display = "table-row";
-								} else {
-									row.style.display = "none";
-								}
-							} else {
-								row.style.display = "none";
-							}
-						}
-					}
-
-					// 페이지 버튼 스타일 변경
-					var pageButtons = document.getElementsByClassName("page");
-					for (var j = 0; j < pageButtons.length; j++) {
-						var button = pageButtons[j];
-						if (button.value == pageId) {
-							button.classList.add("active");
-						} else {
-							button.classList.remove("active");
-						}
-					}
-				}
-				
-				 function prevPage() {
-					 var currentPage = document.querySelector('.page.active').value;
-				        if (currentPage > 1) {
-				            viewPage(parseInt(currentPage) - 1);
-				        }
-				    }
-
-				   function nextPage() {
-				        var totalPages = <%=Math.ceil((double) lists001.size() / 10)%>;  
-				        if (currentPage < totalPages) {
-				            viewPage(currentPage + 1);
-				        }
-				    } 
-			</script>
-
+			    var currentPage = 1;
+			
+			    function viewPage(pageId) {
+			        var rows = document.getElementsByName("clikedRow");
+			
+			        for (var i = 0; i < rows.length; i++) {
+			            var row = rows[i];
+			            var page = row.id.split("_")[1];
+			            if (page === String(pageId)) {
+			                row.style.display = "table-row";
+			            } else {
+			                row.style.display = "none";
+			            }
+			        }
+			
+			        // 페이지 버튼 스타일 변경
+			        var pageButtons = document.getElementsByClassName("page");
+			        for (var j = 0; j < pageButtons.length; j++) {
+			            var button = pageButtons[j];
+			            if (button.value == pageId) {
+			                button.classList.add("active");
+			            } else {
+			                button.classList.remove("active");
+			            }
+			        }
+			
+			        currentPage = pageId; // 현재 페이지 업데이트
+			    }
+			
+			    function prevPage() {
+			        if (currentPage > 1) {
+			            viewPage(currentPage - 1);
+			        }
+			    }
+			
+			    function nextPage() {
+			        var totalPages = <%=Math.ceil((double) lists001.size() / 10)%>;
+			        if (currentPage < totalPages) {
+			            viewPage(currentPage + 1);
+			        }
+			    }
+		</script>
 		</main>
         <footer>
             <div>&copy; Developer heeae&hyeon</div>
