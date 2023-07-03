@@ -54,6 +54,15 @@
 		<url-pattern>/logout.do</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>excel</servlet-name>
+		<servlet-class>com.hr.pro.ctrl.Controller_Excel</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>excel</servlet-name>
+		<url-pattern>/excel.do</url-pattern>
+	</servlet-mapping>
+	
  	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/error/error404.jsp</location>
