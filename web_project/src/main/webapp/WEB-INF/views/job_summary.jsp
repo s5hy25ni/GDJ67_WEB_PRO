@@ -25,30 +25,27 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 <body>
 	<div id="outline">
 		<header>
-			<div id="logo"></div>
-			<div class="menus">
-				<h3 class="menuMove" id="emp">직원 관리</h3>
-			</div>
-			<div class="menus">
-				<h3 class="menuMove" id="dept">부서 관리</h3>
-			</div>
-			<div class="menus">
-				<h3 class="menuMove" id="job">직무 관리</h3>
-			</div>
-			<div id="isLoginTrue">
-				<div id="login_notify">
-					<div id="lastLogin"><%=admins.get(0).getLast_login()%></div>
-					<input id="notifyBtn" type="button" value="신고">
-				</div>
-				<div id="login_extension">
-					<div id="login_timer"></div>
-					<input id="login_extension_btn" type="button" value="연장">
-				</div>
-				<div>
-					<input id="logoutBtn" type="button">
-				</div>
-			</div>
-		</header>
+            <div id="logo"></div>
+            <div class="menus"><h3 class="menuMove" id="emp">직원 관리</h3></div>
+            <div class="menus"><h3 class="menuMove" id="dept">부서 관리</h3></div>
+            <div class="menus"><h3 class="menuMove" id="job">직무 관리</h3></div>
+       		<div id="isLoginTrue">
+       			<div id="login_notify">
+       				<div id="lastLogin"><%=admins.get(0).getLast_login() %></div>
+       				<input id="notifyBtn" type="button" value="신고">
+       			</div>
+       			<div id="login_extension">
+                   <div id="login_timer"></div>
+                  	<input id="login_extension_btn" type="button" value="연장">
+               </div>
+        		<div>
+        		<form name="logout" action="/web_project/logout.do" method="post">
+        			<input id="logoutBtn" type="button" >
+        			<input type="hidden" name="cmd" value="logout">
+       			</form>
+              	</div>
+            </div>
+        </header>
 		<main>
 			<section id="search">
 				<div>
@@ -100,9 +97,21 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 			</section>
 			<section id="content">
 				<div id="top">
-					<div>
-						구분: 전체, 행:
-						<%=lists018.size()%></div>
+					<%
+						if (lists019 != null) {
+							%>
+							<div>구분: JOB_ID(<%=jobIdSelect%>), 행: <%=lists019.size()%></div>
+							<%
+					    } else if (lists020 != null) {
+					    	%>
+							<div>구분: JOB_NAME(<%=jobTitleSelect%>), 행: <%=lists020.size()%></div>
+							<%
+					    } else {
+					    	%>
+							<div>구분: 전체, 행: <%=lists018.size()%></div>
+							<%
+					    }
+					%>
 					<input id="view_sal" type="button" value="직무별 연봉통계 보기	"
 						onclick="openRunningMan()"> <input id="download"
 						type="button" value="엑셀 다운로드">
@@ -317,30 +326,29 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 			    }
 		</script>
 		</main>
-		<footer>
-			<div>&copy; Developer heeae&hyeon</div>
-			<div>(구디아카데미) 서울시 금천구 가산디지털2로 95, 3층 ORANGE</div>
-		</footer>
-	</div>
+        <footer>
+            <div>&copy; Developer heeae&hyeon</div>
+            <div>(구디아카데미) 서울시 금천구 가산디지털2로 95, 3층 ORANGE</div>
+        </footer>
+    </div>   	
 	<div id="hidden">
-		<p id="isLogin"><%=loginSession.getAttribute("isLogin")%></p>
-		<form method="POST" data-email="s5hy25ni@gmail.com"
-			action="https://script.google.com/macros/s/AKfycbzC0qfRmnKei7-xoi1RAqRzt59NwArRo8irCvvxEMpWm_fQ_OTRiRL8eJC0TO7KJIr2Nw/exec"
-			target="frAttachFiles" style="display: none">
-			;
-			<%
-		if (admins != null) {
-		%>
-			<input type="text" name="name"
-				value="<%=admins.get(0).getAdmin_id()%>" readonly="readonly">
+		<p id="admin"><%=admins %></p>
+		<p id="isLogin"><%=loginSession.getAttribute("isLogin") %></p>
+		<form name="notify" method="POST" data-email="s5hy25ni@gmail.com" 
+		action="https://script.google.com/macros/s/AKfycbzC0qfRmnKei7-xoi1RAqRzt59NwArRo8irCvvxEMpWm_fQ_OTRiRL8eJC0TO7KJIr2Nw/exec"
+		target="frAttachFiles"
+		style="display:none">;
+		<%
+			if(admins != null){
+			%>
+			<input type="text" name="subject" value="[ADMIN] 타인 로그인 의심 신고">
+			<input type="text" name="name" value="<%=admins.get(0).getAdmin_id()%>" readonly="readonly">
+			<input type="text" name="time" value="<%=admins.get(0).getLast_login()%>" readonly="readonly">
 			<%
 			}
-			%>
-			<input type="email" name="email" value="s5hy25ni@gmail.com"
-				readonly="readonly"> <input type="text" name="subject"
-				value="[ADMIN] 타인 로그인 의심 신고">
+		%>
 		</form>
-		<iframe name="frAttachFiles" style="display: none"></iframe>
+		<iframe name="frAttachFiles" style="display:none"></iframe>
 	</div>
 </body>
 </html>

@@ -38,4 +38,19 @@
 		<include refid="selectAll"/>
 		WHERE employee_id = #{employee_id}
 	</select>
+	
+	<!-- 날짜 검색 WP006 -->
+	<select id="emp_date_select" resultType="EmpDTO">
+		<include refid="selectAll"/>
+			WHERE HIRE_DATE BETWEEN  TO_DATE(#{minDate}, 'YYYY-MM-DD') 
+																				AND TO_DATE(#{maxDate}, 'YYYY-MM-DD')
+			ORDER BY HIRE_DATE
+	</select>
+	
+	<!-- 월급 검색 WP007 -->
+	<select id="emp_salary_select" resultType="EmpDTO">
+		<include refid="selectAll"/>
+			WHERE SALARY BETWEEN #{minSalary} AND #{maxSalary}
+			ORDER BY SALARY
+	</select>
 </mapper>
