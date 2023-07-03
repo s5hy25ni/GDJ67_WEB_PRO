@@ -185,28 +185,3 @@ tbody>tr[name="clikedRow"]:hover{
 input[type='date']::-webkit-calendar-picker-indicator{
     cursor: pointer;
 }
-
-#page{
-    min-width: 102px;
-    max-width: 455px;
-    height: 40px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.page{
-    width: 30px;
-    height: 30px;
-    margin: 10px 2px 0px;
-    border: 1px solid rgb(190,190,190);
-    border-radius: 5px;
-    background-color: rgb(224,224,224);
-    text-align: center;
-}
-
-.page:hover{
-    color: white;
-    background-color: rgb(46,204,113);
-}
