@@ -113,8 +113,11 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 					    }
 					%>
 					<input id="view_sal" type="button" value="직무별 연봉통계 보기	"
-						onclick="openRunningMan()"> <input id="download"
-						type="button" value="엑셀 다운로드">
+						onclick="openRunningMan()">
+					<form name="excelDown" action="/web_project/excel.do" method="post">
+						<input type="hidden" name="excel" value="job">
+						<input id="download" type="button" value="엑셀 다운로드">
+					</form>
 				</div>
 				<div id="summary">
 					<table>

@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function(){
 	minDate.setAttribute("max", today);
 	maxDate.setAttribute("min", "2001-01-01");
 	maxDate.setAttribute("max", today);
+	
+	document.getElementById("download").addEventListener("click",function(){
+		document.excelDown.submit();
+	})
 		
 });
 

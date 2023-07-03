@@ -110,7 +110,10 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 							<%
 					    }
 					%>
-					<input id="download" type="button" value="엑셀 다운로드">
+					<form name="excelDown" action="/web_project/excel.do" method="post">
+						<input type="hidden" name="excel" value="dept">
+						<input id="download" type="button" value="엑셀 다운로드">
+					</form>
 				</div>
 				<div id="summary">
 					<table>

@@ -43,14 +43,21 @@
 				<version>4.13.1</version>
 				<scope>test</scope>
 			</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.9</version>
+		</dependency>
 			
 			
 
 	<dependency>
     <groupId>com.google.guava</groupId>
-    <artifactId>guava</artifactId>
+    <artifactId>
+				guava</artifactId>
     <version>31.1-jre</version>
-</dependency>
+		</dependency>
 
   </dependencies>
   <build>

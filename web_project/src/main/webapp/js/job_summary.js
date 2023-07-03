@@ -1,6 +1,14 @@
 /**
  * 
  */
+document.addEventListener("DOMContentLoaded", function(){
+	
+	document.getElementById("download").addEventListener("click",function(){
+		document.excelDown.submit();
+	})
+		
+});
+
 function submitForm() {
 	var selectElement = document
 	.getElementById("jobIdSelect");
