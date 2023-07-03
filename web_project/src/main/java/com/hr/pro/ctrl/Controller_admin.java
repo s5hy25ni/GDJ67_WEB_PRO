@@ -72,7 +72,7 @@ public class Controller_admin extends HttpServlet {
 		} else if(cmd.equals("logout")) {
 			session.removeAttribute("isLogin");
 			session.removeAttribute("SuccessUser");
-			req.getRequestDispatcher("/").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
 		}
 		
 	}

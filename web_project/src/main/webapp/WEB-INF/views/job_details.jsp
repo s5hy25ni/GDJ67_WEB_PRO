@@ -92,6 +92,7 @@
 				<input id="modify_btn" type="button" value="수정"> <input
 					id="delete_btn" type="button" value="삭제">
 			</div>
+		</div>
 			<!-- 수정 및 삭제 확인 모달 -->
 			<div id="confirmationModal" class="modal">
 				<div class="modal-content">

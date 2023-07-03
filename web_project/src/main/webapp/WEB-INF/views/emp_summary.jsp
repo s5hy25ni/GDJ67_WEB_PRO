@@ -541,21 +541,41 @@ String maxSalary = (String) request.getParameter("maxSalary");
 				      totalPages = (int) Math.ceil((double) lists007.size() / 10);
 			    }
 			  }
-			  %>
-			  <input class="page" type="button" value="&lt;" onclick="prevPage()">
-			  <%
-			  for (int i = 1; i <= totalPages; i++) {
-			  %>
-			  <input class="page" type="button" value="<%=i%>" onclick="viewPage(<%=i%>)">
-			  <%
+			  
+			  int stage = (totalPages/5)+1;
+			  if(totalPages>5){
+				  %>
+				  <input class="allow" type="button" value="&lt;&lt;" onclick="firstPage()">
+				  <%
 			  }
 			  %>
-			  <input class="page" type="button" value="&gt;" onclick="nextPage()">
+			  <input class="allow" type="button" value="&lt;" onclick="prevPage()">
+			  <div id="pageBtnArea">
+			  <%
+				  for(int i = 1; i<=5; i++){
+			  %>
+			  		<input class="page" type="button" value="<%=i%>" onclick="viewPage(<%=i%>)">
+			  <%
+					  if(i==totalPages){
+					  	break;
+					  }
+				  }
+			  %>
+			  </div>
+			  <input class="allow" type="button" value="&gt;" onclick="nextPage()">
+			  <%
+			  if(totalPages>5){
+				  %>
+				  <input class="allow" type="button" value="&gt;&gt;" onclick="lastPage()">
+				  <%
+			  }
+			  %>
 			</section>
 			<script type="text/javascript">
 			    var currentPage = 1;
 			
 			    function viewPage(pageId) {
+			    	viewStage(pageId);
 			        var rows = document.getElementsByName("clikedRow");
 			
 			        for (var i = 0; i < rows.length; i++) {
@@ -581,18 +601,66 @@ String maxSalary = (String) request.getParameter("maxSalary");
 			
 			        currentPage = pageId; // 현재 페이지 업데이트
 			    }
+			    
+			    function firstPage(){
+			    	if(currentPage>1){
+			    		viewPage(1);	
+			    	}
+			    }
 			
 			    function prevPage() {
-			        if (currentPage > 1) {
-			            viewPage(currentPage - 1);
-			        }
+			    	if(<%=totalPages%><=5){
+				        if (currentPage > 1) {
+				            viewPage(currentPage - 1);
+				        }			    		
+			    	} else {
+			    		var moveStage = Math.ceil(currentPage/5)-1;
+				    	var startPage = (moveStage*5)-4;
+				    	if(startPage<1){
+				    		viewPage(1);
+				    	} else if(currentPage!=startPage){
+				    		viewPage(startPage);
+				    	}
+			    	}
 			    }
 			
 			    function nextPage() {
-			        var totalPages = <%=Math.ceil((double) lists001.size() / 10)%>;
-			        if (currentPage < totalPages) {
-			            viewPage(currentPage + 1);
-			        }
+			    	var totalPages = <%=totalPages%>;
+			    	if(totalPages<=5){
+			    		if (currentPage < totalPages) {
+				            viewPage(currentPage + 1);
+				        }    		
+			    	} else {
+			    		var moveStage = Math.ceil(currentPage/5)+1;
+				    	var startPage = (moveStage*5)-4;
+				    	if(startPage>totalPages){
+				    		viewPage(totalPages);
+				    	} else if(currentPage!=startPage){
+				    		viewPage(startPage);
+				    	}
+			    	}
+			    }
+			    
+			    function lastPage(){
+			    	var totalPages = <%=totalPages%>
+			    	if(currentPage<totalPages){
+			    		viewPage(totalPages);	
+			    	}
+			    }
+			    
+			    function viewStage(pageId){
+			    	var area = document.getElementById("pageBtnArea");
+			    	area.innerHTML = "";
+ 			    	var currentStage = Math.ceil(pageId/5);
+			    	var startPage = (currentStage*5)-4;
+			    	
+			    	for(let i=startPage; i<(startPage+5); i++){
+				    	var HTML = '<input class="page" type="button" value="'+i+'" onclick="viewPage('+i+')">';
+			    		area.innerHTML += HTML;
+			    		if(i==<%=totalPages%>){
+			    			break;
+			    		}
+			    	} 
 			    }
 		</script>
 		</main>

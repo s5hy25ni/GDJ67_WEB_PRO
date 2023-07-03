@@ -275,7 +275,7 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 					    } 
 					  }
 					%>
-				  <input class="page" type="button" value="&lt;" onclick="prevPage()">
+				  <input class="allow" type="button" value="&lt;" onclick="prevPage()">
 				  <%
 				  for (int i = 1; i <= totalPages; i++) {
 				  %>
@@ -283,7 +283,7 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 				  <%
 				  }
 				  %>
-				  <input class="page" type="button" value="&gt;" onclick="nextPage()">
+				  <input class="allow" type="button" value="&gt;" onclick="nextPage()">
 			</section>
 			<script type="text/javascript">
 			    var currentPage = 1;
