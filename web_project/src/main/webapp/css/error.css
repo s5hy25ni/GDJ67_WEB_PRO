@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+#outline{
+	background-color: rgb(46,204,113);
+}
+#error{
+	width: 500px;
+	height: 500px;
+	margin: 0px auto;
+	background-color: red;
+}
+
+#img{
+	width: 300px;
+	height: 300px;
+	margin : 0px auto;
+	background-image: url("https://data1.pokemonkorea.co.kr/newdata/pokedex/full/012401.png");
+	background-position: center;
+	background-size: 300px;
+}
+
+#txt{
+	width: 500px;
+	height: 120px;
+	margin: 0px auto;
+	text-align: center;
+	font-size: 2.5em;
+	font-weight: bold;
+}
+
+#btn{
+	width: 300px;
+	heigth: 50px;
+	margin: 0px auto;
+	text-align: center;
+	border : 1px soild rgb(46,204,113);
+}
+
+#bth:hover {
+	cursor: pointer;
+	
+}
