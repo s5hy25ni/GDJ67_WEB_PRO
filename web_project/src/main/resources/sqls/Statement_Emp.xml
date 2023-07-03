@@ -3,7 +3,7 @@
 <mapper namespace="com.hr.pro.model.EmpDaoImpl">
 
 	<sql id="selectAll">
-		SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, TO_CHAR(HIRE_DATE, 'YYYY-MM-DD') AS HIRE_DATE, e.JOB_ID, SALARY, e.MANAGER_ID, e.DEPARTMENT_ID, DEPARTMENT_NAME, JOB_TITLE
+		SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, TO_CHAR(HIRE_DATE, 'YYYY-MM-DD') AS HIRE_DATE, j.JOB_ID, SALARY, e.MANAGER_ID, d.DEPARTMENT_ID, DEPARTMENT_NAME, JOB_TITLE
 			FROM (EMP e JOIN DEPT d
 			ON e.DEPARTMENT_ID = d.DEPARTMENT_ID) JOIN JOB2 j
 			ON e.JOB_ID = j.JOB_ID
@@ -21,19 +21,19 @@
 				OR EMPLOYEE_ID LIKE (#{id} || '%')
 	</select>
 	
-	<!-- department_id로 검색 -->
+	<!-- department_id로 검색 WP003 -->
 	<select id="emp_deptId_select" resultType="EmpDTO">
 		<include refid="selectAll"/>
-		WHERE DEPARTMENT_ID = #{department_id}
+		WHERE e.DEPARTMENT_ID = #{department_id}
 	</select>
 	
-	<!-- job_id로 검색 -->
+	<!-- job_id로 검색 WP004 -->
 	<select id="emp_jobId_select" resultType="EmpDTO">
 		<include refid="selectAll"/>
-		WHERE job_id = #{job_id}
+		WHERE e.job_id = #{job_id}
 	</select>
 	
-	<!-- emp_id로 검색(행 클릭시)-->
+	<!-- emp_id로 검색(행 클릭시) WP005-->
 	<select id="emp_empId_select" resultType="EmpDTO">
 		<include refid="selectAll"/>
 		WHERE employee_id = #{employee_id}

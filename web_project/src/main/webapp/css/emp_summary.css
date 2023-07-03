@@ -16,7 +16,7 @@
     width: 361px;
     height: 30px;
     float: left;
-    margin-right: 15px;
+    margin-right: 5px;
 }
 
 .search_culomn{
@@ -48,14 +48,14 @@
 }
 
 .search_center{
-    width: 315px;
-    height: 30px; 
-    margin-right: 15px;
+    width: 317px;
+    height: 6px; 
+   
     float: left;
 }
 
 .search_center_value{
-    width: 200px;
+    width: 163px;
     height: 30px;
     margin-right: 5px;
     border : 1px solid rgb(190,190,190);
@@ -64,11 +64,24 @@
 }
 
 .search_center_value>select{
-    width: 180px;
+    width: 142px;
     height: 30px;
     margin-left: 10px;
 }
 
+.search_center input{
+    width: 30px;
+    height: 30px;
+    float:left;
+    background-color: rgb(224,224,224);
+    background-image:url("../img/search.svg");
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid rgb(190,190,190);
+    border-radius: 5px;
+    margin-left: 0px;
+}
 .search_right{
     width: 250px;
     height: 30px;
@@ -163,7 +176,7 @@ tr, td{
     border: 1px solid rgb(190,190,190);
 }
 
-tbody>tr:hover{
+tbody>tr[name="clikedRow"]:hover{
     color: white;
     background-color: rgb(46,204,113);
     cursor: pointer;
@@ -175,7 +188,7 @@ input[type='date']::-webkit-calendar-picker-indicator{
 
 #page{
     min-width: 102px;
-    max-width: 300px;
+    max-width: 455px;
     height: 40px;
     margin: 0 auto;
     margin-bottom: 20px;

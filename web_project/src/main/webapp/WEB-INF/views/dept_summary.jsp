@@ -14,9 +14,13 @@
 <script type="text/javascript" src="./js/dept_summary.js"></script>
 </head>
 <%
+HttpSession loginSession = request.getSession();
+List<Admin_DTO> admins = (List<Admin_DTO>) loginSession.getAttribute("SuccessUser");
 List<Dept_DTO> lists026 = (List<Dept_DTO>) request.getAttribute("lists026");
 List<Dept_DTO> lists027 = (List<Dept_DTO>) request.getAttribute("lists027");
 List<Dept_DTO> lists028 = (List<Dept_DTO>) request.getAttribute("lists028");
+String deptIdSelect = (String) request.getParameter("deptIdSelect");
+String deptNameSelect = (String) request.getParameter("deptNameSelect");
 %>
 <body>
 	<div id="outline">
@@ -33,10 +37,7 @@ List<Dept_DTO> lists028 = (List<Dept_DTO>) request.getAttribute("lists028");
 			</div>
 			<div id="isLoginTrue">
 				<div id="login_notify">
-					<%
-					HttpSession loginSession = request.getSession();
-					List<Admin_DTO> admins = (List<Admin_DTO>) loginSession.getAttribute("SuccessUser");
-					%>
+					
 					<div id="lastLogin"><%=admins.get(0).getLast_login()%></div>
 					<input id="notifyBtn" type="button" value="신고">
 				</div>
@@ -77,8 +78,6 @@ List<Dept_DTO> lists028 = (List<Dept_DTO>) request.getAttribute("lists028");
 								<option value="<%=lists026.get(i).getDepartment_id()%>"><%=lists026.get(i).getDepartment_id()%></option>
 								<%
 								}
-								%>
-								<%
 								}
 								%>
 							</select>
@@ -124,8 +123,6 @@ List<Dept_DTO> lists028 = (List<Dept_DTO>) request.getAttribute("lists028");
 						<tbody>
 							<!-- for문으로 행 갯수만큼만 출력(최대 10개) -->
 							<%
-							String deptIdSelect = (String) request.getParameter("deptIdSelect");
-							String deptNameSelect = (String) request.getParameter("deptNameSelect");
 							int count = 1;
 							int currentPage = 1; // 현재 페이지 초기화
 
@@ -157,31 +154,50 @@ List<Dept_DTO> lists028 = (List<Dept_DTO>) request.getAttribute("lists028");
 							}
 
 							if (lists028 != null) {
-							int size = Math.min(lists028.size(), 10); // 최대 10개까지만 반복
-							for (int i = 0; i < 10; i++) {
-							if (i < size && lists028.get(i).getDepartment_name() != null) {
-							%>
-							<tr name="clikedRow">
-								<td><%=String.format("%03d", count)%></td>
-								<td><%=lists028.get(i).getDepartment_id()%></td>
-								<td><%=lists028.get(i).getDepartment_name()%></td>
-								<td><%=lists028.get(i).getManager_id()%></td>
-								<td><%=lists028.get(i).getLocation()%></td>
-							</tr>
-							<%
-							} else {
-							%>
-							<tr>
-								<td style="color: white"><%=String.format("%03d", count)%></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<%
-							}
-							count++;
-							}
+								int totalRows = lists028.size(); // 전체 행 수
+								int totalPage = (int) Math.ceil((double) totalRows / 10); // 전체 행 수를 10행씩 계산하여 나온 페이지
+
+								for (int i = 1; i <= totalPage; i++) { //한 페이지 당
+								for (int j = (i - 1) * 10; j < i * 10; j++) { // 10행씩
+								if (j < totalRows) {
+									Dept_DTO dept = lists028.get(j);
+									if (i > 1) {
+								%>
+								<tr id="Page_<%=i%>_<%=j%>" style="display: none;"
+									name="clikedRow">
+									<!-- 2페이지부터는 숨기기, 각 페이지 id 만들어주기(script처리위해) -->
+									<td><%=String.format("%03d", j + 1)%></td>
+									<td><%=dept.getDepartment_id()%></td>
+									<td><%=dept.getDepartment_name()%></td>
+									<td><%=dept.getManager_id()%></td>
+									<td><%=dept.getLocation()%></td>
+								</tr>
+								<%
+								} else {
+								%>
+								<tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+									<!-- 1페이지 출력 -->
+									<td><%=String.format("%03d", j + 1)%></td>
+									<td><%=dept.getDepartment_id()%></td>
+									<td><%=dept.getDepartment_name()%></td>
+									<td><%=dept.getManager_id()%></td>
+									<td><%=dept.getLocation()%></td>
+								</tr>
+								<%
+								}
+								} else { //출력 행 수가 10단위가 아니면 나머지는 빈행 출력 (10행 맞추려고) //근데 왜 안되지..?
+								%>
+								<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+									<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<%
+								}
+								}
+								}
 							}
 
 							if (deptIdSelect == null && deptNameSelect == null) {
@@ -237,42 +253,26 @@ List<Dept_DTO> lists028 = (List<Dept_DTO>) request.getAttribute("lists028");
 			</section>
 			<section id="page">
 				<%
-				if (lists027 == null && lists028 == null) {
-						int totalPages = (int) Math.ceil((double) lists026.size() / 10);
-					%>
-					<input class="page" type="button" value="&lt;" onclick="prevPage()">
-					<%
-					for (int i = 1; i <= totalPages; i++) {
-					%>
-					<input class="page" type="button" value="<%=i%>"
-						onclick="viewPage(<%=i%>)">
-					<%
-					}
-					%>
-					<input class="page" type="button" value="&gt;" onclick="nextPage()">
-					<%
+				int totalPages = 0;
+				if(lists027 == null && lists028 == null){
+					totalPages = (int) Math.ceil((double) lists026.size() / 10);
 				} else {
-					if (lists028 != null) {
-						int totalPages = (int) Math.ceil((double) lists028.size() / 10);
+				    if (lists027 != null) {
+					      totalPages = (int) Math.ceil((double) lists027.size() / 10);
+					    } else if (lists028 != null) {
+					      totalPages = (int) Math.ceil((double) lists028.size() / 10);
+					    } 
+					  }
 					%>
-					<input class="page" type="button" value="&lt;" onclick="prevPage()">
-					<%
-					for (int i = 1; i <= totalPages; i++) {
-					%>
-					<input class="page" type="button" value="<%=i%>"
-						onclick="viewPage(<%=i%>)">
-					<%
-					}
-					%>
-					<input class="page" type="button" value="&gt;" onclick="nextPage()">
-					<%
-				} else {
-					%>
-					<input class="page" type="button" value="1">
-					<%
-					}
-					}
-					%>
+				  <input class="page" type="button" value="&lt;" onclick="prevPage()">
+				  <%
+				  for (int i = 1; i <= totalPages; i++) {
+				  %>
+				  <input class="page" type="button" value="<%=i%>" onclick="viewPage(<%=i%>)">
+				  <%
+				  }
+				  %>
+				  <input class="page" type="button" value="&gt;" onclick="nextPage()">
 			</section>
 			<script type="text/javascript">
 			    var currentPage = 1;

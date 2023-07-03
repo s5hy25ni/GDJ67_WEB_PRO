@@ -14,9 +14,13 @@
 <script type="text/javascript" src="./js/job_summary.js"></script>
 </head>
 <%
+HttpSession loginSession = request.getSession();
+List<Admin_DTO> admins = (List<Admin_DTO>) loginSession.getAttribute("SuccessUser");
 List<Job2_DTO> lists018 = (List<Job2_DTO>) request.getAttribute("lists018");
 List<Job2_DTO> lists019 = (List<Job2_DTO>) request.getAttribute("lists019");
 List<Job2_DTO> lists020 = (List<Job2_DTO>) request.getAttribute("lists020");
+String jobIdSelect = (String) request.getParameter("jobIdSelect");
+String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 %>
 <body>
 	<div id="outline">
@@ -33,10 +37,6 @@ List<Job2_DTO> lists020 = (List<Job2_DTO>) request.getAttribute("lists020");
 			</div>
 			<div id="isLoginTrue">
 				<div id="login_notify">
-					<%
-					HttpSession loginSession = request.getSession();
-					List<Admin_DTO> admins = (List<Admin_DTO>) loginSession.getAttribute("SuccessUser");
-					%>
 					<div id="lastLogin"><%=admins.get(0).getLast_login()%></div>
 					<input id="notifyBtn" type="button" value="신고">
 				</div>
@@ -126,8 +126,6 @@ List<Job2_DTO> lists020 = (List<Job2_DTO>) request.getAttribute("lists020");
 						<tbody>
 							<!-- for문으로 행 갯수만큼만 출력(최대 10개) -->
 							<%
-							String jobIdSelect = (String) request.getParameter("jobIdSelect");
-							String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 							int count = 1;
 							int currentPage = 1; // 현재 페이지 초기화
 
@@ -159,41 +157,55 @@ List<Job2_DTO> lists020 = (List<Job2_DTO>) request.getAttribute("lists020");
 							}
 
 							if (lists020 != null) {
-							int size = Math.min(lists020.size(), 10);
-							for (int i = 0; i < 10; i++) {
-							if (i < size && lists020.get(i).getJob_title() != null) {
-							%>
-							<tr name="clikedRow">
-								<td><%=String.format("%03d", count)%></td>
-								<td><%=lists020.get(i).getJob_id()%></td>
-								<td><%=lists020.get(i).getJob_title()%></td>
-								<td><%=lists020.get(i).getMin_salary()%></td>
-								<td><%=lists020.get(i).getMax_salary()%></td>
-							</tr>
-							<%
-							} else {
-							%>
-							<tr>
-								<td style="color: white"><%=String.format("%03d", count)%></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<%
-							}
-							count++;
-							}
+								int totalRows = lists020.size();
+								int totalPage = (int) Math.ceil((double) totalRows / 10); // 전체 행 수를 10행씩 계산
+
+								for (int i = 1; i <= totalPage; i++) {
+								for (int j = (i - 1) * 10; j < i * 10; j++) {
+								if (j < totalRows) {
+									Job2_DTO job = lists020.get(j);
+									if (i > 1) {
+								%>
+								<tr id="Page_<%=i%>_<%=j%>" style="display: none;"
+									name="clikedRow">
+									<td><%=String.format("%03d", j + 1)%></td>
+									<td><%=job.getJob_id()%></td>
+									<td><%=job.getJob_title()%></td>
+									<td><%=job.getMin_salary()%></td>
+									<td><%=job.getMax_salary()%></td>
+								</tr>
+								<%
+								} else {
+								%>
+								<tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+									<td><%=String.format("%03d", j + 1)%></td>
+									<td><%=job.getJob_id()%></td>
+									<td><%=job.getJob_title()%></td>
+									<td><%=job.getMin_salary()%></td>
+									<td><%=job.getMax_salary()%></td>
+								</tr>
+								<%
+								}
+								} else {
+								%>
+								<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+									<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<%
+								}
+								}
+								}
 							}
 
 							if (jobIdSelect==null && jobTitleSelect==null) {
 							int totalRows = lists018.size();
 							int totalPage = (int) Math.ceil((double) totalRows / 10); // 전체 행 수를 10행씩 계산
-							int countNum = 0;
-							int pageNum = 0;
 
 							for (int i = 1; i <= totalPage; i++) {
-							pageNum = i;
 							for (int j = (i - 1) * 10; j < i * 10; j++) {
 							if (j < totalRows) {
 								Job2_DTO job = lists018.get(j);
@@ -240,42 +252,26 @@ List<Job2_DTO> lists020 = (List<Job2_DTO>) request.getAttribute("lists020");
 			</section>
 			<section id="page">
 				<%
-				if (lists019 == null && lists020 == null) {
-						int totalPages = (int) Math.ceil((double) lists018.size() / 10);
-					%>
-					<input class="page" type="button" value="&lt;" onclick="prevPage()">
-					<%
-					for (int i = 1; i <= totalPages; i++) {
-					%>
-					<input class="page" type="button" value="<%=i%>"
-						onclick="viewPage(<%=i%>)">
-					<%
-					}
-					%>
-					<input class="page" type="button" value="&gt;" onclick="nextPage()">
-					<%
+				int totalPages = 0;
+				if(lists019 == null && lists020 == null){
+					totalPages = (int) Math.ceil((double) lists018.size() / 10);
 				} else {
-					if (lists020 != null) {
-						int totalPages = (int) Math.ceil((double) lists020.size() / 10);
+				    if (lists019 != null) {
+					      totalPages = (int) Math.ceil((double) lists019.size() / 10);
+					    } else if (lists020 != null) {
+					      totalPages = (int) Math.ceil((double) lists020.size() / 10);
+					    } 
+					  }
 					%>
-					<input class="page" type="button" value="&lt;" onclick="prevPage()">
-					<%
-					for (int i = 1; i <= totalPages; i++) {
-					%>
-					<input class="page" type="button" value="<%=i%>"
-						onclick="viewPage(<%=i%>)">
-					<%
-					}
-					%>
-					<input class="page" type="button" value="&gt;" onclick="nextPage()">
-					<%
-				} else {
-					%>
-					<input class="page" type="button" value="1">
-					<%
-					}
-					}
-					%>
+				  <input class="page" type="button" value="&lt;" onclick="prevPage()">
+				  <%
+				  for (int i = 1; i <= totalPages; i++) {
+				  %>
+				  <input class="page" type="button" value="<%=i%>" onclick="viewPage(<%=i%>)">
+				  <%
+				  }
+				  %>
+				  <input class="page" type="button" value="&gt;" onclick="nextPage()">
 			</section>
 			<script type="text/javascript">
 			    var currentPage = 1;
