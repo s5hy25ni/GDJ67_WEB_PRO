@@ -1,22 +1,29 @@
 @charset "UTF-8";
 
-#outline{
-	background-color: rgb(46,204,113);
-}
 #error{
 	width: 500px;
 	height: 500px;
 	margin: 0px auto;
-	background-color: red;
+	position : relative;
+	top : 50px;
 }
 
-#img{
-	width: 300px;
+#img404, #img500{
+	width: 500px;
 	height: 300px;
 	margin : 0px auto;
-	background-image: url("https://data1.pokemonkorea.co.kr/newdata/pokedex/full/012401.png");
 	background-position: center;
-	background-size: 300px;
+	background-repeat: no-repeat;
+}
+
+#img404{
+	background-size: 380px;
+	background-image: url("https://data1.pokemonkorea.co.kr/newdata/pokedex/full/012401.png");
+}
+
+#img500{
+	background-size: 330px;
+	background-image: url("https://data1.pokemonkorea.co.kr/newdata/pokedex/full/012201.png");
 }
 
 #txt{
@@ -26,17 +33,24 @@
 	text-align: center;
 	font-size: 2.5em;
 	font-weight: bold;
+	color: rgb(92,92,92);
 }
 
 #btn{
 	width: 300px;
-	heigth: 50px;
+	height: 50px;
 	margin: 0px auto;
 	text-align: center;
-	border : 1px soild rgb(46,204,113);
+	font-size: 2em;
+	font-weight: bold;
+	border : 1px soild rgb(190,190,190);
+	border-radius: 10px;
+	background-color : rgb(224,224,224);
+	color: rgb(92,92,92);
 }
 
-#bth:hover {
+#btn:hover {
 	cursor: pointer;
-	
+	background-color: rgb(46,204,113);
+	color: white;
 }
