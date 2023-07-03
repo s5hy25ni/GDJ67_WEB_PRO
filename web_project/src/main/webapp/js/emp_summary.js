@@ -1,37 +1,53 @@
-function submitForm() {
-  var selectElement;
-  var selectedValue;
-  var form = document.createElement("form");
-  form.method = "POST";
-  form.action = "/web_project/empCtrl.do";
+function deptSubmitForm(){
+	var selectElement = document.getElementById("deptIdSelect");
+	var selectedDeptId = selectElement.options[selectElement.selectedIndex].value;
+	if(selectedDeptId != "all"){
+	// form 생성
+	var form = document.createElement("form");
+	form.method = "POST";
+	form.action = "/web_project/empCtrl.do";
 
-  // hiddenField input 생성
-  var hiddenField = document.createElement("input");
-  hiddenField.type = "hidden";
+	//hiddenField input 생성
+	var hiddenField = document.createElement("input");
+	hiddenField.type = "hidden";
+	hiddenField.name = "deptIdSelect"; // Changed the name to match the parameter name
+	hiddenField.value = selectedDeptId;
 
-  // check which select element triggered the function
-  if (event.target.id === "deptIdSelect") {
-    selectElement = document.getElementById("deptIdSelect");
-    selectedValue = selectElement.options[selectElement.selectedIndex].value;
-    hiddenField.name = "deptIdSelect";
-  } else if (event.target.id === "jobIdSelect") {
-    selectElement = document.getElementById("jobIdSelect");
-    selectedValue = selectElement.options[selectElement.selectedIndex].value;
-    hiddenField.name = "jobIdSelect";
-  }
+	// hidden field form에 append
+	form.appendChild(hiddenField);
 
-  if (selectedValue != "all") {
-    hiddenField.value = selectedValue;
+	// form append시키고 submit
+	document.body.appendChild(form);
+	form.submit();
+	} else {
+		location.href='./empCtrl.do';
+	}
+}
 
-    // hidden field form에 append
-    form.appendChild(hiddenField);
+function jobSubmitForm(){
+	var selectElement = document.getElementById("jobIdSelect");
+	var selectedjobId = selectElement.options[selectElement.selectedIndex].value;
+	if(selectedjobId != "all"){
+	// form 생성
+	var form = document.createElement("form");
+	form.method = "POST";
+	form.action = "/web_project/empCtrl.do";
 
-    // form append시키고 submit
-    document.body.appendChild(form);
-    form.submit();
-  } else {
-    location.href = './empCtrl.do';
-  }
+	//hiddenField input 생성
+	var hiddenField = document.createElement("input");
+	hiddenField.type = "hidden";
+	hiddenField.name = "jobIdSelect"; // Changed the name to match the parameter name
+	hiddenField.value = selectedjobId;
+
+	// hidden field form에 append
+	form.appendChild(hiddenField);
+
+	// form append시키고 submit
+	document.body.appendChild(form);
+	form.submit();
+	} else {
+		location.href='./empCtrl.do';
+	}
 }
 
 function searchName(){
@@ -67,11 +83,11 @@ function searchName(){
 }
 
 onload = function() {
-  var clicked = document.getElementsByName("clickedRow");
+  var clicked = document.getElementsByName("clikedRow");
   for (let i = 0; i < clicked.length; i++) {
     clicked[i].addEventListener("click", function() {
       var empId = this.getElementsByTagName("td")[1].textContent;
-
+		console.log(empId);
       // 팝업창에 열기
       var url = "/web_project/empCtrl.do?empIdClicked=" + empId;
       var title = "사원 정보 수정 및 삭제";

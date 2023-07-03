@@ -15,6 +15,19 @@
 <script type="text/javascript" src="./js/outline.js"></script>
 <script type="text/javascript" src="./js/emp_summary.js"></script>
 </head>
+<%
+HttpSession loginSession = request.getSession();
+List<Admin_DTO> admins = (List<Admin_DTO>)loginSession.getAttribute("SuccessUser");
+List<Emp_DTO> lists001 = (List<Emp_DTO>) request.getAttribute("lists001");
+List<Dept_DTO> deptAll = (List<Dept_DTO>) request.getAttribute("deptAll");
+List<Job2_DTO> jobAll = (List<Job2_DTO>)request.getAttribute("jobAll");
+List<Emp_DTO> lists002 = (List<Emp_DTO>) request.getAttribute("lists002");
+List<Emp_DTO> lists003 = (List<Emp_DTO>) request.getAttribute("lists003");
+List<Emp_DTO> lists004 = (List<Emp_DTO>) request.getAttribute("lists004");
+String deptIdSelect = (String) request.getParameter("deptIdSelect");
+String jobIdSelect = (String) request.getParameter("jobIdSelect");
+String empNameSelect = (String) request.getParameter("empNameSelect");
+%>
 <body>
 	<div id="outline">
         <header>
@@ -24,10 +37,6 @@
             <div class="menus"><h3 class="menuMove" id="job">직무 관리</h3></div>
        		<div id="isLoginTrue">
        			<div id="login_notify">
-       				<%
-       					HttpSession loginSession = request.getSession();
-				        List<Admin_DTO> admins = (List<Admin_DTO>)loginSession.getAttribute("SuccessUser");
-			       	%>
        				<div id="lastLogin"><%=admins.get(0).getLast_login() %></div>
        				<input id="notifyBtn" type="button" value="신고">
        			</div>
@@ -60,26 +69,30 @@
 						</div>
 						<div class="search_center_value">
 							<%
-							List<Emp_DTO> lists001 = (List<Emp_DTO>) request.getAttribute("lists001");
-							List<Dept_DTO> deptAll = (List<Dept_DTO>) request.getAttribute("deptAll");
-							List<Job2_DTO> jobAll = (List<Job2_DTO>)request.getAttribute("jobAll");
-							List<Emp_DTO> lists002 = (List<Emp_DTO>) request.getAttribute("lists002");
-							List<Emp_DTO> lists003 = (List<Emp_DTO>) request.getAttribute("lists003");
-							List<Emp_DTO> lists004 = (List<Emp_DTO>) request.getAttribute("lists004");
+							if (lists001 != null) {
 							%>
 							<select id="deptIdSelect" name="deptIdSelect">
+								<%
+								if (lists003 != null) {
+								%>
+								<option value="<%=lists003.get(0).getDepartment_id()%>"><%=lists003.get(0).getDepartment_id()%></option>
 								<option value="all">전체</option>
 								<%
-								for (int i = 0; i < deptAll.size(); i++) {
-										String value = deptAll.get(i).getDepartment_name()+"("+deptAll.get(i).getDepartment_id()+")";
+								} else {
 								%>
-								<option value="<%=value %>" ><%=value %></option>
+								<option value="all">전체</option>
 								<%
+								}
+								for (int i = 0; i < lists001.size(); i++) {
+								%>
+								<option value="<%=lists001.get(i).getDepartment_id()%>"><%=lists001.get(i).getDepartment_id()%></option>
+								<%
+								}
 								}
 								%>
 							</select>
 						</div>
-						<input type="button" onclick="submitForm()">
+						<input type="button" onclick="deptSubmitForm()">
 					</div>
 					<div class="search_right">
 						<div id="current_menu">
@@ -104,19 +117,31 @@
 							<h5>JOB</h5>
 						</div>
 						<div class="search_center_value">
+							<%
+							if (lists001 != null) {
+							%>
 							<select id="jobIdSelect" name="jobIdSelect">
+								<%
+								if (lists004 != null) {
+								%>
+								<option value="<%=lists004.get(0).getJob_id()%>"><%=lists004.get(0).getJob_id()%></option>
 								<option value="all">전체</option>
 								<%
-								for (int i = 0; i < jobAll.size(); i++) {
-									String value = jobAll.get(i).getJob_title()+"("+jobAll.get(i).getJob_id()+")";
+								} else {
 								%>
-								<option value="<%=value%>"><%=value%></option>
+								<option value="all">전체</option>
 								<%
+								}
+								for (int i = 0; i < lists001.size(); i++) {
+								%>
+								<option value="<%=lists001.get(i).getJob_id()%>"><%=lists001.get(i).getJob_id()%></option>
+								<%
+								}
 								}
 								%>
 							</select>
 						</div>
-						<input type="button" onclick="submitForm()">
+						<input type="button" onclick="jobSubmitForm()">
 					</div>
 					<div class="search_right">
 						<div id="search_input">
@@ -128,11 +153,19 @@
 			</section>
 			<section id="content">
 				<div id="top">
-					<div>구분: 전체, 행: 107</div>
+					<div>구분: 전체, 행: 
+					<%=lists001.size()%></div>
 					<input id="download" type="button" value="엑셀 다운로드">
 				</div>
 				<div id="summary">
 					<table>
+						<col width="6%">
+						<col width="6%">
+						<col width="20%">
+						<col width="16%">
+						<col width="10%">
+						<col width="29%">
+						<col width="13%">
 						<thead>
 							<tr>
 								<td>NO</td>
@@ -152,73 +185,152 @@
 						<tbody>
 							<!-- for문으로 행 갯수만큼만 출력(최대 10개) -->
 							<%
-							String deptIdSelect = (String) request.getParameter("deptIdSelect");
-							String jobIdSelect = (String) request.getParameter("jobIdSelect");
-							String empNameSelect = (String) request.getParameter("empNameSelect");
 							int count = 1;
 							int currentPage = 1; // 현재 페이지 초기화
 
-							if (lists003 != null || lists004 != null) {
-								for (int i = 0; i < 10; i++) {
-									if (i == 0) {
-							%>
-							<tr name="clickedRow">
-								<td><%=String.format("%03d", count)%></td>
-								<td><%=lists003.get(0).getEmployee_id()%></td>
-								<td><%=lists003.get(0).getFirst_name() + " " + lists003.get(0).getLast_name()%></td>
-								<td><%=lists003.get(0).getHire_date()%></td>
-								<td><%=lists003.get(0).getSalary()%></td>
-								<td><%=lists003.get(0).getJob_title() + "(" + lists003.get(0).getJob_id() + ")"%></td>
-								<td><%=lists003.get(0).getDepartment_name() + "(" + lists003.get(0).getDepartment_id() + ")"%></td>
-							</tr>
-							<%
-							} else {
-							%>
-							<tr>
-								<td style="color: white"><%=String.format("%03d", count)%></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<%
+							if (lists003 != null) {
+								int totalRows = lists003.size();
+								int totalPage = (int) Math.ceil((double) totalRows / 10);  // 전체 행 수를 10행씩 계산
+							    
+							    for (int i = 1; i <= totalPage; i++) {
+							    	for(int j =(i-1)*10; j<i*10; j++){
+							    		if(j<totalRows){
+								            Emp_DTO empDto = lists003.get(j);
+								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
+							    			if(i>1){
+							    				%>
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                        <td><%=String.format("%03d", j + 1)%></td>
+							                        <td><%=empDto.getEmployee_id()%></td>
+													<td><%=name%></td>
+													<td><%=empDto.getHire_date()%></td>
+													<td><%=empDto.getSalary()%></td>
+													<td><%=empDto.getJob_title() + "(" + empDto.getJob_id() + ")"%></td>
+													<td><%=empDto.getDepartment_name() + "(" + empDto.getDepartment_id() + ")"%></td>
+							                    </tr>
+							                    <%
+							    			} else {
+							    				%>
+							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                        <td><%=String.format("%03d", j + 1)%></td>
+							                        <td><%=empDto.getEmployee_id()%></td>
+													<td><%=name%></td>
+													<td><%=empDto.getHire_date()%></td>
+													<td><%=empDto.getSalary()%></td>
+													<td><%=empDto.getJob_title() + "(" + empDto.getJob_id() + ")"%></td>
+													<td><%=empDto.getDepartment_name() + "(" + empDto.getDepartment_id() + ")"%></td>
+							                    </tr>
+							                    <%
+							    			}
+							    		} else {
+							    			%>
+								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+								                    <td></td>
+								                    <td></td>
+								                    <td></td>
+								                    <td></td>
+								                </tr>
+							                <%
+							    		}
+							    	}
+							    }
 							}
-							count++;
-							}
+							if(lists004 != null){
+								int totalRows = lists004.size();
+								int totalPage = (int) Math.ceil((double) totalRows / 10);  // 전체 행 수를 10행씩 계산
+							    
+							    for (int i = 1; i <= totalPage; i++) {
+							    	for(int j =(i-1)*10; j<i*10; j++){
+							    		if(j<totalRows){
+								            Emp_DTO empDto = lists004.get(j);
+								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
+							    			if(i>1){
+							    				%>
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                        <td><%=String.format("%03d", j + 1)%></td>
+							                        <td><%=empDto.getEmployee_id()%></td>
+													<td><%=name%></td>
+													<td><%=empDto.getHire_date()%></td>
+													<td><%=empDto.getSalary()%></td>
+													<td><%=empDto.getJob_title() + "(" + empDto.getJob_id() + ")"%></td>
+													<td><%=empDto.getDepartment_name() + "(" + empDto.getDepartment_id() + ")"%></td>
+							                    </tr>
+							                    <%
+							    			} else {
+							    				%>
+							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                        <td><%=String.format("%03d", j + 1)%></td>
+							                        <td><%=empDto.getEmployee_id()%></td>
+													<td><%=name%></td>
+													<td><%=empDto.getHire_date()%></td>
+													<td><%=empDto.getSalary()%></td>
+													<td><%=empDto.getJob_title() + "(" + empDto.getJob_id() + ")"%></td>
+													<td><%=empDto.getDepartment_name() + "(" + empDto.getDepartment_id() + ")"%></td>
+							                    </tr>
+							                    <%
+							    			}
+							    		} else {
+							    			%>
+								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+								                    <td></td>
+								                    <td></td>
+								                    <td></td>
+								                    <td></td>
+								                </tr>
+							                <%
+							    		}
+							    	}
+							    }
 							}
 							if (lists002 != null) {
-							int size = Math.min(lists002.size(), 10); // 최대 10개까지만 반복
-							for (int i = 0; i < 10; i++) {
-							String name = lists002.get(i).getFirst_name() + " " + lists002.get(i).getLast_name();
-							if (i < size && !lists002.isEmpty()) {
-							%>
-							<tr name="clickedRow">
-								<td><%=String.format("%03d", count)%></td>
-								<td><%=lists002.get(0).getEmployee_id()%></td>
-								<td><%=name%></td>
-								<td><%=lists002.get(0).getHire_date()%></td>
-								<td><%=lists002.get(0).getSalary()%></td>
-								<td><%=lists002.get(0).getJob_title() + "(" + lists002.get(0).getJob_id() + ")"%></td>
-								<td><%=lists002.get(0).getDepartment_name() + "(" + lists002.get(0).getDepartment_id() + ")"%></td>
-							</tr>
-							<%
-							} else {
-							%>
-							<tr>
-								<td style="color: white"><%=String.format("%03d", count)%></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<%
-							}
-							count++;
-							}
+								int totalRows = lists002.size();
+								int totalPage = (int) Math.ceil((double) totalRows / 10);  // 전체 행 수를 10행씩 계산
+							    
+							    for (int i = 1; i <= totalPage; i++) {
+							    	for(int j =(i-1)*10; j<i*10; j++){
+							    		if(j<totalRows){
+								            Emp_DTO empDto = lists002.get(j);
+								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
+							    			if(i>1){
+							    				%>
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                        <td><%=String.format("%03d", j + 1)%></td>
+							                        <td><%=empDto.getEmployee_id()%></td>
+													<td><%=name%></td>
+													<td><%=empDto.getHire_date()%></td>
+													<td><%=empDto.getSalary()%></td>
+													<td><%=empDto.getJob_title() + "(" + empDto.getJob_id() + ")"%></td>
+													<td><%=empDto.getDepartment_name() + "(" + empDto.getDepartment_id() + ")"%></td>
+							                    </tr>
+							                    <%
+							    			} else {
+							    				%>
+							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                        <td><%=String.format("%03d", j + 1)%></td>
+							                        <td><%=empDto.getEmployee_id()%></td>
+													<td><%=name%></td>
+													<td><%=empDto.getHire_date()%></td>
+													<td><%=empDto.getSalary()%></td>
+													<td><%=empDto.getJob_title() + "(" + empDto.getJob_id() + ")"%></td>
+													<td><%=empDto.getDepartment_name() + "(" + empDto.getDepartment_id() + ")"%></td>
+							                    </tr>
+							                    <%
+							    			}
+							    		} else {
+							    			%>
+								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+								                    <td></td>
+								                    <td></td>
+								                    <td></td>
+								                    <td></td>
+								                </tr>
+							                <%
+							    		}
+							    	}
+							    }
 							}
 							if (deptIdSelect==null && jobIdSelect==null && empNameSelect==null) {
 								int totalRows = lists001.size();
@@ -274,42 +386,29 @@
 				</div>
 			</section>
 			<section id="page">
-				<%
-				if(lists002 == null && lists003 == null && lists004 == null){
-				int totalPages = (int) Math.ceil((double) lists001.size() / 10);
-				%>
-				<input class="page" type="button" value="&lt;" onclick="prevPage()">
-				<%
-				for (int i = 1; i <= totalPages; i++) {
-				%>
-				<input class="page" type="button" value="<%=i%>"
-					onclick="viewPage(<%=i%>)">
-				<%
-				}%>
-				<input class="page" type="button" value="&gt;" onclick="nextPage()">
-				<%
-				} else {
-							if (lists004 != null) {
-								int totalPages = (int) Math.ceil((double) lists004.size() / 10);
-							%>
-							<input class="page" type="button" value="&lt;" onclick="prevPage()">
-							<%
-							for (int i = 1; i <= totalPages; i++) {
-							%>
-							<input class="page" type="button" value="<%=i%>"
-								onclick="viewPage(<%=i%>)">
-							<%
-							}
-							%>
-							<input class="page" type="button" value="&gt;" onclick="nextPage()">
-							<%
-							} else {
-								%>
-								<input class="page" type="button" value="1">
-								<%
-							}
-					}
-					%>
+			  <%
+			  int totalPages = 0;
+			  if (lists002 == null && lists003 == null && lists004 == null) {
+			    totalPages = (int) Math.ceil((double) lists001.size() / 10);
+			  } else {
+			    if (lists002 != null) {
+			      totalPages = (int) Math.ceil((double) lists002.size() / 10);
+			    } else if (lists003 != null) {
+			      totalPages = (int) Math.ceil((double) lists003.size() / 10);
+			    } else if (lists004 != null) {
+			      totalPages = (int) Math.ceil((double) lists004.size() / 10);
+			    }
+			  }
+			  %>
+			  <input class="page" type="button" value="&lt;" onclick="prevPage()">
+			  <%
+			  for (int i = 1; i <= totalPages; i++) {
+			  %>
+			  <input class="page" type="button" value="<%=i%>" onclick="viewPage(<%=i%>)">
+			  <%
+			  }
+			  %>
+			  <input class="page" type="button" value="&gt;" onclick="nextPage()">
 			</section>
 			<script type="text/javascript">
 			    var currentPage = 1;
