@@ -30,8 +30,8 @@ public class Controller_dept extends HttpServlet {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		//TODO WP026
-				List<Dept_DTO> lists = dao.dept_selectAll();
-				req.setAttribute("lists026", lists);
+				List<Dept_DTO> lists026 = dao.dept_selectAll();
+				req.setAttribute("lists026", lists026);
 				
 		if(deptIdClicked != null && !deptIdClicked.isEmpty()) {
 				map.put("department_id", deptIdClicked);
@@ -42,6 +42,7 @@ public class Controller_dept extends HttpServlet {
 				req.getRequestDispatcher("/WEB-INF/views/dept_details.jsp").forward(req, resp);
 				return;
 			}
+		
 		req.getRequestDispatcher("/WEB-INF/views/dept_summary.jsp").forward(req, resp);
 	}
 	
