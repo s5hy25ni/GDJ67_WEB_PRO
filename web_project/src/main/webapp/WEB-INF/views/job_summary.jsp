@@ -13,31 +13,42 @@
 <script type="text/javascript" src="./js/outline.js"></script>
 <script type="text/javascript" src="./js/job_summary.js"></script>
 </head>
+<%
+List<Job2_DTO> lists018 = (List<Job2_DTO>) request.getAttribute("lists018");
+List<Job2_DTO> lists019 = (List<Job2_DTO>) request.getAttribute("lists019");
+List<Job2_DTO> lists020 = (List<Job2_DTO>) request.getAttribute("lists020");
+%>
 <body>
 	<div id="outline">
-        <header>
-            <div id="logo"></div>
-            <div class="menus"><h3 class="menuMove" id="emp">직원 관리</h3></div>
-            <div class="menus"><h3 class="menuMove" id="dept">부서 관리</h3></div>
-            <div class="menus"><h3 class="menuMove" id="job">직무 관리</h3></div>
-       		<div id="isLoginTrue">
-       			<div id="login_notify">
-       				<%
-       					HttpSession loginSession = request.getSession();
-				        List<Admin_DTO> admins = (List<Admin_DTO>)loginSession.getAttribute("SuccessUser");
-			       	%>
-       				<div id="lastLogin"><%=admins.get(0).getLast_login() %></div>
-       				<input id="notifyBtn" type="button" value="신고">
-       			</div>
-       			<div id="login_extension">
-                   <div id="login_timer"></div>
-                   <input id="login_extension_btn" type="button" value="연장">
-               </div>
-        		<div>
-        			<input id="logoutBtn" type="button" >
-              	</div>
-        	</div>
-        </header>
+		<header>
+			<div id="logo"></div>
+			<div class="menus">
+				<h3 class="menuMove" id="emp">직원 관리</h3>
+			</div>
+			<div class="menus">
+				<h3 class="menuMove" id="dept">부서 관리</h3>
+			</div>
+			<div class="menus">
+				<h3 class="menuMove" id="job">직무 관리</h3>
+			</div>
+			<div id="isLoginTrue">
+				<div id="login_notify">
+					<%
+					HttpSession loginSession = request.getSession();
+					List<Admin_DTO> admins = (List<Admin_DTO>) loginSession.getAttribute("SuccessUser");
+					%>
+					<div id="lastLogin"><%=admins.get(0).getLast_login()%></div>
+					<input id="notifyBtn" type="button" value="신고">
+				</div>
+				<div id="login_extension">
+					<div id="login_timer"></div>
+					<input id="login_extension_btn" type="button" value="연장">
+				</div>
+				<div>
+					<input id="logoutBtn" type="button">
+				</div>
+			</div>
+		</header>
 		<main>
 			<section id="search">
 				<div>
@@ -47,17 +58,17 @@
 						</div>
 						<div class="search_center_value">
 							<%
-							List<Job2_DTO> lists018 = (List<Job2_DTO>) request.getAttribute("lists018");
-							List<Job2_DTO> lists019 = (List<Job2_DTO>) request.getAttribute("lists019");
-							List<Job2_DTO> lists020 = (List<Job2_DTO>) request.getAttribute("lists020");
 							if (lists018 != null) {
 							%>
 							<select id="jobIdSelect" name="jobIdSelect">
-								<%if(lists019 != null){%>
+								<%
+								if (lists019 != null) {
+								%>
 								<option value="<%=lists019.get(0).getJob_id()%>"><%=lists019.get(0).getJob_id()%></option>
 								<option value="all">전체</option>
-								<%	
-								} else {%>
+								<%
+								} else {
+								%>
 								<option value="all">전체</option>
 								<%
 								}
@@ -82,17 +93,19 @@
 				</div>
 				<div class="search_right">
 					<div id="search_input">
-						<input type="button" onclick="searchName()">
-						<input id="searchName" type="text"
-							placeholder="직무명으로 검색">
+						<input type="button" onclick="searchName()"> <input
+							id="searchName" type="text" placeholder="직무명으로 검색">
 					</div>
 				</div>
 			</section>
 			<section id="content">
 				<div id="top">
-					<div>구분: 전체, 행: <%=lists018.size()%></div>
-					<input id="view_sal" type="button" value="직무별 연봉통계 보기	" onclick="openRunningMan()">
-					<input id="download" type="button" value="엑셀 다운로드">
+					<div>
+						구분: 전체, 행:
+						<%=lists018.size()%></div>
+					<input id="view_sal" type="button" value="직무별 연봉통계 보기	"
+						onclick="openRunningMan()"> <input id="download"
+						type="button" value="엑셀 다운로드">
 				</div>
 				<div id="summary">
 					<table>
@@ -117,100 +130,108 @@
 							String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 							int count = 1;
 							int currentPage = 1; // 현재 페이지 초기화
-							
-							if(lists019 != null){
-								for (int i =0; i<10; i++) {
-									if(i == 0){%>
-									<tr name="clikedRow">
-										<td><%=String.format("%03d", count)%></td>
-										<td><%=lists019.get(0).getJob_id()%></td>
-										<td><%=lists019.get(0).getJob_title()%></td>
-										<td><%=lists019.get(0).getMin_salary()%></td>
-										<td><%=lists019.get(0).getMax_salary()%></td>
-									</tr>
-									<%} else { %>
-										<tr>
-										<td style="color: white"><%=String.format("%03d", count)%></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										</tr>
-									<% }
-									count++;
-								}
+
+							if (lists019 != null) {
+								for (int i = 0; i < 10; i++) {
+									if (i == 0) {
+							%>
+							<tr name="clikedRow">
+								<td><%=String.format("%03d", count)%></td>
+								<td><%=lists019.get(0).getJob_id()%></td>
+								<td><%=lists019.get(0).getJob_title()%></td>
+								<td><%=lists019.get(0).getMin_salary()%></td>
+								<td><%=lists019.get(0).getMax_salary()%></td>
+							</tr>
+							<%
+							} else {
+							%>
+							<tr>
+								<td style="color: white"><%=String.format("%03d", count)%></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<%
 							}
-							
-							if(lists020 != null){
-								int size = Math.min(lists020.size(), 10);
-								for(int i=0; i<10; i++){
-									if(i<size && lists020.get(i).getJob_title() != null){
-										%>
-										<tr name="clikedRow">
-							                <td><%=String.format("%03d", count)%></td>
-							                <td><%=lists020.get(i).getJob_id()%></td>
-											<td><%=lists020.get(i).getJob_title()%></td>
-											<td><%=lists020.get(i).getMin_salary()%></td>
-											<td><%=lists020.get(i).getMax_salary()%></td>
-							            </tr>
-										<%
-									} else{
-										%>
-										<tr>
-							                <td style="color: white"><%=String.format("%03d", count)%></td>
-							                <td></td>
-							                <td></td>
-							                <td></td>
-							                <td></td>
-							            </tr>
-										<%
-									}
-									count++;
-								}
+							count++;
 							}
-							
-							if (lists018 != null) {
-							    int totalRows = (int) Math.ceil((double) lists018.size() / 10) * 10; // 전체 행 수를 10행씩 계산
-							    
-							    for (int i = 0; i < totalRows; i++) {
-							        if (i < lists018.size()) {
-							            Job2_DTO job = lists018.get(i);
-							            
-							            if ((jobIdSelect == null || jobIdSelect.equals("all")) && jobTitleSelect == null) {
-							                if (i >= 10 && i < 20) { // 두 번째 페이지에 행 추가
-							                    %>
-							                    <tr id="secondPage" style="display: none;" name="clikedRow">
-							                        <td><%=String.format("%03d", i + 1)%></td>
-							                        <td><%=job.getJob_id()%></td>
-							                        <td><%=job.getJob_title()%></td>
-							                        <td><%=job.getMin_salary()%></td>
-							                        <td><%=job.getMax_salary()%></td>
-							                    </tr>
-							                    <%
-							                } else { // 첫 번째 페이지에 행 출력
-							                    %>
-							                    <tr id="firstPage" name="clikedRow">
-							                        <td><%=String.format("%03d", i + 1)%></td>
-							                        <td><%=job.getJob_id()%></td>
-							                        <td><%=job.getJob_title()%></td>
-							                        <td><%=job.getMin_salary()%></td>
-							                        <td><%=job.getMax_salary()%></td>
-							                    </tr>
-							                    <%
-							                }
-							            }
-							        } else if (i >= lists018.size() && i < totalRows) { // lists의 크기를 넘어가는 경우 빈 행 추가 (두 번째 페이지)// 작동 안됨..?
-							            %>
-							            <tr id="secondPage" style="display: none; color: white;">
-							                <td><%=String.format("%03d", i + 1)%></td>
-							                <td></td>
-							                <td></td>
-							                <td></td>
-							                <td></td>
-							            </tr>
-							            <%
-							        }
-							    }
+							}
+
+							if (lists020 != null) {
+							int size = Math.min(lists020.size(), 10);
+							for (int i = 0; i < 10; i++) {
+							if (i < size && lists020.get(i).getJob_title() != null) {
+							%>
+							<tr name="clikedRow">
+								<td><%=String.format("%03d", count)%></td>
+								<td><%=lists020.get(i).getJob_id()%></td>
+								<td><%=lists020.get(i).getJob_title()%></td>
+								<td><%=lists020.get(i).getMin_salary()%></td>
+								<td><%=lists020.get(i).getMax_salary()%></td>
+							</tr>
+							<%
+							} else {
+							%>
+							<tr>
+								<td style="color: white"><%=String.format("%03d", count)%></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<%
+							}
+							count++;
+							}
+							}
+
+							if (jobIdSelect==null && jobTitleSelect==null) {
+							int totalRows = lists018.size();
+							int totalPage = (int) Math.ceil((double) totalRows / 10); // 전체 행 수를 10행씩 계산
+							int countNum = 0;
+							int pageNum = 0;
+
+							for (int i = 1; i <= totalPage; i++) {
+							pageNum = i;
+							for (int j = (i - 1) * 10; j < i * 10; j++) {
+							if (j < totalRows) {
+								Job2_DTO job = lists018.get(j);
+								if (i > 1) {
+							%>
+							<tr id="Page_<%=i%>_<%=j%>" style="display: none;"
+								name="clikedRow">
+								<td><%=String.format("%03d", j + 1)%></td>
+								<td><%=job.getJob_id()%></td>
+								<td><%=job.getJob_title()%></td>
+								<td><%=job.getMin_salary()%></td>
+								<td><%=job.getMax_salary()%></td>
+							</tr>
+							<%
+							} else {
+							%>
+							<tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+								<td><%=String.format("%03d", j + 1)%></td>
+								<td><%=job.getJob_id()%></td>
+								<td><%=job.getJob_title()%></td>
+								<td><%=job.getMin_salary()%></td>
+								<td><%=job.getMax_salary()%></td>
+							</tr>
+							<%
+							}
+							} else {
+							%>
+							<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+								<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<%
+							}
+							}
+							}
 							}
 							%>
 						</tbody>
@@ -219,98 +240,111 @@
 			</section>
 			<section id="page">
 				<%
-				if(lists019 == null && lists020 == null){
-				int totalPages = (int) Math.ceil((double) lists018.size() / 10);
-				%>
-				<input class="page" type="button" value="&lt;" onclick="prevPage()">
-				<%
-				for (int i = 1; i <= totalPages; i++) {
-				%>
-				<input class="page" type="button" value="<%=i%>"
-					onclick="viewPage(<%=i%>)">
-				<%
-				}%>
-				<input class="page" type="button" value="&gt;" onclick="nextPage()">
-				<%
+				if (lists019 == null && lists020 == null) {
+						int totalPages = (int) Math.ceil((double) lists018.size() / 10);
+					%>
+					<input class="page" type="button" value="&lt;" onclick="prevPage()">
+					<%
+					for (int i = 1; i <= totalPages; i++) {
+					%>
+					<input class="page" type="button" value="<%=i%>"
+						onclick="viewPage(<%=i%>)">
+					<%
+					}
+					%>
+					<input class="page" type="button" value="&gt;" onclick="nextPage()">
+					<%
+				} else {
+					if (lists020 != null) {
+						int totalPages = (int) Math.ceil((double) lists020.size() / 10);
+					%>
+					<input class="page" type="button" value="&lt;" onclick="prevPage()">
+					<%
+					for (int i = 1; i <= totalPages; i++) {
+					%>
+					<input class="page" type="button" value="<%=i%>"
+						onclick="viewPage(<%=i%>)">
+					<%
+					}
+					%>
+					<input class="page" type="button" value="&gt;" onclick="nextPage()">
+					<%
 				} else {
 					%>
 					<input class="page" type="button" value="1">
 					<%
-				}
-				%>
+					}
+					}
+					%>
 			</section>
 			<script type="text/javascript">
-				var currentPage = 1;
-				
-				function viewPage(pageId) {
-					var rows = document.getElementsByTagName("tr");
-
-					for (var i = 0; i < rows.length; i++) {
-						var row = rows[i];
-						if (row.id === "firstPage" || row.id === "secondPage") {
-							if (row.id === "firstPage" && pageId == 1) {
-								row.style.display = "table-row";
-							} else if (row.id === "secondPage" && pageId == 2) {
-								if (i >= 10 && i < 20) {
-									row.style.display = "table-row";
-								} else {
-									row.style.display = "none";
-								}
-							} else {
-								row.style.display = "none";
-							}
-						}
-					}
-
-					// 페이지 버튼 스타일 변경
-					var pageButtons = document.getElementsByClassName("page");
-					for (var j = 0; j < pageButtons.length; j++) {
-						var button = pageButtons[j];
-						if (button.value == pageId) {
-							button.classList.add("active");
-						} else {
-							button.classList.remove("active");
-						}
-					}
-				}
-				
-				 function prevPage() {
-					 var currentPage = document.querySelector('.page.active').value;
-				        if (currentPage > 1) {
-				            viewPage(parseInt(currentPage) - 1);
-				        }
-				    }
-
-				   function nextPage() {
-				        var totalPages = <%=Math.ceil((double) lists018.size() / 10)%>;  
-				        if (currentPage < totalPages) {
-				            viewPage(currentPage + 1);
-				        }
-				    } 
-			</script>
+			    var currentPage = 1;
+			
+			    function viewPage(pageId) {
+			        var rows = document.getElementsByName("clikedRow");
+			
+			        for (var i = 0; i < rows.length; i++) {
+			            var row = rows[i];
+			            var page = row.id.split("_")[1];
+			            if (page === String(pageId)) {
+			                row.style.display = "table-row";
+			            } else {
+			                row.style.display = "none";
+			            }
+			        }
+			
+			        // 페이지 버튼 스타일 변경
+			        var pageButtons = document.getElementsByClassName("page");
+			        for (var j = 0; j < pageButtons.length; j++) {
+			            var button = pageButtons[j];
+			            if (button.value == pageId) {
+			                button.classList.add("active");
+			            } else {
+			                button.classList.remove("active");
+			            }
+			        }
+			
+			        currentPage = pageId; // 현재 페이지 업데이트
+			    }
+			
+			    function prevPage() {
+			        if (currentPage > 1) {
+			            viewPage(currentPage - 1);
+			        }
+			    }
+			
+			    function nextPage() {
+			        var totalPages = <%=Math.ceil((double) lists018.size() / 10)%>;
+			        if (currentPage < totalPages) {
+			            viewPage(currentPage + 1);
+			        }
+			    }
+		</script>
 		</main>
-        <footer>
-            <div>&copy; Developer heeae&hyeon</div>
-            <div>(구디아카데미) 서울시 금천구 가산디지털2로 95, 3층 ORANGE</div>
-        </footer>
-    </div>   	
+		<footer>
+			<div>&copy; Developer heeae&hyeon</div>
+			<div>(구디아카데미) 서울시 금천구 가산디지털2로 95, 3층 ORANGE</div>
+		</footer>
+	</div>
 	<div id="hidden">
-		<p id="isLogin"><%=loginSession.getAttribute("isLogin") %></p>
-		<form method="POST" data-email="s5hy25ni@gmail.com" 
-		action="https://script.google.com/macros/s/AKfycbzC0qfRmnKei7-xoi1RAqRzt59NwArRo8irCvvxEMpWm_fQ_OTRiRL8eJC0TO7KJIr2Nw/exec"
-		target="frAttachFiles"
-		style="display:none">;
-		<%
-			if(admins != null){
-			%>
-			<input type="text" name="name" value="<%=admins.get(0).getAdmin_id()%>" readonly="readonly">
+		<p id="isLogin"><%=loginSession.getAttribute("isLogin")%></p>
+		<form method="POST" data-email="s5hy25ni@gmail.com"
+			action="https://script.google.com/macros/s/AKfycbzC0qfRmnKei7-xoi1RAqRzt59NwArRo8irCvvxEMpWm_fQ_OTRiRL8eJC0TO7KJIr2Nw/exec"
+			target="frAttachFiles" style="display: none">
+			;
+			<%
+		if (admins != null) {
+		%>
+			<input type="text" name="name"
+				value="<%=admins.get(0).getAdmin_id()%>" readonly="readonly">
 			<%
 			}
-		%>
-			<input type="email" name="email" value="s5hy25ni@gmail.com" readonly="readonly">
-			<input type="text" name="subject" value="[ADMIN] 타인 로그인 의심 신고">
+			%>
+			<input type="email" name="email" value="s5hy25ni@gmail.com"
+				readonly="readonly"> <input type="text" name="subject"
+				value="[ADMIN] 타인 로그인 의심 신고">
 		</form>
-		<iframe name="frAttachFiles" style="display:none"></iframe>
+		<iframe name="frAttachFiles" style="display: none"></iframe>
 	</div>
 </body>
 </html>
