@@ -221,17 +221,21 @@
 							}
 							}
 							if (lists001 != null) {
-								int totalRows = (int) Math.ceil((double) lists001.size() / 10) * 10; // 전체 행 수를 10행씩 계산
+								int totalRows = lists001.size();
+								int totalPage = (totalRows/10)+1; // 전체 행 수를 10행씩 계산
+								int countNum = 0;
+								int pagaNum = 0;
 							    
-							    for (int i = 0; i < totalRows; i++) {
-							        if (i < lists001.size()) {
-							            Emp_DTO empDto = lists001.get(i);
-							            String name = lists001.get(i).getFirst_name() + " " + lists001.get(i).getLast_name();
-							            if ((deptIdSelect == null || deptIdSelect.equals("all")) && (jobIdSelect == null || jobIdSelect.equals("all"))) {
-							                if (i >= 10 && i < 20) { // 두 번째 페이지에 행 추가
-							                    %>
-							                    <tr id="secondPage" style="display: none;" name="clickedRow">
-							                        <td><%=String.format("%03d", i + 1)%></td>
+							    for (int i = 1; i <= totalPage; i++) {
+							    	pagaNum = i;
+							    	for(int j =(i-1)*10; j<i*10; j++){
+							    		if(j<totalRows){
+								            Emp_DTO empDto = lists001.get(j);
+								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
+							    			if(i>1){
+							    				%>
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
 													<td><%=empDto.getHire_date()%></td>
@@ -240,10 +244,10 @@
 													<td><%=empDto.getDepartment_name() + "(" + empDto.getDepartment_id() + ")"%></td>
 							                    </tr>
 							                    <%
-							                } else { // 첫 번째 페이지에 행 출력
-							                    %>
-							                    <tr id="firstPage" name="clickedRow">
-							                        <td><%=String.format("%03d", i + 1)%></td>
+							    			} else {
+							    				%>
+							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
 													<td><%=empDto.getHire_date()%></td>
@@ -252,19 +256,19 @@
 													<td><%=empDto.getDepartment_name() + "(" + empDto.getDepartment_id() + ")"%></td>
 							                    </tr>
 							                    <%
-							                }
-							            }
-							        } else if (i >= lists001.size() && i < totalRows) { // lists의 크기를 넘어가는 경우 빈 행 추가 (두 번째 페이지)
-							            %>
-							            <tr id="secondPage" style="display: none; color: white;">
-							                <td><%=String.format("%03d", i + 1)%></td>
-							                <td></td>
-							                <td></td>
-							                <td></td>
-							                <td></td>
-							            </tr>
-							            <%
-							        }
+							    			}
+							    		} else {
+							    			%>
+								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+								                    <td></td>
+								                    <td></td>
+								                    <td></td>
+								                    <td></td>
+								                </tr>
+							                <%
+							    		}
+							    	}
 							    }
 							}
 							%>
