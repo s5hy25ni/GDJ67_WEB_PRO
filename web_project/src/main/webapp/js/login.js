@@ -11,6 +11,8 @@ onload = function(){
     this.document.getElementById("login_submit").onclick = check_login_info;
     this.document.addEventListener("keyup", check_key);
     
+    document.getElementById("logo").addEventListener("click", home);
+    
 	var isLogin = document.querySelector("#hidden>#isLogin").textContent;
 	
     if(isLogin == "success"){
@@ -20,7 +22,10 @@ onload = function(){
         document.getElementById("login_confirm").textContent = "※ 아이디와 비빌번호를 확인해주세요."
        	document.getElementById("user_pw").focus();
 	}
+
 }
+
+function noBack(){window.history.forward();}
 
 function inputFocus(e){
     if(e.target.id == "user_id"){
@@ -65,4 +70,8 @@ function check_key(e){
 	if (e.keyCode === 13){
 		check_login_info();
 	}
+}
+
+function home(){
+	location.href="http://localhost:8080/web_project";
 }

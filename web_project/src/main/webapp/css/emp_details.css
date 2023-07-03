@@ -95,7 +95,7 @@
 #detail_btns{
     width: 600px;
     height: 30px;
-    margin: 15px auto;
+    margin: 10px auto;
     display: flex;
     justify-content: right;
 }
