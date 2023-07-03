@@ -63,13 +63,25 @@ public class Controller_emp extends HttpServlet {
 		String deptIdSelect = req.getParameter("deptIdSelect");
 		String jobIdSelect = req.getParameter("jobIdSelect");
 		String empNameSelect = req.getParameter("empNameSelect");
+		String minDate = req.getParameter("minDate");
+		String maxDate = req.getParameter("maxDate");
+		String minSalary = req.getParameter("minSalary");
+		String maxSalary = req.getParameter("maxSalary");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		IEmpDao dao = new EmpDaoImpl();
+		IDeptDao deptDao = new DeptDaoImpl();
+		IJob2Dao jobDao = new Job2DaoImpl();
 		
 		List<Emp_DTO> lists001 = dao.emp_selectAll();
 		req.setAttribute("lists001", lists001);
+		
+		List<Dept_DTO> dept = deptDao.dept_selectAll();
+		req.setAttribute("deptAll", dept);
+		
+		List<Job2_DTO> job = jobDao.job_selectAll();
+		req.setAttribute("jobAll", job);
 		
 		//부서 아이디 클릭시 해당 정보
 		if(deptIdSelect != null && !deptIdSelect.isEmpty()) {
@@ -88,6 +100,23 @@ public class Controller_emp extends HttpServlet {
 			List<Emp_DTO> lists002 = dao.emp_search(empNameSelect);
 			req.setAttribute("lists002", lists002);
 		}
+		
+		if(minDate != null && maxDate != null && !minDate.isEmpty() && !maxDate.isEmpty()) {
+			Map<String, Object> mapDate = new HashMap<String, Object>();
+			mapDate.put("minDate", minDate);
+			mapDate.put("maxDate", maxDate);
+			List<Emp_DTO> lists006 = dao.emp_date_select(mapDate);
+			req.setAttribute("lists006", lists006);
+		}
+		
+		if(minSalary != null && maxSalary != null && !minSalary.isEmpty() && !maxSalary.isEmpty()) {
+			Map<String, Object> mapSalary = new HashMap<String, Object>();
+			mapSalary.put("minSalary", minSalary);
+			mapSalary.put("maxSalary", maxSalary);
+			List<Emp_DTO> lists007 = dao.emp_salary_select(mapSalary);
+			req.setAttribute("lists007", lists007);
+		}
+		
 		req.getRequestDispatcher("/WEB-INF/views/emp_summary.jsp").forward(req, resp);
 	}
 }

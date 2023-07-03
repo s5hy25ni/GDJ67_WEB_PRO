@@ -36,6 +36,8 @@ public class Controller_admin extends HttpServlet {
 		String cmd = req.getParameter("cmd");
 		
 		if(cmd.equals("loginPage")) {
+			session.removeAttribute("isLogin");
+			session.removeAttribute("SuccessUser");
 			req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
 		} else if(cmd.equals("login")) {
 			

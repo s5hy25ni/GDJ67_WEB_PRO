@@ -72,6 +72,7 @@
         </footer>
     </div>   	
 	<div id="hidden">
+		<p id="admin"><%=admins %></p>
 		<p id="isLogin"><%=loginSession.getAttribute("isLogin") %></p>
 		<form name="notify" method="POST" data-email="s5hy25ni@gmail.com" 
 		action="https://script.google.com/macros/s/AKfycbzC0qfRmnKei7-xoi1RAqRzt59NwArRo8irCvvxEMpWm_fQ_OTRiRL8eJC0TO7KJIr2Nw/exec"

@@ -17,4 +17,8 @@ public interface IEmpDao {
 	public List<Emp_DTO> emp_jobId_select(Map<String, Object> map);
 	
 	public List<Emp_DTO> emp_empId_select(Map<String, Object> map);
+	
+	public List<Emp_DTO> emp_date_select(Map<String, Object> map);
+	
+	public List<Emp_DTO> emp_salary_select(Map<String, Object> map);
 }

@@ -53,4 +53,18 @@ public class EmpDaoImpl implements IEmpDao {
 		List<Emp_DTO> result = session.selectList(NS+"emp_empId_select", map);
 		return result;
 	}
+	
+	@Override
+	public List<Emp_DTO> emp_date_select(Map<String, Object> map) {
+		SqlSession session = manager.openSession();
+		List<Emp_DTO> result = session.selectList(NS+"emp_date_select", map);
+		return result;
+	}
+	
+	@Override
+	public List<Emp_DTO> emp_salary_select(Map<String, Object> map) {
+		SqlSession session = manager.openSession();
+		List<Emp_DTO> result = session.selectList(NS+"emp_salary_select", map);
+		return result;
+	}
 }

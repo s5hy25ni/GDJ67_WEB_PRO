@@ -7,7 +7,12 @@
  
 document.addEventListener("DOMContentLoaded", function(){
 
+	var admin = document.querySelector("#hidden>#admin").textContent;
 	var isLogin = document.querySelector("#hidden>#isLogin").textContent;
+	
+	if(admin=="null" && isLogin=="success"){
+		isLogin="failure";
+	}
 	
 	if(isLogin == "success"){
 		clearTime(10);
@@ -25,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		}
 		alertLogin();
 		document.getElementById("loginBtn").addEventListener("click", login);
-	}
+	} 
 	
 	document.getElementById("logo").addEventListener("click", home);
 	
