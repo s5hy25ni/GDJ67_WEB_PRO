@@ -31,40 +31,48 @@ public class Controller_admin extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id = req.getParameter("user_id");
-		String pw = req.getParameter("user_pw");
-
-		String pwHash = Hashing.sha256().hashString(pw, StandardCharsets.UTF_8).toString();
-		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Calendar cal = Calendar.getInstance();
-		String now = format.format(cal.getTime());
-		
-		Map<String, Object> loginUser = new HashMap<String, Object>();
-		loginUser.put("admin_id", id);
-		loginUser.put("admin_pw", pwHash);
-		loginUser.put("last_login", now);
-		
-		IAdminDao dao = new AdminDaoImpl();
-		List<Admin_DTO> SuccessUser = dao.getLoginUser(loginUser);
 		
 		HttpSession session = req.getSession();
-		session.setMaxInactiveInterval(60*10);
+		String cmd = req.getParameter("cmd");
 		
-		if(SuccessUser.size()!=0) {
-			session.setAttribute("isLogin", "success");
-			session.setAttribute("SuccessUser", SuccessUser);
-			dao.setLastLogin(loginUser);
-		} else {
-			session.setAttribute("isLogin", "failure");
+		if(cmd.equals("loginPage")) {
+			req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
+		} else if(cmd.equals("login")) {
+			
+			String id = req.getParameter("user_id");
+			String pw = req.getParameter("user_pw");
+	
+			String pwHash = Hashing.sha256().hashString(pw, StandardCharsets.UTF_8).toString();
+			
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Calendar cal = Calendar.getInstance();
+			String now = format.format(cal.getTime());
+			
+			Map<String, Object> loginUser = new HashMap<String, Object>();
+			loginUser.put("admin_id", id);
+			loginUser.put("admin_pw", pwHash);
+			loginUser.put("last_login", now);
+			
+			IAdminDao dao = new AdminDaoImpl();
+			List<Admin_DTO> SuccessUser = dao.getLoginUser(loginUser);
+			
+			if(SuccessUser.size()!=0) {
+				session.setMaxInactiveInterval(60*10);
+				session.setAttribute("isLogin", "success");
+				session.setAttribute("SuccessUser", SuccessUser);
+				dao.setLastLogin(loginUser);
+			} else {
+				session.setAttribute("isLogin", "failure");
+			}
+			
+			req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
+			
+		} else if(cmd.equals("logout")) {
+			session.removeAttribute("isLogin");
+			session.removeAttribute("SuccessUser");
+			req.getRequestDispatcher("/").forward(req, resp);
 		}
 		
-		req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
-	}
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
 	}
 
 }

@@ -25,12 +25,15 @@
             
          <%
          List<Admin_DTO> admins = (List<Admin_DTO>)loginSession.getAttribute("SuccessUser");
-         if(loginSession.isNew() == true || loginSession.getAttribute("isLogin") == null || loginSession.getAttribute("isLogin") == "failure"){
+         if(loginSession.isNew() == true || loginSession.getAttribute("isLogin") == null || loginSession.getAttribute("isLogin") == "failure" || admins == null){
        	%>
          		<div id="isLoginFalse">
          			<div id="login_notify"></div>
          			<div id="login_extension"></div>
-         			<input id="loginBtn" type="button">
+         			<form name="login" action="/web_project/login.do" method="post">
+         				<input id="loginBtn" type="button">
+         				<input type="hidden" name="cmd" value="loginPage">
+         			</form>
          		</div>
          	<%
          	} else {
@@ -42,10 +45,13 @@
          			</div>
          			<div id="login_extension">
 	                    <div id="login_timer"></div>
-	                    <input id="login_extension_btn" type="button" value="연장">
+                    	<input id="login_extension_btn" type="button" value="연장">
 	                </div>
 	         		<div>
+	         		<form name="logout" action="/web_project/logout.do" method="post">
 	         			<input id="logoutBtn" type="button" >
+	         			<input type="hidden" name="cmd" value="logout">
+         			</form>
                 	</div>
                 </div>
          		<%
@@ -67,19 +73,19 @@
     </div>   	
 	<div id="hidden">
 		<p id="isLogin"><%=loginSession.getAttribute("isLogin") %></p>
-		<form method="POST" data-email="s5hy25ni@gmail.com" 
+		<form name="notify" method="POST" data-email="s5hy25ni@gmail.com" 
 		action="https://script.google.com/macros/s/AKfycbzC0qfRmnKei7-xoi1RAqRzt59NwArRo8irCvvxEMpWm_fQ_OTRiRL8eJC0TO7KJIr2Nw/exec"
 		target="frAttachFiles"
 		style="display:none">;
 		<%
 			if(admins != null){
 			%>
+			<input type="text" name="subject" value="[ADMIN] 타인 로그인 의심 신고">
 			<input type="text" name="name" value="<%=admins.get(0).getAdmin_id()%>" readonly="readonly">
+			<input type="text" name="time" value="<%=admins.get(0).getLast_login()%>" readonly="readonly">
 			<%
 			}
 		%>
-			<input type="email" name="email" value="s5hy25ni@gmail.com" readonly="readonly">
-			<input type="text" name="subject" value="[ADMIN] 타인 로그인 의심 신고">
 		</form>
 		<iframe name="frAttachFiles" style="display:none"></iframe>
 	</div>
