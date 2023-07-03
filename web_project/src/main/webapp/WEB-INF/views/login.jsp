@@ -21,6 +21,7 @@
 			</div>
 			<div id="login_content">
 				<form name="login_info" action="/web_project/login.do" method="post">
+					<input type="hidden" name="cmd" value="login">
 					<div id="login_input">
 						<div id="login_id" class="login_input">
 							<div></div>

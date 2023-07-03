@@ -6,14 +6,18 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./css/outline.css">
 <link rel="stylesheet" href="./css/error.css">
-<title>Insert title here</title>
+<script type="text/javascript" src="./js/error.js"></script>
+<title>[ERROR] 500</title>
 </head>
+<%
+	response.setStatus(HttpServletResponse.SC_OK);
+%>
 <body>
 	<div id="outline">
 		<div id="error">
-			<div id="img"></div>
-			<div id="txt">Error 404<br>Page Not Found</div>
-			<div id="btn">GO TO HOME</div>
+			<div id="txt">Error 500<br>Internal Server Error</div>
+			<div id="img500"></div>
+			<div id="btn">GO TO HOME?</div>
 		</div>
 	</div>
 </body>

@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function(){
 		document.getElementById("logoutBtn").addEventListener("click", logout);
 		document.getElementById("notifyBtn").addEventListener("click", notify);
 		document.getElementById("login_extension_btn").addEventListener("click", function(){
-			clearTime(10)
-			alert("연장되었습니다.")		
+			alert("연장되었습니다.")	
+			location.href="http://localhost:8080/web_project";
 		});
 	} else {
 		if(window.location.href != "http://localhost:8080/web_project/"){
@@ -66,7 +66,7 @@ function setTimer(){
 		sec--;
 		setTimeout("setTimer()",1000);
 	} else {
-		location.href="./logout.jsp";
+		document.logout.submit();
 	}
 }
 
@@ -79,15 +79,15 @@ function home(){
 }
 
 function logout(){
-	location.href="./logout.jsp"
+	document.logout.submit();
 }
 
 function login(){
-	location.href="./login.do"
+	document.login.submit();
 }
 
 function notify(){
 	clearTime(10);
-	document.getElementsByTagName("form")[0].submit();
+	document.notify.submit();
 	alert("신고가 완료되었습니다.");
 }
