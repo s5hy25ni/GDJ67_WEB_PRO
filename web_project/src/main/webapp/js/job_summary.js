@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function(){
 	document.getElementById("download").addEventListener("click",function(){
 		document.excelDown.submit();
 	})
+	
+	document.getElementsByClassName("page")[0].classList.add("active");
 		
 });
 
@@ -77,7 +79,7 @@ onload = function() {
       // 팝업창에 열기
       var url = "/web_project/jobCtrl.do?jobIdClicked=" + jobId;
       var title = "부서 정보 수정 및 삭제";
-      var prop = "top=120px, left=300px, width=650px, height=360px";
+      var prop = "top=120px, left=300px, width=650px, height=380px";
       var popup = window.open(url, title, prop);
       popup.focus();
     });

@@ -161,6 +161,7 @@ table{
     border: 1px solid rgb(190,190,190);
     border-collapse: collapse;
     text-align: center;
+    table-layout: fixed;
 }
 
 thead{
@@ -174,6 +175,12 @@ tbody{
 
 tr, td{
     border: 1px solid rgb(190,190,190);
+}
+
+td{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 tbody>tr[name="clikedRow"]:hover{

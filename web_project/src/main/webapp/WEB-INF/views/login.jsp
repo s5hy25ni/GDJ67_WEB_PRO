@@ -11,7 +11,7 @@
 <title>HRCompany</title>
 <link rel="stylesheet" href="./css/outline.css">
 <link rel="stylesheet" href="./css/login.css">
-<script type="text/javascript" src="./js/login.js"></script>
+<script type="text/javascript" src="./js/login.js"></script> 
 </head>
 <body>
 	<div id="outline">
