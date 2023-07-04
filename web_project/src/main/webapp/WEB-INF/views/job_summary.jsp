@@ -289,7 +289,7 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 			    var currentPage = 1;
 			
 			    function viewPage(pageId) {
-			        var rows = document.getElementsByName("clikedRow");
+			    	var rows = document.querySelectorAll("tbody>tr");
 			
 			        for (var i = 0; i < rows.length; i++) {
 			            var row = rows[i];
