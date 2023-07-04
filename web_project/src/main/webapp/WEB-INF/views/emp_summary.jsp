@@ -230,6 +230,15 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							int count = 1;
 							int currentPage = 1; // 현재 페이지 초기화
 
+							if((lists002 != null && lists002.size() == 0) || 
+									(lists006 != null && lists006.size() == 0) || 
+									(lists007 != null && lists007.size() == 0)){
+								%>
+								<tr class="none">
+									<td colspan="7" rowspan="10">해당 조건에 맞는 값이 없습니다.</td>
+								</tr>
+								<%
+							}
 							if (lists003 != null) {
 								int totalRows = lists003.size();
 								int totalPage = (int) Math.ceil((double) totalRows / 10);  // 전체 행 수를 10행씩 계산
@@ -265,16 +274,31 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			}
 							    		} else {
-							    			%>
-							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                </tr>
-						                	<%
+							    			if (j < i * 10 && i==1) {
+												%>
+												<tr id="Page_<%=i%>_<%=j%>">
+													<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<%
+												} else {
+													%>
+													<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+														<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<%
+												}
 							    		}
 							    	}
 							    }
@@ -314,16 +338,31 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			}
 							    		} else {
-							    			%>
-							                <tr id="Page_<%=i%>_<%=j%>"">
-							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                </tr>
-						                	<%
+							    			if (j < i * 10 && i==1) {
+												%>
+												<tr id="Page_<%=i%>_<%=j%>">
+													<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<%
+												} else {
+													%>
+													<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+														<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<%
+												}
 							    		}
 							    	}
 							    }
@@ -363,16 +402,31 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			}
 							    		} else {
-							    			%>
-							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                </tr>
-						                	<%
+							    			if (j < i * 10 && i==1) {
+												%>
+												<tr id="Page_<%=i%>_<%=j%>">
+													<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<%
+												} else {
+													%>
+													<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+														<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<%
+												}
 							    		}
 							    	}
 							    }
@@ -412,16 +466,31 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			}
 							    		} else {
-							    			%>
-							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                </tr>
-						                	<%
+							    			if (j < i * 10 && i==1) {
+												%>
+												<tr id="Page_<%=i%>_<%=j%>">
+													<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<%
+												} else {
+													%>
+													<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+														<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<%
+												}
 							    		}
 							    	}
 							    }
@@ -461,16 +530,31 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			}
 							    		} else {
-							    			%>
-							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                </tr>
-						                	<%
+							    			if (j < i * 10 && i==1) {
+												%>
+												<tr id="Page_<%=i%>_<%=j%>">
+													<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<%
+												} else {
+													%>
+													<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+														<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<%
+												}
 							    		}
 							    	}
 							    }
@@ -510,16 +594,31 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			}
 							    		} else {
-							    			%>
-							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                    <td></td>
-							                </tr>
-						                	<%
+							    			if (j < i * 10 && i==1) {
+												%>
+												<tr id="Page_<%=i%>_<%=j%>">
+													<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												<%
+												} else {
+													%>
+													<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+														<td style="color: white"><%=String.format("%03d", j + 1)%></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<%
+												}
 							    		}
 							    	}
 							    }
@@ -533,19 +632,19 @@ String maxSalary = (String) request.getParameter("maxSalary");
 			  <%
 			  int totalPages = 0;
 			  if (lists002 == null && lists003 == null && lists004 == null && lists006 == null &&lists007==null) {
-			    totalPages = (int) Math.ceil((double) lists001.size() / 10);
-			  } else {
-			    if (lists002 != null) {
-			      totalPages = (int) Math.ceil((double) lists002.size() / 10);
-			    } else if (lists003 != null) {
-			      totalPages = (int) Math.ceil((double) lists003.size() / 10);
-			    } else if (lists004 != null) {
-			      totalPages = (int) Math.ceil((double) lists004.size() / 10);
-			    } else if (lists006 != null) {
-				      totalPages = (int) Math.ceil((double) lists006.size() / 10);
-			    } else if (lists007 != null) {
-				      totalPages = (int) Math.ceil((double) lists007.size() / 10);
-			    }
+				    totalPages = (int) Math.ceil((double) lists001.size() / 10);
+				  } else {
+				    if (lists002 != null) {
+				      totalPages = (int) Math.ceil((double) lists002.size() / 10);
+				    } else if (lists003 != null) {
+				      totalPages = (int) Math.ceil((double) lists003.size() / 10);
+				    } else if (lists004 != null) {
+				      totalPages = (int) Math.ceil((double) lists004.size() / 10);
+				    } else if (lists006 != null) {
+					      totalPages = (int) Math.ceil((double) lists006.size() / 10);
+				    } else if (lists007 != null) {
+					      totalPages = (int) Math.ceil((double) lists007.size() / 10);
+				    }
 			  }
 			  
 			  int stage = (totalPages/5)+1;
@@ -562,7 +661,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 			  %>
 			  		<input class="page" type="button" value="<%=i%>" onclick="viewPage(<%=i%>)">
 			  <%
-					  if(i==totalPages){
+					  if(i==totalPages || totalPages==0){
 					  	break;
 					  }
 				  }
