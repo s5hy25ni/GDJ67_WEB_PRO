@@ -117,10 +117,10 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							<h5>SALARY</h5>
 						</div>
 						<div class="search_left_value">
-							<input id="minSalary" type=text placeholder="min value">
+							<input id="minSalary" type=number placeholder="min value">
 						</div>
 						<div class="search_left_value">
-							<input id="maxSalary"  type=text placeholder="max value">
+							<input id="maxSalary"  type=number placeholder="max value">
 						</div>
 						<input type="button" onclick="salarySubmitForm()">
 					</div>
@@ -146,9 +146,9 @@ String maxSalary = (String) request.getParameter("maxSalary");
 								<%
 								}
 								for (int i = 0; i < jobAll.size(); i++) {
-									String value=jobAll.get(i).getJob_title()+"("+jobAll.get(0).getJob_id()+")";
+									String value=jobAll.get(i).getJob_title()+"("+jobAll.get(i).getJob_id()+")";
 								%>
-								<option value="<%=jobAll.get(0).getJob_id()%>"><%=value%></option>
+								<option value="<%=jobAll.get(i).getJob_id()%>"><%=value%></option>
 								<%
 								}
 								}
@@ -315,7 +315,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							    			}
 							    		} else {
 							    			%>
-							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+							                <tr id="Page_<%=i%>_<%=j%>"">
 							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
 							                    <td></td>
 							                    <td></td>
