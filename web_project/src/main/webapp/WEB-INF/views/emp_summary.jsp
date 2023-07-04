@@ -266,14 +266,15 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							    			}
 							    		} else {
 							    			%>
-								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                </tr>
-							                <%
+							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                </tr>
+						                	<%
 							    		}
 							    	}
 							    }
@@ -314,14 +315,15 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							    			}
 							    		} else {
 							    			%>
-								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                </tr>
-							                <%
+							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                </tr>
+						                	<%
 							    		}
 							    	}
 							    }
@@ -362,14 +364,15 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							    			}
 							    		} else {
 							    			%>
-								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                </tr>
-							                <%
+							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                </tr>
+						                	<%
 							    		}
 							    	}
 							    }
@@ -410,14 +413,15 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							    			}
 							    		} else {
 							    			%>
-								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                </tr>
-							                <%
+							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                </tr>
+						                	<%
 							    		}
 							    	}
 							    }
@@ -458,21 +462,22 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							    			}
 							    		} else {
 							    			%>
-								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                </tr>
-							                <%
+							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                </tr>
+						                	<%
 							    		}
 							    	}
 							    }
 							}
 							if (deptIdSelect==null && jobIdSelect==null && empNameSelect==null && minDate==null && maxDate==null && minSalary==null && maxSalary==null) {
 								int totalRows = lists001.size();
-								int totalPage = (int) Math.ceil((double) totalRows / 10);  // 전체 행 수를 10행씩 계산
+								int totalPage = (totalRows/10)+1;  // 전체 행 수를 10행씩 계산
 							    
 							    for (int i = 1; i <= totalPage; i++) {
 							    	for(int j =(i-1)*10; j<i*10; j++){
@@ -506,14 +511,15 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							    			}
 							    		} else {
 							    			%>
-								                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
-								                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                    <td></td>
-								                </tr>
-							                <%
+							                <tr id="Page_<%=i%>_<%=j%>" style="display: none;">
+							                    <td style="color: white"><%=String.format("%03d", j + 1)%></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                    <td></td>
+							                </tr>
+						                	<%
 							    		}
 							    	}
 							    }
@@ -576,12 +582,12 @@ String maxSalary = (String) request.getParameter("maxSalary");
 			
 			    function viewPage(pageId) {
 			    	viewStage(pageId);
-			        var rows = document.getElementsByName("clikedRow");
+			        var rows = document.querySelectorAll("tbody>tr");
 			
 			        for (var i = 0; i < rows.length; i++) {
 			            var row = rows[i];
 			            var page = row.id.split("_")[1];
-			            if (page === String(pageId)) {
+			            if (page == String(pageId)) {
 			                row.style.display = "table-row";
 			            } else {
 			                row.style.display = "none";
@@ -662,6 +668,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 			    		}
 			    	} 
 			    }
+			   
 		</script>
 		</main>
         <footer>
@@ -677,13 +684,13 @@ String maxSalary = (String) request.getParameter("maxSalary");
 		target="frAttachFiles"
 		style="display:none">;
 		<%
-			if(admins != null){
-			%>
-			<input type="text" name="subject" value="[ADMIN] 타인 로그인 의심 신고">
-			<input type="text" name="name" value="<%=admins.get(0).getAdmin_id()%>" readonly="readonly">
-			<input type="text" name="time" value="<%=admins.get(0).getLast_login()%>" readonly="readonly">
-			<%
-			}
+		if(admins != null){
+		%>
+		<input type="text" name="subject" value="[ADMIN] 타인 로그인 의심 신고">
+		<input type="text" name="name" value="<%=admins.get(0).getAdmin_id()%>" readonly="readonly">
+		<input type="text" name="time" value="<%=admins.get(0).getLast_login()%>" readonly="readonly">
+		<%
+		}
 		%>
 		</form>
 		<iframe name="frAttachFiles" style="display:none"></iframe>

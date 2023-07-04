@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	} 
 	
 	document.getElementById("logo").addEventListener("click", home);
-	document.getElementsByClassName("page")[0].classList.add("active");
+	
 	
 })
 

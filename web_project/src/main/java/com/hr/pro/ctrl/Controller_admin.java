@@ -34,6 +34,7 @@ public class Controller_admin extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String cmd = req.getParameter("cmd");
+		int failureCnt = 0;
 		
 		if(cmd.equals("loginPage")) {
 			session.removeAttribute("isLogin");
@@ -63,8 +64,11 @@ public class Controller_admin extends HttpServlet {
 				session.setAttribute("isLogin", "success");
 				session.setAttribute("SuccessUser", SuccessUser);
 				dao.setLastLogin(loginUser);
+			} else if(failureCnt == 5){
+				session.setAttribute("isLogin", "failure");
 			} else {
 				session.setAttribute("isLogin", "failure");
+				failureCnt++;
 			}
 			
 			req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);

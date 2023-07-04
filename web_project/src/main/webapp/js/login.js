@@ -1,7 +1,6 @@
 /**
  * 
  */
- 
 onload = function(){
     this.document.getElementById("user_id").onfocus = inputFocus;
     this.document.getElementById("user_pw").onfocus = inputFocus;
@@ -16,7 +15,10 @@ onload = function(){
 	var isLogin = document.querySelector("#hidden>#isLogin").textContent;
 	
     if(isLogin == "success"){
+		failureCnt = 0;
 		location.href="/web_project"
+	} else if(failureCnt==5){
+		alert("로그인 시도 횟수가 너무 많습니다. 5분 후 다시 시도해주세요.");
 	} else if(isLogin == "failure"){
 		document.getElementById("login_confirm").style.display="block";
         document.getElementById("login_confirm").textContent = "※ 아이디와 비빌번호를 확인해주세요."
