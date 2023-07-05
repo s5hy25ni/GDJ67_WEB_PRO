@@ -206,7 +206,7 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 								</tr>
 								<%
 								}
-								} else { //출력 행 수가 10단위가 아니면 나머지는 빈행 출력 (10행 맞추려고) //근데 왜 안되지..?
+								} else { //출력 행 수가 10단위가 아니면 나머지는 빈행 출력 (10행 맞추려고)
 									if (j < i * 10 && i==1) {
 								%>
 								<tr id="Page_<%=i%>_<%=j%>">
