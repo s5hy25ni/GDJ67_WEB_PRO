@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		document.getElementById("notifyBtn").addEventListener("click", notify);
 		document.getElementById("login_extension_btn").addEventListener("click", function(){
 			alert("연장되었습니다.")	
-			location.href="http://localhost:8080/web_project";
+			location.href=window.location.href;
 		});
 	} else {
 		if(window.location.href != "http://localhost:8080/web_project/"){
