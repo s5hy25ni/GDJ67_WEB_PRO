@@ -140,6 +140,14 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 							<%
 							int count = 1;
 							int currentPage = 1; // 현재 페이지 초기화
+							
+							if(lists020 != null && lists020.size() == 0){
+								%>
+								<tr class="none">
+									<td colspan="7" rowspan="10">해당 조건에 맞는 값이 없습니다.</td>
+								</tr>
+								<%
+							}
 
 							if (lists019 != null) {
 								for (int i = 0; i < 10; i++) {

@@ -136,7 +136,14 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 							<%
 							int count = 1;
 							int currentPage = 1; // 현재 페이지 초기화
-
+								
+							if(lists028 != null && lists028.size() == 0){
+								%>
+								<tr class="none">
+									<td colspan="7" rowspan="10">해당 조건에 맞는 값이 없습니다.</td>
+								</tr>
+								<%
+							}
 							if (lists027 != null) {
 								for (int i = 0; i < 10; i++) {
 									if (i == 0) {
@@ -293,6 +300,7 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 				  %>
 				  <input class="page" type="button" value="<%=i%>" onclick="viewPage(<%=i%>)">
 				  <%
+				  	
 				  }
 				  %>
 				  <input class="allow" type="button" value="&gt;" onclick="nextPage()">
