@@ -172,7 +172,7 @@ function searchName(){
 }
 
 onload = function() {
-  var clicked = document.getElementsByName("clikedRow");
+  var clicked = document.getElementsByClassName("clikedRow");
   for (let i = 0; i < clicked.length; i++) {
     clicked[i].addEventListener("click", function() {
       var empId = this.getElementsByTagName("td")[1].textContent;
