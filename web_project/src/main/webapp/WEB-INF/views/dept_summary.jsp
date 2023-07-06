@@ -148,7 +148,7 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 								for (int i = 0; i < 10; i++) {
 									if (i == 0) {
 							%>
-							<tr name="clikedRow">
+							<tr class="clikedRow">
 								<td><%=String.format("%03d", count)%></td>
 								<td><%=lists027.get(0).getDepartment_id()%></td>
 								<td><%=lists027.get(0).getDepartment_name()%></td>
@@ -182,7 +182,7 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 									if (i > 1) {
 								%>
 								<tr id="Page_<%=i%>_<%=j%>" style="display: none;"
-									name="clikedRow">
+									class="clikedRow">
 									<!-- 2페이지부터는 숨기기, 각 페이지 id 만들어주기(script처리위해) -->
 									<td><%=String.format("%03d", j + 1)%></td>
 									<td><%=dept.getDepartment_id()%></td>
@@ -193,7 +193,7 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 								<%
 								} else {
 								%>
-								<tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+								<tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 									<!-- 1페이지 출력 -->
 									<td><%=String.format("%03d", j + 1)%></td>
 									<td><%=dept.getDepartment_id()%></td>
@@ -241,7 +241,7 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 								if (i > 1) {
 							%>
 							<tr id="Page_<%=i%>_<%=j%>" style="display: none;"
-								name="clikedRow">
+								class="clikedRow">
 								<!-- 2페이지부터는 숨기기, 각 페이지 id 만들어주기(script처리위해) -->
 								<td><%=String.format("%03d", j + 1)%></td>
 								<td><%=dept.getDepartment_id()%></td>
@@ -252,7 +252,7 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 							<%
 							} else {
 							%>
-							<tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							<tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 								<!-- 1페이지 출력 -->
 								<td><%=String.format("%03d", j + 1)%></td>
 								<td><%=dept.getDepartment_id()%></td>

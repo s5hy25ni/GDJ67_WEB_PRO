@@ -36,12 +36,12 @@ function dateSubmitForm(){
 	//hiddenField input 생성
 	var hiddenMinField = document.createElement("input");
 	hiddenMinField.type = "hidden";
-	hiddenMinField.name = "minDate"; // Changed the name to match the parameter name
+	hiddenMinField.name = "minDate"; 
 	hiddenMinField.value = selectMinElement;
 	
 	var hiddenMaxField = document.createElement("input");
 	hiddenMaxField.type = "hidden";
-	hiddenMaxField.name = "maxDate"; // Changed the name to match the parameter name
+	hiddenMaxField.name = "maxDate"; 
 	hiddenMaxField.value = selectMaxElement;
 
 	// hidden field form에 append
@@ -95,12 +95,12 @@ function salarySubmitForm(){
 	//hiddenField input 생성
 	var hiddenMinField = document.createElement("input");
 	hiddenMinField.type = "hidden";
-	hiddenMinField.name = "minSalary"; // Changed the name to match the parameter name
+	hiddenMinField.name = "minSalary"; 
 	hiddenMinField.value = selectMinElement;
 	
 	var hiddenMaxField = document.createElement("input");
 	hiddenMaxField.type = "hidden";
-	hiddenMaxField.name = "maxSalary"; // Changed the name to match the parameter name
+	hiddenMaxField.name = "maxSalary"; 
 	hiddenMaxField.value = selectMaxElement;
 
 	// hidden field form에 append
@@ -125,7 +125,7 @@ function jobSubmitForm(){
 	//hiddenField input 생성
 	var hiddenField = document.createElement("input");
 	hiddenField.type = "hidden";
-	hiddenField.name = "jobIdSelect"; // Changed the name to match the parameter name
+	hiddenField.name = "jobIdSelect"; 
 	hiddenField.value = selectedjobId;
 
 	// hidden field form에 append
@@ -160,7 +160,7 @@ function searchName(){
 	//hiddenField input 생성
 	var hiddenField = document.createElement("input");
 	hiddenField.type = "hidden";
-	hiddenField.name = "empNameSelect"; // Changed the name to match the parameter name
+	hiddenField.name = "empNameSelect"; 
 	hiddenField.value = selectedEmpName;
 
 	// hidden field form에 append
