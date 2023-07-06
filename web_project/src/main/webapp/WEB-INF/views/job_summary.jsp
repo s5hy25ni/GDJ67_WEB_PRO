@@ -153,7 +153,7 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 								for (int i = 0; i < 10; i++) {
 									if (i == 0) {
 							%>
-							<tr name="clikedRow">
+							<tr class="clikedRow">
 								<td><%=String.format("%03d", count)%></td>
 								<td><%=lists019.get(0).getJob_id()%></td>
 								<td><%=lists019.get(0).getJob_title()%></td>
@@ -187,7 +187,7 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 									if (i > 1) {
 								%>
 								<tr id="Page_<%=i%>_<%=j%>" style="display: none;"
-									name="clikedRow">
+									class="clikedRow">
 									<td><%=String.format("%03d", j + 1)%></td>
 									<td><%=job.getJob_id()%></td>
 									<td><%=job.getJob_title()%></td>
@@ -197,7 +197,7 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 								<%
 								} else {
 								%>
-								<tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+								<tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 									<td><%=String.format("%03d", j + 1)%></td>
 									<td><%=job.getJob_id()%></td>
 									<td><%=job.getJob_title()%></td>
@@ -244,7 +244,7 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 								if (i > 1) {
 							%>
 							<tr id="Page_<%=i%>_<%=j%>" style="display: none;"
-								name="clikedRow">
+								class="clikedRow">
 								<td><%=String.format("%03d", j + 1)%></td>
 								<td><%=job.getJob_id()%></td>
 								<td><%=job.getJob_title()%></td>
@@ -254,7 +254,7 @@ String jobTitleSelect = (String) request.getParameter("jobTitleSelect");
 							<%
 							} else {
 							%>
-							<tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							<tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 								<td><%=String.format("%03d", j + 1)%></td>
 								<td><%=job.getJob_id()%></td>
 								<td><%=job.getJob_title()%></td>

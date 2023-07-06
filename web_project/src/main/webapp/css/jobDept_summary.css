@@ -169,7 +169,7 @@ tr, td{
     border: 1px solid rgb(190,190,190);
 }
 
-tbody>tr[name="clikedRow"]:hover{
+.clikedRow:hover{
     color: white;
     background-color: rgb(46,204,113);
     cursor: pointer;
