@@ -250,7 +250,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
 							    			if(i>1){
 							    				%>
-							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -262,7 +262,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			} else {
 							    				%>
-							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                    <tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -314,7 +314,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
 							    			if(i>1){
 							    				%>
-							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -326,7 +326,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			} else {
 							    				%>
-							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                    <tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -378,7 +378,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
 							    			if(i>1){
 							    				%>
-							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -390,7 +390,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			} else {
 							    				%>
-							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                    <tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -442,7 +442,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
 							    			if(i>1){
 							    				%>
-							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -454,7 +454,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			} else {
 							    				%>
-							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                    <tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -506,7 +506,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
 							    			if(i>1){
 							    				%>
-							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -518,7 +518,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			} else {
 							    				%>
-							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                    <tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -570,7 +570,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 								            String name = empDto.getFirst_name() + " " + empDto.getLast_name();
 							    			if(i>1){
 							    				%>
-							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" name="clikedRow">
+							                     <tr id="Page_<%=i%>_<%=j%>" style="display: none;" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
@@ -582,7 +582,7 @@ String maxSalary = (String) request.getParameter("maxSalary");
 							                    <%
 							    			} else {
 							    				%>
-							                    <tr id="Page_<%=i%>_<%=j%>" name="clikedRow">
+							                    <tr id="Page_<%=i%>_<%=j%>" class="clikedRow">
 							                        <td><%=String.format("%03d", j + 1)%></td>
 							                        <td><%=empDto.getEmployee_id()%></td>
 													<td><%=name%></td>
