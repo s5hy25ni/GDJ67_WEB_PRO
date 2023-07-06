@@ -203,7 +203,7 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 								</tr>
 								<%
 								}
-								} else { //출력 행 수가 10단위가 아니면 나머지는 빈행 출력 (10행 맞추려고) //근데 왜 안되지..?
+								} else { //출력 행 수가 10단위가 아니면 나머지는 빈행 출력 (10행 맞추려고) 
 									if (j < i * 10 && i==1) {
 								%>
 								<tr id="Page_<%=i%>_<%=j%>">
@@ -262,7 +262,7 @@ String deptNameSelect = (String) request.getParameter("deptNameSelect");
 							</tr>
 							<%
 							}
-							} else { //출력 행 수가 10단위가 아니면 나머지는 빈행 출력 (10행 맞추려고) //근데 왜 안되지..?
+							} else { //출력 행 수가 10단위가 아니면 나머지는 빈행 출력 (10행 맞추려고) 
 							%>
 							<tr id="Page_<%=i%>_<%=j%>" style="display: none;">
 								<td style="color: white"><%=String.format("%03d", j + 1)%></td>
